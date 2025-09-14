@@ -12,36 +12,54 @@ classroom activity. -->
 
     <title>MY SCHOOL</title>
 
-    <link href="style.css" rel="stylesheet" type="text/css" />
-        <style>
-            html {
-        
-                font-size: 20px;
-        
-                background-color: purple;
-        
-                color: white;
-        
-                font-family: arial;
-        
-            }
-        
-            #test {
-        
-                background-color: green;
-        
-                color: black;
-        
-                font-size: 25px;
-        
-                text-align: justify;
-        
-            }
-        </style>
+    <link href="style.css" rel="stylesheet" type="text/css" />                                          
+     
+
+
 
 </head>
-<body>
+<style>
+    /* The animation code */
+
+    @keyframes example {
+
+        0% {
+            background-color: red;
+        }
+
+        25% {
+            background-color: yellow;
+        }
+
+        50% {
+            background-color: blue;
+        }
+
+        100% {
+            background-color: green;
+        }
+
+    }
+
+    /* The element to apply the animation to */
+
+    div {
+
+        width: 3500px;
+
+        height: 3400px;
+
+        background-color: red;
+
+        animation-name: example;
+
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+
+    }
+</style>
     <body>
+        <div>
         <!-- Header / Welcome Section -->
         <header>
             <h1 style='text-align: center;'>
@@ -49,7 +67,7 @@ classroom activity. -->
                 Welcome to Brookhurst
             
             </h1>
-            <p style='color: purple;'>
+            <p style="color: blue;"
             
                 This is an example of inline css 
             <p><strong>Empowering students through education, discipline, and excellence.</strong></p>
@@ -176,7 +194,6 @@ classroom activity. -->
             <p>Address: P.O Box 123, Nairobi, Kenya</p>
         </section>
     
-        
+        </div>
     </body>
-
-</body>
+    </html>
