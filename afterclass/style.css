@@ -25,7 +25,7 @@ a {
 
 a:hover {
 
-    color: #07706b;
+    color: hsl(0, 29%, 97%);
 
 }
 
@@ -79,5 +79,7 @@ ul li::before {
 a::after {
 
     content: "";
-
+}
+div {
+    border: 4px solid black;
 }
