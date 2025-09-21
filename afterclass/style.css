@@ -1,0 +1,83 @@
+body {
+
+    font-family: 'Arial', sans-serif;
+
+    background-color: #0b8913;
+
+    color: #DDDDDD;
+
+}
+
+h2 {
+
+    color: #39BAFF;
+
+}
+
+/* attribute selector */
+a {
+
+    color: #ff3985;
+
+    text-decoration: none;
+
+}
+
+a:hover {
+
+    color: #07706b;
+
+}
+
+/* child selector */
+ul>li {
+
+    font-weight: bold;
+
+}
+
+/* sibling selector */
+h2+p {
+
+    background-color: #163D57;
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+}
+
+/* hover pseudo class*/
+ul li:hover {
+
+    color: #be1610;
+
+}
+
+/* :nth-child(n) pseudo class */
+ul li:nth-child(3) {
+
+    background-color: none;
+
+}
+
+/*  :not(selector) pseudo class */
+p:not(:first-of-type) {
+
+    text-decoration: underline;
+
+}
+
+/* pseudo before class */
+ul li::before {
+
+    content: "📚 ";
+
+}
+
+/* pseudo after class */
+a::after {
+
+    content: "";
+
+}
