@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <style>
+        body {
+
+            height: 2000px;
+
+            /* make the page tall so we can scroll */
+
+        }
+
+        div {
+
+            /* normal style followed for div box */
+
+            margin: 20px 0;
+
+            padding: 10px;
+
+            border: 3px solid #73AD21;
+
+            width: 250px;
+
+            background: lightyellow;
+
+        }
+
+        .relative {
+            
+
+            position: relative;
+
+            left: 30px;
+
+        }
+
+        .absolute {
+            /* One box floating at exact coordinates (ignores flow). it is placed at exact coordinates (top, left, right, bottom). The element will be placed exactly 30px from the left and 50px from the top of its container (or the whole page). */
+
+            position: absolute;
+
+            top: 200px;
+
+            left: 30px;
+
+            background: lightcoral;
+
+        }
+
+        .fixed {
+
+            /* Try Scroll horizontal and vertical, the text appear as fixed in its place- it won't move. */
+
+            position: fixed;
+
+            top: 10px;
+
+            right: 10px;
+
+            background: lightblue;
+
+        }
+
+        .static {
+
+            /* cannot move it using top, left, etc. top: 10px; */
+
+            position: static;
+
+            background: lightgreen;
+
+        }
+
+        .sticky {
+
+            /* scroll until the box touches the top, then it will “stick” there until page area ends. */
+
+            position: sticky;
+
+            top: 0;
+
+            background: orange;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>CSS Position Examples</h1>
+
+    <p>Scroll the page to see how each behaves.</p>
+
+    <div class="relative">Relative → moves 30px right but space is kept.</div>
+
+    <div class="absolute">Absolute → placed 200px from top, 30px from left, no space left behind.</div>
+
+    <div class="fixed">Fixed → always stays at top-right of screen, even when scrolling.</div>
+
+    <div class="static">Static → default, stays in normal flow.</div>
+
+    <div class="sticky">Sticky → scroll down, this will stick to top when it reaches there.</div>
+
+    <p style="margin-top:1000px;">Keep scrolling… Sticky box stops sticking when parent ends.</p>
+
+</body>
+
+</html>
