@@ -4,519 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harambee Comprehensive School</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Our School - Excellence in Education</title>
+        <link href="school.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<style>
-/* General Styling */
-:root {
---primary-color: #0f6f1d;
---secondary-color: #095118;
---text-color: #e5eae6;
---light-text-color: #e5eae6;
---white: #ffffff;
---dark-blue: #0a5118;
-}
 
-body {
-font-family: 'Poppins', sans-serif;
-margin: 0;
-line-height: 1.6;
-color: var(--text-color);
-}
-
-.container {
-max-width: 1100px;
-margin: 0 auto;
-padding: 0 20px;
-}
-
-.section {
-padding: 80px 0;
-}
-
-.bg-light {
-background-color: var(--secondary-color);
-}
-
-.cta-button {
-display: inline-block;
-background-color: var(--primary-color);
-color: var(--white);
-padding: 12px 24px;
-text-decoration: none;
-border-radius: 5px;
-font-weight: 600;
-transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-background-color: var(--dark-blue);
-}
-
-.section-header {
-text-align: center;
-margin-bottom: 50px;
-}
-
-.section-header h2 {
-font-size: 2.5em;
-font-weight: 700;
-color: var(--primary-color);
-margin-bottom: 10px;
-}
-
-/* Header */
-.header {
-background-color: var(--white);
-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-padding: 15px 0;
-position: sticky;
-top: 0;
-z-index: 1000;
-}
-
-.header .container {
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-
-.logo {
-display: flex;
-align-items: center;
-text-decoration: none;
-font-size: 1.5em;
-font-weight: 700;
-color: var(--primary-color);
-}
-
-.logo img {
-height: 40px;
-margin-right: 10px;
-}
-
-.nav-menu ul {
-list-style: none;
-margin: 0;
-padding: 0;
-display: flex;
-}
-
-.nav-menu ul li a {
-text-decoration: none;
-color: var(--text-color);
-font-weight: 600;
-margin-left: 25px;
-transition: color 0.3s ease;
-}
-
-.nav-menu ul li a:hover {
-color: var(--primary-color);
-}
-
-.nav-toggle {
-display: none;
-background: none;
-border: none;
-cursor: pointer;
-padding: 10px;
-}
-
-.nav-toggle .bar {
-display: block;
-width: 25px;
-height: 3px;
-background-color: var(--primary-color);
-margin: 5px auto;
-transition: all 0.3s ease;
-}
-
-/* Mobile Nav */
-@media (max-width: 768px) {
-.nav-toggle {
-display: block;
-}
-
-.nav-menu {
-display: none;
-width: 100%;
-position: absolute;
-top: 70px;
-left: 0;
-background-color: var(--white);
-box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-padding: 20px 0;
-}
-
-.nav-menu.active {
-display: block;
-}
-
-.nav-menu ul {
-flex-direction: column;
-text-align: center;
-}
-
-.nav-menu ul li {
-margin: 10px 0;
-}
-
-.nav-menu ul li a {
-font-size: 1.2em;
-margin-left: 0;
-}
-}
-
-/* Hero Section */
-.hero-section {
-background: linear-gradient(rgba(6, 46, 17, 0.7), #eef1f4ff), url('../images/hero-bg.jpg') no-repeat center
-center/cover;
-color: var(--white);
-text-align: center;
-padding: 150px 20px;
-}
-
-.hero-content h1 {
-font-size: 3.5em;
-margin-bottom: 20px;
-}
-
-.hero-content p {
-font-size: 1.2em;
-max-width: 600px;
-margin: 0 auto 30px;
-}
-
-/* Academics Section */
-.academics-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 30px;
-text-align: center;
-}
-
-.card {
-background-color: var(--white);
-padding: 30px;
-border-radius: 10px;
-box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-transition: transform 0.3s ease;
-}
-
-.card:hover {
-transform: translateY(-10px);
-}
-
-.card .icon {
-font-size: 3em;
-color: var(--primary-color);
-margin-bottom: 15px;
-}
-
-.card h3 {
-font-size: 1.5em;
-color: var(--primary-color);
-}
-
-/* Events Section */
-.event-grid {
-display: flex;
-flex-wrap: wrap;
-gap: 30px;
-justify-content: center;
-}
-
-.event-card {
-display: flex;
-align-items: center;
-background-color: var(--white);
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-width: 100%;
-max-width: 500px;
-}
-
-.event-date {
-background-color: var(--primary-color);
-color: var(--white);
-text-align: center;
-padding: 15px;
-border-radius: 8px;
-min-width: 60px;
-margin-right: 20px;
-}
-
-.event-date .month {
-display: block;
-font-size: 0.9em;
-text-transform: uppercase;
-}
-
-.event-date .day {
-display: block;
-font-size: 1.8em;
-font-weight: 700;
-}
-
-.event-details h3 {
-margin: 0 0 5px;
-color: var(--primary-color);
-}
-
-.event-details p {
-margin: 0;
-color: var(--light-text-color);
-}
-
-/* Footer */
-.footer {
-background-color: var(--dark-blue);
-color: var(--white);
-padding: 50px 0 20px;
-}
-
-.footer-content {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-margin-bottom: 30px;
-}
-
-.footer-about, .footer-links, .footer-social {
-flex: 1;
-min-width: 250px;
-margin: 20px;
-}
-
-.footer-about h3, .footer-links h3, .footer-social h3 {
-color: var(--primary-color);
-border-bottom: 2px solid var(--primary-color);
-padding-bottom: 10px;
-margin-bottom: 15px;
-}
-
-.footer-links ul {
-list-style: none;
-padding: 0;
-}
-
-.footer-links ul li a {
-color: var(--white);
-text-decoration: none;
-transition: color 0.3s ease;
-}
-
-.footer-links ul li a:hover {
-color: var(--primary-color);
-}
-
-.social-icons a {
-color: var(--white);
-font-size: 1.5em;
-margin-right: 15px;
-transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-color: var(--primary-color);
-}
-
-.footer-bottom {
-text-align: center;
-border-top: 1px solid rgba(255, 255, 255, 0.1);
-padding-top: 20px;
-}
-</style>
-<script>document.addEventListener('DOMContentLoaded', () => {
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        if (navToggle && navMenu) {
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-        }
-
-        // Optional: Close nav menu when a link is clicked
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-    });
-</script>
 <body>
-
-    <!-- Header Section -->
-    <header class="header">
+    <header class="site-header">
         <div class="container">
-            <a href="#" class="logo">
-                <img src="image6.jpeg" alt="">
-                HARAMBEE SCHOOL
-            </a>
-            <nav class="nav-menu">
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#academics">Academics</a></li>
-                <li><a href="#admissions">Admissions</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="index.html" class="logo">Harambee Comprehensive school</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="#story">Our Story</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Inspiring the Future, One Student at a Time</h1>
-                <p>Welcome to Harambee comprehensive School, where education meets innovation. Discover a vibrant community dedicated
-                    to fostering a love for learning.</p>
-                <a href="#admissions" class="cta-button">Apply Now</a>
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <img src="image2.jpg" alt="Students in a classroom" class="hero-image">
+                <div class="hero-text">
+                    <h1>Welcome to Harambee Comprehrnsive School</h1>
+                    <p>Fostering young minds with a blend of creativity and discipline.</p>
+                    <a href="#about" class="cta-button">Learn More</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Mission</h2>
+        <section id="story" class="story-section">
+            <div class="container">
+                <h2>Our Story</h2>
+                <div class="story-content">
+                    <p>Founded in 1985, our school began with a simple mission: to provide quality education that
+                        nurtures each child's potential. What started as a small, local initiative has grown into a
+                        vibrant community, built on a foundation of dedicated educators and engaged parents. Our history
+                        is a testament to our enduring commitment to academic excellence and holistic development.</p>
+                    <p>Through the years, we have adapted our curriculum to meet the evolving needs of our students,
+                        embracing technology and innovative teaching methods. Yet, our core values remain the same. We
+                        celebrate our past achievements while constantly looking toward a future of continued growth and
+                        inspiration.</p>
+                </div>
             </div>
-            <div class="mission-statement">
-                <p>At Harambee School, we are committed to providing a holistic education that prepares students for
-                    the challenges of tomorrow. Our mission is to empower students with critical thinking skills, a
-                    sense of social responsibility, and a passion for lifelong learning.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Academics Section -->
-    <section id="academics" class="section bg-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Academics</h2>
-            </div>
-            <div class="academics-grid">
-                <div class="card">
-                    <i class="fas fa-book-reader icon"></i>
-                    <h3>High-Level Curriculum</h3>
-                    <p>Rigorous and engaging courses designed to challenge and inspire students across all disciplines.
-                    </p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-flask icon"></i>
-                    <h3>STEM Programs</h3>
-                    <p>Hands-on science, technology, engineering, and math programs that prepare students for future
-                        careers.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-paint-brush icon"></i>
-                    <h3>Arts & Culture</h3>
-                    <p>A thriving arts program with opportunities in music, drama, and visual arts.</p>
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2>Photo Gallery</h2>
+                <div class="photo-grid">
+                    <div class="photo-item" data-src="images/gallery-full-1.jpg">
+                        <img src="school1.jpg" alt="Students in an art class">
+                    </div>
+                    <div class="photo-item" data-src="images/gallery-full-2.jpg">
+                        <img src="harambee.webp" alt="Students playing sports">
+                    </div>
+                    <div class="photo-item" data-src="images/gallery-full-3.jpg">
+                        <img src="school2.jpg" alt="Students in a science lab">
+                    </div>
+                    <!-- Add more photo items as needed -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Events Section -->
-    <section id="events" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Upcoming Events</h2>
-            </div>
-            <div class="event-grid">
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="month">Oct</span>
-                        <span class="day">25</span>
+        <section id="videos" class="videos-section">
+            <div class="container">
+                <h2>School Videos</h2>
+                <div class="video-grid">
+                    <div class="video-item">
+                        <video controls poster=".jpg">
+                            <source src="videos/school-tour.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <h3>Prayer Section</h3>
                     </div>
-                    <div class="event-details">
-                        <h3>Parent-Teacher Conference</h3>
-                        <p>Join us to discuss your child's progress and achievements.</p>
+                    <div class="video-item">
+                        <video controls poster="sport1.jpg">
+                            <source src="sportvideo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <h3>Sports Day Highlights</h3>
                     </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="month">Nov</span>
-                        <span class="day">10</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Annual Science Fair</h3>
-                        <p>See our students' innovative projects and discoveries.</p>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="month">Dec</span>
-                        <span class="day">01</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Winter Concert</h3>
-                        <p>Enjoy performances from our school's talented musicians.</p>
-                    </div>
+                    <!-- Add more video items as needed -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Admissions Section -->
-    <section id="admissions" class="section bg-light">
+    <footer class="site-footer">
         <div class="container">
-            <div class="section-header">
-                <h2>Admissions</h2>
-                <p>Join the Harambee School community and start your journey with us.</p>
-                <a href="#admissions" class="cta-button">Apply Now</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>Harambee School</h3>
-                    <p>Makadara,Nairobi, KENYA</p>
-                    <p>Phone: (123) 456-7890</p>
-                    <p>Email: info@harambeeschool.co.ke</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#academics">Academics</a></li>
-                        <li><a href="#admissions">Admissions</a></li>
-                        <li><a href="#events">Events</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h3>Follow Us</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Harambee School. All rights reserved.</p>
+            <p>&copy; 2025 Our School. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-image" src="" alt="">
+    </div>
+<script src="school.js"></script>
+    
 </body>
 
-</html>
+</html> 
