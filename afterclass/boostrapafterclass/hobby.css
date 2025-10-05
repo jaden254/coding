@@ -88,16 +88,6 @@ header nav ul li a:hover {
     background-color: #7b9acc;
     /* Highlights the navigation item on hover */
 }
-
-/* --- Gallery Section --- */
-.gallery-container {
-    display: grid;
-    /* Uses a grid to create a responsive layout for the hobby items */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    /* Space between the grid items */
-}
-
 .hobby-item {
     text-align: center;
     padding: 15px;
