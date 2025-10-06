@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>Bootstrap Badge with Inline Count</title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .badge-label {
+
+            font-size: 1rem;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 0.4rem;
+
+            padding: 0.5em 0.75em;
+
+        }
+
+        .badge-count {
+
+            font-size: 0.85rem;
+
+            padding: 0.25em 0.6em;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container mt-4">
+
+        <h2>Badges with Inline Count</h2>
+
+        <!-- Messages Badge -->
+
+        <span class="badge badge-primary badge-label">
+
+            Messages
+
+            <span class="badge badge-light badge-count">4</span>
+
+        </span>
+
+        <!-- Tasks Badge -->
+
+        <span class="badge badge-success badge-label">
+
+            Tasks
+
+            <span class="badge badge-light badge-count">8</span>
+
+        </span>
+
+        <!-- Alerts Badge -->
+
+        <span class="badge badge-danger badge-label">
+
+            Alerts
+
+            <span class="badge badge-light badge-count">2</span>
+
+        </span>
+
+    </div>
+
+</body>
+
+</html>
