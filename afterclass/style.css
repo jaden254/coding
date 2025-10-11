@@ -105,4 +105,113 @@ a::after {
       /* Starts at column line 1 and spans 3 columns */
       background-color: #90ee90;
   }
- 
+ /* Basic styling for the body and fonts */
+ body {
+     font-family: Arial, sans-serif;
+     margin: 0;
+     line-height: 1.6;
+ }
+
+ /* Header styling */
+ header {
+     background: #004c99;
+     /* School color example */
+     color: #fff;
+     padding: 1rem;
+     text-align: center;
+ }
+
+ header h1 {
+     margin: 0;
+     font-size: 2rem;
+ }
+
+ header a {
+     color: #fbfcfd;
+     text-decoration: none;
+ }
+
+ /* Navigation bar styling */
+ nav {
+     background: #004c99;
+     /* Light gray background */
+     text-align: center;
+     position: sticky;
+     /* Modern sticky header feature */
+     top: 0;
+     z-index: 1000;
+ }
+
+ nav ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     justify-content: center;
+ }
+
+ nav li a {
+     display: block;
+     padding: 1rem 1.5rem;
+     color: #333;
+     text-decoration: none;
+     transition: background-color 0.3s;
+ }
+
+ nav li a:hover {
+     background-color: #ddd;
+ }
+
+ /* Hamburger menu for mobile */
+ .hamburger-menu {
+     display: none;
+     cursor: pointer;
+     padding: 1rem;
+ }
+
+ .hamburger-menu .bar {
+     display: block;
+     width: 25px;
+     height: 3px;
+     background-color: #333;
+     margin: 5px auto;
+     transition: all 0.3s ease-in-out;
+ }
+
+ #menu-toggle {
+     display: none;
+ }
+
+ /* Mobile styles */
+ @media screen and (max-width: 768px) {
+     nav ul {
+         display: none;
+         flex-direction: column;
+         width: 100%;
+     }
+
+     nav ul li {
+         text-align: center;
+     }
+
+     .hamburger-menu {
+         display: block;
+     }
+
+     #menu-toggle:checked~ul {
+         display: flex;
+     }
+
+     /* Animation for the hamburger to 'X' */
+     #menu-toggle:checked+.hamburger-menu .bar:nth-child(1) {
+         transform: translateY(8px) rotate(45deg);
+     }
+
+     #menu-toggle:checked+.hamburger-menu .bar:nth-child(2) {
+         opacity: 0;
+     }
+
+     #menu-toggle:checked+.hamburger-menu .bar:nth-child(3) {
+         transform: translateY(-8px) rotate(-45deg);
+     }
+ }
