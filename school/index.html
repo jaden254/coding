@@ -120,6 +120,7 @@
             <a href="https://www.codingal.com/" class="btn btn-primary">Home</a>
         </div>
     </section>
+
     <!-- Notes for Coding -->
     <section class="container my-5">
         <h2 class="mb-4 text-center">📝 Notes for Coding</h2>
@@ -163,7 +164,6 @@
     }</code></pre>
                 </div>
             </div>
-            <!-- Add more notes by copying the structure above -->
             <!-- Note 4: Bootstrap Grid System -->
             <div class="col-md-6 col-lg-4">
                 <div class="p-4 bg-light rounded h-100">
@@ -175,9 +175,118 @@
     &lt;/div&gt;</code></pre>
                 </div>
             </div>
+            <!-- NEW NOTE 5: Semantic HTML -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>Semantic HTML</h5>
+                    <p>Using meaningful tags like `header`, `nav`, and `main` to improve accessibility and SEO.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>&lt;header&gt;
+      &lt;nav&gt;...&lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      &lt;section&gt;...&lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 6: CSS Flexbox -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>CSS Flexbox</h5>
+                    <p>A modern way to lay out items in a container, allowing for flexible and responsive designs.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>.flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 7: JavaScript ES6 Arrow Function -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>ES6 Arrow Function</h5>
+                    <p>A concise syntax for writing JavaScript functions, useful for simple callbacks.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>const add = (a, b) => a + b;
+    console.log(add(2, 3)); // 5</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 8: CSS Variables -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>CSS Variables</h5>
+                    <p>Define custom properties in CSS to easily reuse values throughout your stylesheets.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>:root {
+      --primary-color: #ff3c38;
+    }
+    .btn-primary {
+      background-color: var(--primary-color);
+    }</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 9: JavaScript Event Listener -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>Event Listener</h5>
+                    <p>Use JavaScript to listen for user actions, such as a button click.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>document.getElementById("myBtn").addEventListener("click", () => {
+        alert("Button clicked!");
+    });</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 10: HTML Image Accessibility -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>Accessible Images</h5>
+                    <p>Always include the `alt` attribute on images for screen readers and search engines.</p>
+                    <pre
+                        class="bg-dark text-white p-3 rounded"><code>&lt;img src="image.jpg" alt="A descriptive text for the image"&gt;</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 11: CSS Grid Layout -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>CSS Grid</h5>
+                    <p>A powerful layout system for creating complex, two-dimensional page structures.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>.grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+    }</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 12: JavaScript Ternary Operator -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>Ternary Operator</h5>
+                    <p>A concise way to write a conditional statement in a single line.</p>
+                    <pre
+                        class="bg-dark text-white p-3 rounded"><code>const result = (score > 60) ? "Pass" : "Fail";</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 13: HTML Lists -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>HTML Lists</h5>
+                    <p>Organize content with ordered (`&lt;ol&gt;`) or unordered (`&lt;ul&gt;`) lists for better
+                        structure.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>&lt;ul&gt;
+        &lt;li&gt;Item 1&lt;/li&gt;
+        &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- NEW NOTE 14: CSS Pseudo-classes -->
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-light rounded h-100">
+                    <h5>CSS Pseudo-classes</h5>
+                    <p>Apply styles based on a special state of an element, like `:hover` or `:focus`.</p>
+                    <pre class="bg-dark text-white p-3 rounded"><code>a:hover {
+        text-decoration: underline;
+    }</code></pre>
+                </div>
+            </div>
         </div>
     </section>
-
 
     <!-- Announcements -->
     <section class="container my-5">
@@ -185,25 +294,25 @@
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="p-4 bg-light rounded announcement">
-                    <h5>🎓 Midterm Exams Start Oct 15</h5>
-                    <p>Check your student portal for the full schedule and exam guidelines.</p>
+                    <h5>🎓 Qualcomm</h5>
+                    <p>Pushing deeper into open-source and edge AI development through a partnership with Arduino.</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="p-4 bg-light rounded announcement">
-                    <h5>👨‍👩‍👧 Parent-Teacher Meeting</h5>
-                    <p>Join us on Oct 20 at 5 PM in the school auditorium.</p>
+                    <h5>🎓 Oracle</h5>
+                    <p>Released Java 25 with a focus on developers and AI, and its Java Management Service now includes an application
+                    analyzer.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Livestream -->
-    <!-- Video Collage -->
+    <!-- Video Collage (New videos added here) -->
     <section class="container my-5">
         <h2 class="mb-4 text-center">🎥 School Highlights</h2>
         <div class="row g-4">
-            <!-- Existing Videos -->
+            <!-- First row of 3 videos -->
             <div class="col-md-6 col-lg-4">
                 <div class="ratio ratio-16x9">
                     <iframe src="https://www.youtube.com/embed/qz0aGYrrlhU" title="Video 1" allowfullscreen></iframe>
@@ -219,7 +328,7 @@
                     <iframe src="https://www.youtube.com/embed/wRNinF7YQqQ" title="Video 3" allowfullscreen></iframe>
                 </div>
             </div>
-            <!-- Start of new videos -->
+            <!-- Second row of 3 videos -->
             <div class="col-md-6 col-lg-4">
                 <div class="ratio ratio-16x9">
                     <iframe src="https://www.youtube.com/embed/PtETUYa3i2Q" title="Video 4" allowfullscreen></iframe>
@@ -235,6 +344,7 @@
                     <iframe src="https://www.youtube.com/embed/7IgVGSaQPaw" title="Video 6" allowfullscreen></iframe>
                 </div>
             </div>
+            <!-- Third row of 3 videos -->
             <div class="col-md-6 col-lg-4">
                 <div class="ratio ratio-16x9">
                     <iframe src="https://www.youtube.com/embed/7S_tz1z_5bA" title="Video 7" allowfullscreen></iframe>
@@ -250,6 +360,7 @@
                     <iframe src="https://www.youtube.com/embed/d56mG7DezGs" title="Video 9" allowfullscreen></iframe>
                 </div>
             </div>
+            <!-- Fourth row of 3 videos -->
             <div class="col-md-6 col-lg-4">
                 <div class="ratio ratio-16x9">
                     <iframe src="https://www.youtube.com/embed/GxmfcnU3feo" title="Video 10" allowfullscreen></iframe>
@@ -268,19 +379,17 @@
         </div>
     </section>
 
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
-        <p>&copy; 2025 My School. All rights reserved.</p>
-    </footer>
-
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Custom JavaScript for the theme toggle functionality.
         function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-bs-theme');
-            html.setAttribute('data-bs-theme', current === 'light' ? 'dark' : 'light');
+            const htmlElement = document.documentElement;
+            const currentTheme = htmlElement.getAttribute('data-bs-theme');
+            if (currentTheme === 'light') {
+                htmlElement.setAttribute('data-bs-theme', 'dark');
+            } else {
+                htmlElement.setAttribute('data-bs-theme', 'light');
+            }
         }
     </script>
 </body>
