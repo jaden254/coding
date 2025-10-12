@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS-Only Pagination (Single File)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .content-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            flex-grow: 1;
+        }
+
+        /* Hide all page sections by default */
+        .content-container section {
+            display: none;
+        }
+
+        /* Show the first page by default since no target is set */
+        #page1 {
+            display: block;
+        }
+
+        /* Show the targeted page when its ID is in the URL */
+        .content-container section:target {
+            display: block;
+        }
+
+        /* A specific rule to hide the first page if another one is targeted */
+        /* It prevents it from showing alongside the targeted one. */
+        .content-container section:target~#page1 {
+            display: none;
+        }
+
+        /* ================== Pagination Styling ================== */
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 5px;
+        }
+
+        .pagination a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+
+        /* Highlight the active page link */
+        #page1:target~.pagination a[href="#page1"],
+        #page1:not(:target)~.pagination a[href="#page1"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page2:target~.pagination a[href="#page2"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page3:target~.pagination a[href="#page3"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page4:target~.pagination a[href="#page4"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page5:target~.pagination a[href="#page5"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page6:target~.pagination a[href="#page6"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page7:target~.pagination a[href="#page7"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page8:target~.pagination a[href="#page8"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page9:target~.pagination a[href="#page9"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #page10:target~.pagination a[href="#page10"] {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="content-container">
+        <!-- All content for each page is in a separate section with a unique ID -->
+        <section id="page1">
+            <h1>This is Page 1</h1>
+            <p>Welcome to the first page of our CSS-only website.</p>
+        </section>
+        <section id="page2">
+            <h1>This is Page 2</h1>
+            <p>Here is the content for the second page.</p>
+        </section>
+        <section id="page3">
+            <h1>This is Page 3</h1>
+            <p>The content for page three is displayed here.</p>
+        </section>
+        <section id="page4">
+            <h1>This is Page 4</h1>
+            <p>This is the fourth section of the website.</p>
+        </section>
+        <section id="page5">
+            <h1>This is Page 5</h1>
+            <p>You have now reached page five.</p>
+        </section>
+        <section id="page6">
+            <h1>This is Page 6</h1>
+            <p>This section holds the content for page six.</p>
+        </section>
+        <section id="page7">
+            <h1>This is Page 7</h1>
+            <p>Content for the seventh page is here.</p>
+        </section>
+        <section id="page8">
+            <h1>This is Page 8</h1>
+            <p>Displaying the content for page eight.</p>
+        </section>
+        <section id="page9">
+            <h1>This is Page 9</h1>
+            <p>The content for page nine is shown here.</p>
+        </section>
+        <section id="page10">
+            <h1>This is Page 10</h1>
+            <p>This is the final page of content.</p>
+        </section>
+    </main>
+
+    <nav class="pagination">
+        <ul>
+            <li><a href="#page1">1</a></li>
+            <li><a href="#page2">2</a></li>
+            <li><a href="#page3">3</a></li>
+            <li><a href="#page4">4</a></li>
+            <li><a href="#page5">5</a></li>
+            <li><a href="#page6">6</a></li>
+            <li><a href="#page7">7</a></li>
+            <li><a href="#page8">8</a></li>
+            <li><a href="#page9">9</a></li>
+            <li><a href="#page10">10</a></li>
+        </ul>
+    </nav>
+
+</body>
+
+</html>
