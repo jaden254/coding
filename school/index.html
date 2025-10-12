@@ -6,6 +6,8 @@
     <title>My School Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons for social media links and theme toggle -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -75,6 +77,28 @@
             /* Makes the text bold */
             font-size: 1.15rem;
             /* Increases the font size */
+        }
+
+        /* New: Testimonials section style */
+        #testimonials {
+            background-color: #f8f9fa;
+        }
+
+        /* New: Testimonials carousel text styling */
+        .testimonial-text {
+            font-style: italic;
+        }
+
+        /* New: Social media icon styling for the footer */
+        .social-icon {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #ff3c38;
         }
 
         @media (max-width: 600px) {
@@ -215,184 +239,108 @@
             <!-- NEW NOTE 8: CSS Variables -->
             <div class="col-md-6 col-lg-4">
                 <div class="p-4 bg-light rounded h-100">
-                    <h5>CSS Variables</h5>
-                    <p>Define custom properties in CSS to easily reuse values throughout your stylesheets.</p>
+                    <h5>CSS Custom Properties (Variables)</h5>
+                    <p>Define reusable values like colors or fonts to make your CSS more maintainable.</p>
                     <pre class="bg-dark text-white p-3 rounded"><code>:root {
       --primary-color: #ff3c38;
     }
-    .btn-primary {
-      background-color: var(--primary-color);
-    }</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 9: JavaScript Event Listener -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>Event Listener</h5>
-                    <p>Use JavaScript to listen for user actions, such as a button click.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>document.getElementById("myBtn").addEventListener("click", () => {
-        alert("Button clicked!");
-    });</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 10: HTML Image Accessibility -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>Accessible Images</h5>
-                    <p>Always include the `alt` attribute on images for screen readers and search engines.</p>
-                    <pre
-                        class="bg-dark text-white p-3 rounded"><code>&lt;img src="image.jpg" alt="A descriptive text for the image"&gt;</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 11: CSS Grid Layout -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>CSS Grid</h5>
-                    <p>A powerful layout system for creating complex, two-dimensional page structures.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>.grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10px;
-    }</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 12: JavaScript Ternary Operator -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>Ternary Operator</h5>
-                    <p>A concise way to write a conditional statement in a single line.</p>
-                    <pre
-                        class="bg-dark text-white p-3 rounded"><code>const result = (score > 60) ? "Pass" : "Fail";</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 13: HTML Lists -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>HTML Lists</h5>
-                    <p>Organize content with ordered (`&lt;ol&gt;`) or unordered (`&lt;ul&gt;`) lists for better
-                        structure.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>&lt;ul&gt;
-        &lt;li&gt;Item 1&lt;/li&gt;
-        &lt;li&gt;Item 2&lt;/li&gt;
-    &lt;/ul&gt;</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 14: CSS Pseudo-classes -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>CSS Pseudo-classes</h5>
-                    <p>Apply styles based on a special state of an element, like `:hover` or `:focus`.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>a:hover {
-        text-decoration: underline;
+
+    h1 {
+      color: var(--primary-color);
     }</code></pre>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Announcements -->
-    <section class="container my-5">
-        <h2 class="mb-4">📢 Latest Announcements</h2>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="p-4 bg-light rounded announcement">
-                    <h5>🎓 Qualcomm</h5>
-                    <p>Pushing deeper into open-source and edge AI development through a partnership with Arduino.</p>
+    <!-- New: Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Students Say</h2>
+            <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="p-4 bg-light rounded announcement">
-                    <h5>🎓 Oracle</h5>
-                    <p>Released Java 25 with a focus on developers and AI, and its Java Management Service now includes
-                        an application
-                        analyzer.</p>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-flex flex-column align-items-center text-center p-4">
+                            <img src="https://source.unsplash.com/150x150/?portrait,man" class="rounded-circle mb-3"
+                                alt="Student 1">
+                            <p class="lead testimonial-text">"Omosh Coding transformed my skills. The notes are easy to
+                                follow and the examples are
+                                fantastic!"</p>
+                            <cite class="fw-bold">- John Doe</cite>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex flex-column align-items-center text-center p-4">
+                            <img src="https://source.unsplash.com/150x150/?portrait,woman" class="rounded-circle mb-3"
+                                alt="Student 2">
+                            <p class="lead testimonial-text">"I went from a beginner to building my first website. The
+                                resources here are
+                                invaluable."</p>
+                            <cite class="fw-bold">- Jane Smith</cite>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex flex-column align-items-center text-center p-4">
+                            <img src="https://source.unsplash.com/150x150/?portrait,student" class="rounded-circle mb-3"
+                                alt="Student 3">
+                            <p class="lead testimonial-text">"The notes and explanations on Bootstrap and JavaScript are
+                                top-notch. Highly
+                                recommend!"</p>
+                            <cite class="fw-bold">- Alex Johnson</cite>
+                        </div>
+                    </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Video Collage (New videos added here) -->
-    <section class="container my-5">
-        <h2 class="mb-4 text-center">🎥 School Highlights</h2>
-        <div class="row g-4">
-            <!-- First row of 3 videos -->
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/qz0aGYrrlhU" title="Video 1" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/W6NZfCO5SIk" title="Video 2" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/wRNinF7YQqQ" title="Video 3" allowfullscreen></iframe>
-                </div>
-            </div>
-            <!-- Second row of 3 videos -->
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/PtETUYa3i2Q" title="Video 4" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/NClmyC6olC0" title="Video 5" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/7IgVGSaQPaw" title="Video 6" allowfullscreen></iframe>
-                </div>
-            </div>
-            <!-- Third row of 3 videos -->
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/7S_tz1z_5bA" title="Video 7" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/kJOqIaGwQ7Y" title="Video 8" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/d56mG7DezGs" title="Video 9" allowfullscreen></iframe>
-                </div>
-            </div>
-            <!-- Fourth row of 3 videos -->
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/GxmfcnU3feo" title="Video 10" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/OeEHJgzqS1k" title="Video 11" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/Tef1e9FiSR0" title="Video 12" allowfullscreen></iframe>
-                </div>
-            </div>
+    <!-- New: Call-to-Action Banner -->
+    <section id="cta" class="bg-black text-white text-center py-5">
+        <div class="container">
+            <h2 class="mb-4">Ready to start your coding journey?</h2>
+            <p class="lead mb-4">Join our community and get access to more advanced coding tutorials and resources.</p>
+            <a href="https://www.w3schools.com/" class="btn btn-primary btn-lg">Get Started Now</a>
         </div>
     </section>
+
+    <!-- New: Footer -->
+    <footer class="bg-dark text-white-50 py-4">
+        <div class="container text-center">
+            <p class="mb-2">© 2025 Omosh Coding. All rights reserved.</p>
+            <div class="social-icons mb-3">
+                <a href="#" class="social-icon"><i class="bi-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="bi-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="bi-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="bi-github"></i></a>
+            </div>
+            <p class="mb-0">Designed and built with ❤️ using Bootstrap.</p>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Custom JavaScript for the theme toggle functionality.
         function toggleTheme() {
-            const htmlElement = document.documentElement;
-            const currentTheme = htmlElement.getAttribute('data-bs-theme');
-            if (currentTheme === 'light') {
-                htmlElement.setAttribute('data-bs-theme', 'dark');
-            } else {
-                htmlElement.setAttribute('data-bs-theme', 'light');
-            }
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', newTheme);
         }
     </script>
 </body>
