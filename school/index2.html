@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive HTML Notes</title>
+    <!-- Use a modern, easy-to-read font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for easy theme customization */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --card-bg: #ffffff;
+            --card-border: #e2e6ea;
+            --font-family: 'Poppins', sans-serif;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 0.5rem;
+        }
+
+        header h2 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            font-weight: 400;
+        }
+
+        .note-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .note-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .note-card h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .note-card p {
+            margin-bottom: 1rem;
+        }
+
+        .code-example {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <h1>Learn using videos</h1>
+        <h2>📘 HTML Notes</h2>
+    </header>
+
+    <main class="container">
+        <div class="note-grid">
+            <!-- Note 1: HTML Boilerplate -->
+            <div class="note-card">
+                <h5>HTML Boilerplate</h5>
+                <p>Basic structure of an HTML document.</p>
+                <div class="code-example">
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Note 2: Head Tags -->
+            <div class="note-card">
+                <h5>Head Tags</h5>
+                <p>Metadata and links go inside the &lt;head&gt; tag.</p>
+                <div class="code-example">
+                    <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Note 3: Semantic Tags -->
+            <div class="note-card">
+                <h5>Semantic HTML</h5>
+                <p>Use meaningful tags for better accessibility and SEO.</p>
+                <div class="code-example">
+                    <pre><code>&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Note 4: Lists -->
+            <div class="note-card">
+                <h5>HTML Lists</h5>
+                <p>Use ordered or unordered lists for structured content.</p>
+                <div class="code-example">
+                    <pre><code>&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;First&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Note 5: Links and Images -->
+            <div class="note-card">
+                <h5>Links and Images</h5>
+                <p>Use anchor and image tags to add navigation and visuals.</p>
+                <div class="code-example">
+                    <pre><code>&lt;a href="https://example.com"&gt;Visit Site&lt;/a&gt;
+&lt;img src="image.jpg" alt="Description"&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Note 6: Forms -->
+            <div class="note-card">
+                <h5>HTML Forms</h5>
+                <p>Collect user input with form elements.</p>
+                <div class="code-example">
+                    <pre><code>&lt;form&gt;
+  &lt;input type="text" placeholder="Name"&gt;
+  &lt;input type="email" placeholder="Email"&gt;
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Note 7: Tables -->
+            <div class="note-card">
+                <h5>HTML Tables</h5>
+                <p>Display tabular data using rows and columns.</p>
+                <div class="code-example">
+                    <pre><code>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Jaden&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Note 8: Div and Span -->
+            <div class="note-card">
+                <h5>Div and Span</h5>
+                <p>Use &lt;div&gt; for block-level and &lt;span&gt; for inline grouping.</p>
+                <div class="code-example">
+                    <pre><code>&lt;div&gt;This is a block&lt;/div&gt;
+&lt;span&gt;This is inline&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
