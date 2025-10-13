@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>Bootstrap Vertical ScrollSpy Example</title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS and jQuery -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+
+            position: relative;
+            /* Required for ScrollSpy */
+
+        }
+
+        /* Fixed sidebar style */
+
+        #myScrollspy {
+
+            position: fixed;
+
+            top: 20px;
+
+            left: 20px;
+
+        }
+
+        /* Section styles */
+
+        .section {
+
+            height: 500px;
+
+            padding-top: 50px;
+
+        }
+
+        #section1 {
+            background-color: #f2b632;
+        }
+
+        #section2 {
+            background-color: #ffffff;
+        }
+
+        #section3 {
+            background-color: #8bc34a;
+        }
+    </style>
+
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- LEFT SIDEBAR NAVIGATION -->
+
+            <nav class="col-sm-3" id="myScrollspy">
+
+                <ul class="nav nav-pills nav-stacked">
+
+                    <li class="active"><a href="#section1">Section 1</a></li>
+
+                    <li><a href="#section2">Section 2</a></li>
+
+                    <li><a href="#section3">Section 3</a></li>
+
+                </ul>
+
+            </nav>
+
+            <!-- RIGHT CONTENT AREA -->
+
+            <div class="col-sm-9">
+
+                <div id="section1" class="section">
+
+                    <h1>Section 1</h1>
+
+                    <p>This is section 1. Scroll down to see ScrollSpy highlight Section 2.</p>
+
+                </div>
+
+                <div id="section2" class="section">
+
+                    <h1>Section 2</h1>
+
+                    <p>This is section 2. Scroll down to see Section 3 become active.</p>
+
+                </div>
+
+                <div id="section3" class="section">
+
+                    <h1>Section 3</h1>
+
+                    <p>This is section 3. Notice how the left nav updates automatically.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
