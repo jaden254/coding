@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p style="color:brown">Calculating the sum of numbers with help of Argument Objects</p>
+    <p id="result"></p>
+    <script>
+        function calculateSum() {
+            var total = 0; // Initialize total to 0
+
+            // Loop through all the arguments passed to the function
+            for (var i = 0; i < arguments.length; i++) {
+                // Add the current argument to the total
+                total += arguments[i];
+            }
+
+            // Return the final sum
+            return total;
+        }
+
+        // Call the function with various arguments and display the result
+        document.getElementById("result").innerHTML = "The sum is: " + calculateSum(8, 25.5, 25.6, 16, 2);
+    </script>
+</body>
+
+</html>
