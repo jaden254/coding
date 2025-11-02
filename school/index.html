@@ -368,6 +368,7 @@
     <!-- Notes for Coding -->
     <section class="container my-5">
         <h2 class="mb-4 text-center">📝 Notes for Coding</h2>
+        <h3 class="mb-5 text-center" style="text-underline-position: below;"><b>WEBSITE NOTES</b></h3>
         <div class="row g-4">
             <!-- Note 1: HTML Structure -->
             <div class="col-md-6 col-lg-4">
@@ -821,6 +822,818 @@
             </div>
         </main>
     </section>
+<!-- 📱 MOBILE APP DEVELOPMENT NOTES -->
+<header class="container mt-5">
+    <h1>Learn Using Notes</h1>
+    <h2>📱 Mobile App Development Notes</h2>
+</header>
+
+<main class="container">
+    <div class="note-grid">
+
+        <!-- Flutter Setup -->
+        <div class="note-card">
+            <h5>Flutter Setup</h5>
+            <p>Install Flutter SDK and set up your environment for Android or iOS development.</p>
+            <div class="code-example">
+                <pre><code># Check Flutter installation
+flutter doctor
+
+# Create a new project
+flutter create my_app
+
+# Run the app
+cd my_app
+flutter run</code></pre>
+            </div>
+        </div>
+
+        <!-- Flutter Basic App -->
+        <div class="note-card">
+            <h5>Flutter Basic App</h5>
+            <p>Basic Flutter app with a text widget.</p>
+            <div class="code-example">
+                <pre><code>&lt;!-- main.dart --&gt;
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Hello Flutter')),
+        body: Center(child: Text('Welcome to Flutter!')),
+      ),
+    );
+  }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- React Native Setup -->
+        <div class="note-card">
+            <h5>React Native Setup</h5>
+            <p>Install and create a new React Native project using Expo CLI.</p>
+            <div class="code-example">
+                <pre><code># Install Expo CLI
+npm install -g expo-cli
+
+# Create new project
+expo init myApp
+
+# Start development server
+cd myApp
+npm start</code></pre>
+            </div>
+        </div>
+
+        <!-- React Native Component -->
+        <div class="note-card">
+            <h5>React Native Component</h5>
+            <p>Example of a simple React Native component.</p>
+            <div class="code-example">
+                <pre><code>import React from 'react';
+import { View, Text } from 'react-native';
+
+export default function App() {
+  return (
+    &lt;View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}&gt;
+      &lt;Text&gt;Hello React Native!&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Android Java -->
+        <div class="note-card">
+            <h5>Android (Java)</h5>
+            <p>Basic Java activity for Android Studio projects.</p>
+            <div class="code-example">
+                <pre><code>package com.example.myapp;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+  }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Android Kotlin -->
+        <div class="note-card">
+            <h5>Android (Kotlin)</h5>
+            <p>Basic Kotlin activity example for Android development.</p>
+            <div class="code-example">
+                <pre><code>package com.example.myapp
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class MainActivity : AppCompatActivity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+  }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- API Integration (React Native) -->
+        <div class="note-card">
+            <h5>API Integration (React Native)</h5>
+            <p>Fetch data from an API and display it in your app.</p>
+            <div class="code-example">
+                <pre><code>import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+
+export default function App() {
+  const [data, setData] = useState(null);
+
+  useEffect(() =&gt; {
+    fetch('https://api.example.com/data')
+      .then(res =&gt; res.json())
+      .then(json =&gt; setData(json));
+  }, []);
+
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;{data ? JSON.stringify(data) : 'Loading...'}&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Flutter HTTP Request -->
+        <div class="note-card">
+            <h5>Flutter HTTP Request</h5>
+            <p>Fetch data from an API using the <code>http</code> package in Flutter.</p>
+            <div class="code-example">
+                <pre><code>import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+void main() =&gt; runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: DataScreen());
+  }
+}
+
+class DataScreen extends StatefulWidget {
+  @override
+  _DataScreenState createState() =&gt; _DataScreenState();
+}
+
+class _DataScreenState extends State&lt;DataScreen&gt; {
+  var data = 'Loading...';
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  void fetchData() async {
+    final response = await http.get(Uri.parse('https://api.example.com/data'));
+    setState(() {
+      data = jsonDecode(response.body).toString();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('API Example')),
+      body: Center(child: Text(data)),
+    );
+  }
+}</code></pre>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!-- 🎮 GAME DEVELOPMENT NOTES -->
+<header class="container mt-5">
+    <h1>Learn Using Notes</h1>
+    <h2>🎮 Game Development Notes</h2>
+</header>
+
+<main class="container">
+    <div class="note-grid">
+
+        <!-- Note 1: Unity Setup -->
+        <div class="note-card">
+            <h5>Unity Setup</h5>
+            <p>Install Unity Hub and create a new 2D or 3D project for your first game.</p>
+            <div class="code-example">
+                <pre><code># Download Unity Hub
+# Create a new project:
+# - Choose "2D" or "3D"
+# - Name it "MyFirstGame"
+# - Click Create
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 2: Unity C# Script -->
+        <div class="note-card">
+            <h5>Unity C# Script Example</h5>
+            <p>Attach this script to a player object to make it move using arrow keys.</p>
+            <div class="code-example">
+                <pre><code>using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour {
+  public float speed = 5f;
+
+  void Update() {
+    float moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+    float moveY = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+    transform.Translate(moveX, moveY, 0);
+  }
+}
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 3: Godot Script -->
+        <div class="note-card">
+            <h5>Godot (GDScript)</h5>
+            <p>Simple player movement example using Godot's GDScript.</p>
+            <div class="code-example">
+                <pre><code>extends KinematicBody2D
+
+var speed = 200
+
+func _process(delta):
+  var velocity = Vector2()
+  if Input.is_action_pressed("ui_right"):
+    velocity.x += 1
+  if Input.is_action_pressed("ui_left"):
+    velocity.x -= 1
+  if Input.is_action_pressed("ui_down"):
+    velocity.y += 1
+  if Input.is_action_pressed("ui_up"):
+    velocity.y -= 1
+  move_and_slide(velocity.normalized() * speed)
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 4: Pygame Setup -->
+        <div class="note-card">
+            <h5>Pygame Setup</h5>
+            <p>Install Pygame and set up a simple game window.</p>
+            <div class="code-example">
+                <pre><code># Install Pygame
+pip install pygame
+
+# Simple game window
+import pygame
+pygame.init()
+
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("My Game")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+pygame.quit()
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 5: Pygame Player Movement -->
+        <div class="note-card">
+            <h5>Pygame Player Movement</h5>
+            <p>Move a rectangle on the screen using arrow keys.</p>
+            <div class="code-example">
+                <pre><code>import pygame
+pygame.init()
+
+screen = pygame.display.set_mode((800, 600))
+player = pygame.Rect(400, 300, 50, 50)
+speed = 5
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        player.x -= speed
+    if keys[pygame.K_RIGHT]:
+        player.x += speed
+    if keys[pygame.K_UP]:
+        player.y -= speed
+    if keys[pygame.K_DOWN]:
+        player.y += speed
+
+    screen.fill((30, 30, 30))
+    pygame.draw.rect(screen, (0, 255, 0), player)
+    pygame.display.flip()
+
+pygame.quit()
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 6: JavaScript Canvas Setup -->
+        <div class="note-card">
+            <h5>HTML5 Canvas Game</h5>
+            <p>Basic setup for drawing and animating with JavaScript Canvas.</p>
+            <div class="code-example">
+                <pre><code>&lt;canvas id="gameCanvas" width="400" height="300"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+let x = 50, y = 50;
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'red';
+  ctx.fillRect(x, y, 50, 50);
+  requestAnimationFrame(draw);
+}
+
+draw();
+&lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 7: JS Keyboard Controls -->
+        <div class="note-card">
+            <h5>Canvas Player Movement</h5>
+            <p>Move a player using keyboard keys in JavaScript.</p>
+            <div class="code-example">
+                <pre><code>&lt;script&gt;
+document.addEventListener('keydown', movePlayer);
+let player = { x: 100, y: 100, speed: 10 };
+
+function movePlayer(e) {
+  switch(e.key) {
+    case 'ArrowUp': player.y -= player.speed; break;
+    case 'ArrowDown': player.y += player.speed; break;
+    case 'ArrowLeft': player.x -= player.speed; break;
+    case 'ArrowRight': player.x += player.speed; break;
+  }
+  drawPlayer();
+}
+
+function drawPlayer() {
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'blue';
+  ctx.fillRect(player.x, player.y, 40, 40);
+}
+&lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!-- 🤖 AI & DATA SCIENCE NOTES -->
+<header class="container mt-5">
+    <h1>Learn Using Notes</h1>
+    <h2>🤖 AI & Data Science Notes</h2>
+</header>
+
+<main class="container">
+    <div class="note-grid">
+
+        <!-- Note 1: Python for Data Science -->
+        <div class="note-card">
+            <h5>Python for Data Science</h5>
+            <p>Start your data journey by importing essential libraries.</p>
+            <div class="code-example">
+                <pre><code># Install necessary libraries
+pip install numpy pandas matplotlib scikit-learn
+
+# Import them
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 2: NumPy Basics -->
+        <div class="note-card">
+            <h5>NumPy Basics</h5>
+            <p>Work with numerical arrays using NumPy.</p>
+            <div class="code-example">
+                <pre><code>import numpy as np
+
+# Create a NumPy array
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)
+
+# Array operations
+print(arr * 2)   # Multiply all elements
+print(np.mean(arr))  # Average
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 3: Pandas DataFrame -->
+        <div class="note-card">
+            <h5>Pandas DataFrame</h5>
+            <p>Load and analyze tabular data using Pandas.</p>
+            <div class="code-example">
+                <pre><code>import pandas as pd
+
+# Load data
+df = pd.read_csv('data.csv')
+
+# Show first few rows
+print(df.head())
+
+# Basic statistics
+print(df.describe())
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 4: Matplotlib Visualization -->
+        <div class="note-card">
+            <h5>Matplotlib Visualization</h5>
+            <p>Create simple data visualizations.</p>
+            <div class="code-example">
+                <pre><code>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+plt.plot(x, y, color='green', marker='o')
+plt.title('Simple Line Plot')
+plt.xlabel('X-Axis')
+plt.ylabel('Y-Axis')
+plt.show()
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 5: Machine Learning Example -->
+        <div class="note-card">
+            <h5>Machine Learning (Linear Regression)</h5>
+            <p>Train a simple linear regression model using scikit-learn.</p>
+            <div class="code-example">
+                <pre><code>from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Data
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([2, 4, 6, 8, 10])
+
+# Model
+model = LinearRegression()
+model.fit(X, y)
+
+# Prediction
+print(model.predict([[6]]))  # Output: [12.]
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 6: Neural Network with TensorFlow -->
+        <div class="note-card">
+            <h5>Neural Network (TensorFlow)</h5>
+            <p>Build a simple neural network using TensorFlow and Keras.</p>
+            <div class="code-example">
+                <pre><code>import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+# Build model
+model = keras.Sequential([
+  layers.Dense(8, activation='relu', input_shape=(4,)),
+  layers.Dense(4, activation='relu'),
+  layers.Dense(1)
+])
+
+model.compile(optimizer='adam', loss='mse')
+
+# Example training
+X_train = [[1,2,3,4], [2,3,4,5], [3,4,5,6]]
+y_train = [10, 15, 20]
+model.fit(X_train, y_train, epochs=10)
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 7: AI Chatbot Example -->
+        <div class="note-card">
+            <h5>AI Chatbot (Python)</h5>
+            <p>Create a simple rule-based chatbot using Python.</p>
+            <div class="code-example">
+                <pre><code>def chatbot_response(user_input):
+    user_input = user_input.lower()
+    if 'hello' in user_input:
+        return 'Hi there! How can I help you today?'
+    elif 'bye' in user_input:
+        return 'Goodbye! Have a great day!'
+    else:
+        return 'I am still learning. Tell me more!'
+
+# Example
+while True:
+    msg = input("You: ")
+    if msg.lower() == 'bye':
+        print("Bot: Bye!")
+        break
+    print("Bot:", chatbot_response(msg))
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 8: Data Visualization with Seaborn -->
+        <div class="note-card">
+            <h5>Data Visualization (Seaborn)</h5>
+            <p>Use Seaborn to create professional-looking plots.</p>
+            <div class="code-example">
+                <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+data = pd.DataFrame({
+  'Category': ['A', 'B', 'C', 'D'],
+  'Values': [23, 45, 56, 78]
+})
+
+sns.barplot(x='Category', y='Values', data=data, palette='viridis')
+plt.title('Category-wise Data')
+plt.show()
+</code></pre>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!-- 🐍 PYTHON NOTES -->
+<header class="container mt-5">
+    <h1>Learn Using Notes</h1>
+    <h2>🐍 Python Notes</h2>
+</header>
+
+<main class="container">
+    <div class="note-grid">
+
+        <!-- Note 1: Python Basics -->
+        <div class="note-card">
+            <h5>Python Basics</h5>
+            <p>Every Python file ends with <code>.py</code>. You can run scripts using <code>python filename.py</code>.
+            </p>
+            <div class="code-example">
+                <pre><code># Print a message
+print("Hello, Python!")
+
+# Variables
+name = "Alice"
+age = 25
+print("Name:", name, "Age:", age)
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 2: Data Types -->
+        <div class="note-card">
+            <h5>Data Types</h5>
+            <p>Python has multiple built-in types like int, float, str, and bool.</p>
+            <div class="code-example">
+                <pre><code>x = 10           # int
+y = 3.14         # float
+name = "Bob"     # string
+is_active = True # boolean
+
+print(type(x), type(y), type(name), type(is_active))
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 3: Conditional Statements -->
+        <div class="note-card">
+            <h5>Conditional Statements</h5>
+            <p>Use <code>if</code>, <code>elif</code>, and <code>else</code> for decisions.</p>
+            <div class="code-example">
+                <pre><code>age = 18
+
+if age &gt;= 18:
+    print("You are an adult.")
+elif age &gt;= 13:
+    print("You are a teenager.")
+else:
+    print("You are a child.")
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 4: Loops -->
+        <div class="note-card">
+            <h5>Loops</h5>
+            <p>Repeat actions using <code>for</code> and <code>while</code> loops.</p>
+            <div class="code-example">
+                <pre><code># For loop
+for i in range(5):
+    print("Number:", i)
+
+# While loop
+count = 0
+while count &lt; 3:
+    print("Count:", count)
+    count += 1
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 5: Functions -->
+        <div class="note-card">
+            <h5>Functions</h5>
+            <p>Define reusable blocks of code with <code>def</code>.</p>
+            <div class="code-example">
+                <pre><code>def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Alice"))
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 6: Lists -->
+        <div class="note-card">
+            <h5>Lists</h5>
+            <p>Lists are ordered and changeable collections.</p>
+            <div class="code-example">
+                <pre><code>fruits = ["apple", "banana", "cherry"]
+
+fruits.append("orange")
+print(fruits)
+print(fruits[0])  # Access first item
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 7: Tuples -->
+        <div class="note-card">
+            <h5>Tuples</h5>
+            <p>Tuples are ordered and unchangeable collections.</p>
+            <div class="code-example">
+                <pre><code>colors = ("red", "green", "blue")
+print(colors[1])  # Access an element
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 8: Sets -->
+        <div class="note-card">
+            <h5>Sets</h5>
+            <p>Sets are unordered and contain unique items.</p>
+            <div class="code-example">
+                <pre><code>nums = {1, 2, 3, 3, 4}
+print(nums)  # Output: {1, 2, 3, 4}
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 9: Dictionaries -->
+        <div class="note-card">
+            <h5>Dictionaries</h5>
+            <p>Store data as key-value pairs.</p>
+            <div class="code-example">
+                <pre><code>person = {
+    "name": "Alice",
+    "age": 25,
+    "city": "Paris"
+}
+
+print(person["name"])
+person["age"] = 26
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 10: File Handling -->
+        <div class="note-card">
+            <h5>File Handling</h5>
+            <p>Read and write files in Python.</p>
+            <div class="code-example">
+                <pre><code># Write to a file
+with open("example.txt", "w") as f:
+    f.write("Hello, file!")
+
+# Read from a file
+with open("example.txt", "r") as f:
+    print(f.read())
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 11: OOP (Classes & Objects) -->
+        <div class="note-card">
+            <h5>Object-Oriented Programming</h5>
+            <p>Use classes to structure complex programs.</p>
+            <div class="code-example">
+                <pre><code>class Car:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+
+    def drive(self):
+        print(f"The {self.brand} is driving.")
+
+my_car = Car("Tesla", 2024)
+my_car.drive()
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 12: Exception Handling -->
+        <div class="note-card">
+            <h5>Exception Handling</h5>
+            <p>Handle errors gracefully using <code>try</code> and <code>except</code>.</p>
+            <div class="code-example">
+                <pre><code>try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+finally:
+    print("Program finished.")
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 13: Modules & Imports -->
+        <div class="note-card">
+            <h5>Modules & Imports</h5>
+            <p>Use external or custom modules to organize code.</p>
+            <div class="code-example">
+                <pre><code># Using built-in module
+import math
+print(math.sqrt(25))
+
+# Import specific function
+from datetime import datetime
+print(datetime.now())
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 14: Virtual Environment -->
+        <div class="note-card">
+            <h5>Virtual Environments</h5>
+            <p>Keep project dependencies separate.</p>
+            <div class="code-example">
+                <pre><code># Create virtual environment
+python -m venv venv
+
+# Activate it (Windows)
+venv\Scripts\activate
+
+# Activate it (Mac/Linux)
+source venv/bin/activate
+
+# Install packages
+pip install requests
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Note 15: List Comprehension -->
+        <div class="note-card">
+            <h5>List Comprehension</h5>
+            <p>Write loops in a single line.</p>
+            <div class="code-example">
+                <pre><code>squares = [x**2 for x in range(5)]
+print(squares)
+</code></pre>
+            </div>
+        </div>
+
+    </div>
+</main>
 
     <!-- New: Testimonials Section -->
     <section id="testimonials" class="py-5">
