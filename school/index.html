@@ -349,9 +349,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Sign In</a></li>
                     <li class="nav-item">
+                    <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
+                    <li class="nav-item">
+                   <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
+                   <li class="nav-item">
+                    <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
+                     <li class="nav-item">
                     <li class="nav-item"><a class="nav-link" href="index1.html">Videos</a></li>
                     <span class="nav-link dark-toggle" onclick="toggleTheme()">🌓</span>
                     </li>
@@ -1718,69 +1722,6 @@ print(squares)
             <p class="mb-0">Designed and built with Omoshcoding.ltd.</p>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-bs-theme', newTheme);
-        }
-    </script>
-    <script>
-        const express = require('express');
-        const cors = require('cors');
-        const path = require('path');
-        const mongoose = require('mongoose');
-        const User = require('./models/User'); // Import the User model
-
-        const app = express();
-        const port = process.env.PORT || 3000;
-
-        app.use(cors());
-        app.use(express.static(path.join(__dirname, 'public')));
-        app.use(express.json());
-
-        // Connect to MongoDB
-        mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/omosh_coding")
-            .then(() => console.log('Connected to MongoDB'))
-            .catch(err => console.error('Error connecting to MongoDB:', err));
-
-        // API endpoint for notes (from previous step)
-        app.get('/api/notes', (req, res) => {
-            // ... same as before
-        });
-
-        // --- User Authentication Routes ---
-        app.post('/api/register', async (req, res) => {
-            try {
-                const { email, password } = req.body;
-                const user = new User({ email, password });
-                await user.save();
-                res.status(201).json({ message: 'User registered successfully!' });
-            } catch (err) {
-                res.status(400).json({ error: 'Email already in use or invalid data.' });
-            }
-        });
-
-        app.post('/api/login', async (req, res) => {
-            try {
-                const { email, password } = req.body;
-                const user = await User.findOne({ email });
-                if (!user || !(await user.comparePassword(password))) {
-                    return res.status(401).json({ error: 'Invalid credentials.' });
-                }
-                res.json({ message: 'Login successful!', user: { id: user._id, email: user.email } });
-            } catch (err) {
-                res.status(500).json({ error: 'An error occurred during login.' });
-            }
-        });
-
-        // Start the server
-        app.listen(port, () => {
-            console.log(`Server listening at http://localhost:${port}`);
-        });
-    </script>
 
 </body>
 
