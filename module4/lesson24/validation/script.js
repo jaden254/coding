@@ -30,13 +30,26 @@ function validate(e) {
     let color = 'red';
     // Simple email pattern
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Password pattern:
+    // - At least 8 characters
+    // - At least one uppercase letter
+    // - At least one lowercase letter
+    // - At least one number
+    // - At least one special character
+    const passwordPattern =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (email === '') {
         message = 'Enter an email.';
     } else if (!emailPattern.test(email)) {
         message = 'Enter a valid email address.';
     } else if (pass === '') {
         message = 'Enter a password.';
-    } else if (age === '') {
+    }
+    else if (!passwordPattern.test(pass)) {
+        message =
+            'Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.';
+    }
+      else if (age === '') {
         message = 'Enter your age.';
     } else {
         message = 'Login successful!';
