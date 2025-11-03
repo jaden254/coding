@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ten Local Video Links</title>
+    <title>Centered Single Column Video Links</title>
     <style>
         /* Styles for the body */
         body {
@@ -11,6 +11,11 @@
             background-color: #f0f0f0;
             color: #333;
             margin: 20px;
+            display: flex;
+            /* Use flexbox for body content alignment */
+            flex-direction: column;
+            align-items: center;
+            /* Center the content horizontally */
         }
 
         /* Styles for the main heading */
@@ -20,6 +25,7 @@
             font-size: 2.5em;
             border-bottom: 2px solid #ddd;
             padding-bottom: 10px;
+            width: 100%;
         }
 
         /* Styles for the video list */
@@ -27,9 +33,12 @@
             list-style-type: none;
             padding: 0;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            /* Stack items vertically in a column */
             gap: 20px;
-            justify-content: center;
+            width: 100%;
+            width:video-container;
+            /* Constrain the max width of the column */
         }
 
         /* Styles for each individual video container */
@@ -38,12 +47,13 @@
             padding: 10px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            background-color: white;
+            background-color: #eae6e6;
             transition: transform 0.3s ease;
-            /* Update the width to account for a 2-video layout and the gap */
-            width: calc(50% - 10px);
+            /* Fix width to 100% of its parent (the <ul> element with max-width: 600px) */
+            width: 100%;
             box-sizing: border-box;
-            height: 450px;
+            height: 750px;
+            /* Adjusted height for better centering and aspect ratio */
         }
 
         .video-container:hover {
@@ -58,10 +68,9 @@
             height: 100%;
         }
 
-        /* Responsive: Add a media query for smaller screens to ensure a single column */
+        /* Optional: Smaller height for very small screens (e.g., portrait mobile) */
         @media (max-width: 480px) {
             .video-container {
-                width: 100%;
                 height: 200px;
             }
         }
