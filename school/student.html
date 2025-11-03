@@ -57,7 +57,7 @@
             background-color: white;
             padding: 15px;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2 p x 4 p x rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
         }
 
@@ -105,31 +105,32 @@
         <aside class="sidebar">
             <h2>Student Portal</h2>
             <nav>
-                <a href="#">Dashboard</a>
-                <a href="#">Grades</a>
-                <a href="#">Schedule</a>
-                <a href="#">Messages</a>
-                <a href="#">Settings</a>
+                <a href="">Dashboard</a>
+                <a href="lesson.html">My Lessons</a>
+                <a href="quizzes.html">My Qiuzzes</a>
+                <a href="certificates.html">My Certificates</a>
+                <a href="progress.html">My Progress Report</a>
             </nav>
         </aside>
 
         <main class="main-content">
             <header>
-                <h1>Welcome, John Doe</h1>
+                <h1>Welcome, Lebron James</h1>
+                <!-- The current time will no longer update automatically -->
                 <div id="current-time"></div>
             </header>
 
             <div class="dashboard-cards">
                 <div class="card">
                     <h3>Current Grade (Average)</h3>
-                    <p id="grade-avg" style="font-size: 2em; color: #004a99;">A- (92%)</p>
+                    <p id="grade-avg" style="font-size: 2em; color: #004a99;">A- (92.00%)</p>
                 </div>
                 <div class="card">
                     <h3>Attendance Rate</h3>
-                    <p id="attendance-rate" style="font-size: 2em; color: #5cb85c;">98%</p>
+                    <p id="attendance-rate" style="font-size: 2em; color: #5cb85c;">90%</p>
                 </div>
                 <div class="card real-time-updates">
-                    <h3>New Announcements (Real-time)</h3>
+                    <h3>New Announcements</h3>
                     <ul id="announcement-list" class="announcement-list">
                         <li class="announcement-item">Welcome back to the new semester!</li>
                         <li class="announcement-item">Exam schedule posted online.</li>
@@ -148,47 +149,6 @@
         </main>
     </div>
 
-    <script>
-        // JavaScript for real-time updates simulation
-        function updateTime() {
-            const timeElement = document.getElementById('current-time');
-            const now = new Date();
-            timeElement.textContent = now.toLocaleTimeString() + ' ' + now.toLocaleDateString();
-        }
-
-        // Update time every second
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call to set time immediately
-
-        // Simulate real-time updates for announcements and grades
-        let announcementCount = 2;
-        function simulateRealTimeUpdates() {
-            // Simulate a new announcement
-            announcementCount++;
-            const newAnnouncementText = `New update: Course material added to history class (${new Date().toLocaleTimeString()})`;
-            const announcementList = document.getElementById('announcement-list');
-            const newItem = document.createElement('li');
-            newItem.classList.add('announcement-item');
-            newItem.textContent = newAnnouncementText;
-            announcementList.prepend(newItem); // Add to the top
-
-            // Limit the number of announcements
-            if (announcementList.children.length > 5) {
-                announcementList.removeChild(announcementList.lastChild);
-            }
-
-            // Simulate grade change (just for example)
-            const gradeElement = document.getElementById('grade-avg');
-            const currentGrade = parseFloat(gradeElement.textContent.split('(')[1].split('%')[0]);
-            const newGrade = (currentGrade + (Math.random() * 0.1 - 0.05)).toFixed(2); // slight random change
-            gradeElement.textContent = `A- (${newGrade}%)`;
-        }
-
-        // Simulate new data arrival every 5 seconds
-        // In a real application, this would be a WebSocket listener or a more sophisticated data fetch
-        setInterval(simulateRealTimeUpdates, 5000);
-
-    </script>
 </body>
 
 </html>

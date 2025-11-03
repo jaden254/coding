@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson: Complete HTML Notes</title>
+    <style>
+        /* CSS styles for the lesson page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .lesson-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #004a99;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: #333;
+            padding: 10px;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar nav a.active {
+            background-color: #004a99;
+            color: white;
+            font-weight: bold;
+        }
+
+        .sidebar nav a:hover {
+            background-color: #004a99;
+            color: white;
+        }
+
+        .main-lesson-content {
+            flex-grow: 1;
+            padding: 40px;
+        }
+
+        .lesson-header {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .lesson-header h1 {
+            margin: 0;
+            color: #004a99;
+        }
+
+        .lesson-body {
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            line-height: 1.6;
+        }
+
+        .lesson-body h2 {
+            color: #004a99;
+            border-bottom: 2px solid #f4f4f9;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .lesson-body p code,
+        .lesson-body li code {
+            background-color: #e9ecef;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .complete-btn {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        .complete-btn:hover {
+            background-color: #4cae4c;
+        }
+
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #004a99;
+            padding: 10px 15px;
+            border: 1px solid #004a99;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #004a99;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="lesson-container">
+        <aside class="sidebar">
+            <h2>Course Modules</h2>
+            <nav id="lesson-navigation-list">
+                <a href="">1. HTML Basics (Active)</a>
+                <a href="#">2. Advanced Elements</a>
+                <a href="#">3. Forms and Input</a>
+                <a href="#">4. Best Practices</a>
+            </nav>
+        </aside>
+
+        <main class="main-lesson-content">
+            <div class="lesson-header">
+                <h1>Complete HTML Study Notes: From Basics to Semantics</h1>
+                <p>A comprehensive guide to HyperText Markup Language (HTML).</p>
+            </div>
+
+            <div class="lesson-body">
+                <h2>1. Introduction to HTML</h2>
+                <p>HTML stands for HyperText Markup Language. It is the standard markup language for creating web pages.
+                    It describes the structure of a web page using markup.</p>
+
+                <h3>Basic Structure:</h3>
+                <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Visible Content Here&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                </pre>
+
+                <h2>2. Common HTML Elements</h2>
+                <ul>
+                    <li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>: Headings (H1 is the most important)</li>
+                    <li><code>&lt;p&gt;</code>: Paragraphs</li>
+                    <li><code>&lt;a&gt;</code>: Links (uses the <code>href</code> attribute)</li>
+                    <li><code>&lt;img&gt;</code>: Images (uses <code>src</code> and <code>alt</code> attributes)</li>
+                    <li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>: Unordered lists,
+                        ordered lists, and list items</li>
+                    <li><code>&lt;div&gt;</code>: A division or section (used for layout, non-semantic)</li>
+                    <li><code>&lt;span&gt;</code>: An inline container for text</li>
+                </ul>
+
+                <h2>3. Attributes</h2>
+                <p>Attributes provide additional information about elements. They are always included within the start
+                    tag and usually come in name/value pairs (e.g., <code>name="value"</code>).</p>
+                <ul>
+                    <li><code>href</code>: Specifies the URL for a link (<code>&lt;a href="url"&gt;</code>).</li>
+                    <li><code>src</code>: Specifies the path to an image (<code>&lt;img src="path"&gt;</code>).</li>
+                    <li><code>alt</code>: Provides alternative text for an image (accessibility).</li>
+                    <li><code>class</code>: Used to define CSS styles for elements.</li>
+                    <li><code>id</code>: Specifies a unique ID for an element (for CSS or JavaScript).</li>
+                </ul>
+
+                <h2>4. Semantic HTML5</h2>
+                <p>Semantic elements describe their meaning to the browser and the developer, leading to better
+                    accessibility and SEO.</p>
+                <ul>
+                    <li><code>&lt;header&gt;</code>: Defines a header for a document or section.</li>
+                    <li><code>&lt;nav&gt;</code>: Defines a set of navigation links.</li>
+                    <li><code>&lt;main&gt;</code>: Specifies the main content of a document.</li>
+                    <li><code>&lt;article&gt;</code>: Defines independent, self-contained content.</li>
+                    <li><code>&lt;section&gt;</code>: Defines a section in a document.</li>
+                    <li><code>&lt;aside&gt;</code>: Defines content aside from the content (like a sidebar).</li>
+                    <li><code>&lt;footer&gt;</code>: Defines a footer for a document or section.</li>
+                </ul>
+
+                <h2>5. Forms</h2>
+                <p>Forms are used to collect user input.</p>
+                <pre>
+&lt;form action="/submit_page" method="POST"&gt;
+    &lt;label for="fname"&gt;First name:&lt;/label&gt;&lt;br&gt;
+    &lt;input type="text" id="fname" name="fname"&gt;&lt;br&gt;
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+                </pre>
+                <p>Key input types include: <code>text</code>, <code>password</code>, <code>submit</code>,
+                    <code>checkbox</code>, <code>radio</code>, <code>date</code>.</p>
+
+
+                <button class="complete-btn" onclick="markAsComplete()">Mark All Notes as Read</button>
+
+                <div class="lesson-navigation">
+                    <a href="student.html" class="nav-link" title="Return to Dashboard">Return to Dashboard</a>
+                    <a href="quiz.html" class="nav-link" title="Take the quiz on these notes">Next</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function markAsComplete() {
+            alert("All notes reviewed! You can now proceed to the quiz.");
+            const completeButton = document.querySelector('.complete-btn');
+            completeButton.disabled = true;
+            completeButton.textContent = "Completed!";
+            completeButton.style.backgroundColor = "#4cae4c";
+        }
+    </script>
+</body>
+
+</html>
