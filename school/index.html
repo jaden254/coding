@@ -6,14 +6,13 @@
     <title>My School Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons for social media links and theme toggle -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
+        /* Base Styles */
         body {
             font-family: 'Segoe UI', sans-serif;
         }
 
-        /* Hero Section with image background */
         .hero {
             background:
                 linear-gradient(rgba(22, 21, 21, 0.6), rgba(255, 253, 253, 0.6)),
@@ -26,7 +25,6 @@
             text-align: center;
             padding: 0 20px;
         }
-
 
         .hero-content {
             max-width: 700px;
@@ -45,7 +43,6 @@
             color: #ddd;
         }
 
-        /* A more appropriate bootstrap class for the hero button */
         .hero .btn-primary {
             background-color: #ff3c38;
             border-color: #ff3c38;
@@ -62,47 +59,447 @@
             border-color: #e6322e;
         }
 
-        /* Global and other styles */
-        .announcement:hover {
-            transform: scale(1.02);
-            transition: 0.3s ease;
+        /* Navigation */
+        .navbar-nav .nav-link {
+            font-weight: bold;
+            font-size: 1.15rem;
         }
 
         .dark-toggle {
             cursor: pointer;
         }
 
-        /* Custom style for navbar links */
-        .navbar-nav .nav-link {
-            font-weight: bold;
-            /* Makes the text bold */
-            font-size: 1.15rem;
-            /* Increases the font size */
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 2rem auto;
         }
 
-        /* New: Testimonials section style */
-        #testimonials {
-            background-color: #f8f9fa;
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border-radius: 25px;
+            border: 2px solid #e0e0e0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
-        /* New: Testimonials carousel text styling */
-        .testimonial-text {
-            font-style: italic;
+        .search-input:focus {
+            outline: none;
+            border-color: #ff3c38;
+            box-shadow: 0 0 10px rgba(255, 60, 56, 0.2);
         }
 
-        /* New: Social media icon styling for the footer */
-        .social-icon {
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        /* Notes Container */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .note-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .progress-tracker.minimized {
+            transform: translateX(280px);
+        }
+
+        .progress-toggle {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ff3c38;
+            color: white;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            padding: 10px 5px;
+            cursor: pointer;
+        }
+
+        .progress-circle {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+
+        .progress-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 1.5rem;
-            margin: 0 10px;
-            color: #fff;
-            transition: color 0.3s ease;
+            font-weight: bold;
         }
 
-        .social-icon:hover {
+        /* Interactive Elements */
+        .bookmark-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .bookmark-btn:hover {
+            background: #ff3c38;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .bookmark-btn.bookmarked {
+            background: #ff3c38;
+            color: white;
+        }
+
+        .reading-time {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        .quiz-option.selected {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4CAF50;
+        }
+
+        .quiz-feedback.incorrect {
+            background: rgba(244, 67, 54, 0.3);
+            border: 2px solid #f44336;
+        }
+
+        /* Quiz Category Buttons */
+        .quiz-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            padding: 8px 16px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Code Blocks */
+        .code-example {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff3c38;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #ff3c38;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 60, 56, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 60, 56, 0.6);
+        }
+
+        .fab-menu {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .fab-menu.show {
+            display: flex;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fab-option {
+            background: white;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fab-option:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Achievement Popup */
+        .achievement-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .achievement-icon {
+            font-size: 4rem;
             color: #ff3c38;
+            margin-bottom: 15px;
         }
 
-        @media (max-width: 600px) {
+        /* Sticky Note */
+        .sticky-note {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #ffeb3b;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 250px;
+            z-index: 999;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .sticky-note.show {
+            display: block;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-header h2 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Dark Mode Enhancements */
+        [data-bs-theme="dark"] .search-input {
+            background: #2d2d2d;
+            border-color: #444;
+            color: white;
+        }
+
+        [data-bs-theme="dark"] .progress-tracker {
+            background: #2d2d2d;
+            color: white;
+        }
+
+        [data-bs-theme="dark"] .sticky-note {
+            background: #333;
+            color: white;
+        }
+
+        [data-bs-theme="dark"] .note-card {
+            background: #2d2d2d;
+            color: white;
+        }
+
+        [data-bs-theme="dark"] .section-header {
+            border-bottom-color: #444;
+        }
+
+        [data-bs-theme="dark"] .section-header h2 {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
             }
@@ -110,740 +507,871 @@
             .hero p {
                 font-size: 1rem;
             }
-        }
 
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --light-bg: #f8f9fa;
-            --dark-bg: #343a40;
-            --card-bg: #ffffff;
-            --card-border: #e2e6ea;
-            --font-family: 'Poppins', sans-serif;
-            --text-color: #333;
-        }
+            .progress-tracker {
+                width: 200px;
+                right: 10px;
+                padding: 15px;
+            }
 
+            .fab {
+                bottom: 20px;
+                right: 20px;
+            }
 
-        header {
-            text-align: center;
-            padding-bottom: 1.5rem;
-        }
+            .quiz-question {
+                font-size: 1.1rem;
+            }
 
-        header h1 {
-            font-weight: 600;
-            color: var(--dark-bg);
-            margin-bottom: 0.5rem;
-        }
-
-        header h2 {
-            margin-top: 0;
-            color: var(--secondary-color);
-            font-weight: 400;
-        }
-
-        .note-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .note-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-        }
-
-        .note-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .note-card h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-top: 0;
-        }
-
-        .note-card p {
-            margin-bottom: 1rem;
-        }
-
-        .code-example {
-            background-color: var(--dark-bg);
-            color: white;
-            padding: 1rem;
-            border-radius: 6px;
-            overflow-x: auto;
-        }
-
-        .code-example pre {
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --light-bg: #f8f9fa;
-            --dark-bg: #343a40;
-            --card-bg: #ffffff;
-            --card-border: #e2e6ea;
-            --font-family: 'Poppins', sans-serif;
-            --text-color: #333;
-        }
-
-        header {
-            text-align: center;
-            padding-bottom: 1.5rem;
-        }
-
-        header h1 {
-            font-weight: 600;
-            color: var(--dark-bg);
-            margin-bottom: 0.5rem;
-        }
-
-        header h2 {
-            margin-top: 0;
-            color: var(--secondary-color);
-            font-weight: 400;
-        }
-
-        .note-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .note-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-        }
-
-        .note-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .note-card h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-top: 0;
-        }
-
-        .note-card p {
-            margin-bottom: 1rem;
-        }
-
-        .code-example {
-            background-color: var(--dark-bg);
-            color: white;
-            padding: 1rem;
-            border-radius: 6px;
-            overflow-x: auto;
-        }
-
-        .code-example pre {
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --light-bg: #f8f9fa;
-            --dark-bg: #343a40;
-            --card-bg: #ffffff;
-            --card-border: #e2e6ea;
-            --font-family: 'Poppins', sans-serif;
-            --text-color: #333;
-        }
-
-        header {
-            text-align: center;
-            padding-bottom: 1.5rem;
-        }
-
-        header h1 {
-            font-weight: 600;
-            color: var(--dark-bg);
-            margin-bottom: 0.5rem;
-        }
-
-        header h2 {
-            margin-top: 0;
-            color: var(--secondary-color);
-            font-weight: 400;
-        }
-
-        .note-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .note-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-        }
-
-        .note-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .note-card h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-top: 0;
-        }
-
-        .note-card p {
-            margin-bottom: 1rem;
-        }
-
-        .code-example {
-            background-color: var(--dark-bg);
-            color: white;
-            padding: 1rem;
-            border-radius: 6px;
-            overflow-x: auto;
-        }
-
-        .code-example pre {
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-all;
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="https://www.w3schools.com/"> OMOSH CODING</a>
+            <a class="navbar-brand" href="#home">OMOSH CODING</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
                     <li class="nav-item">
-                    <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
                     <li class="nav-item">
-                   <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
-                   <li class="nav-item">
-                    <li class="nav-item"><a class="nav-link" href="index5.html">Home</a></li>
-                     <li class="nav-item">
-                    <li class="nav-item"><a class="nav-link" href="index1.html">Videos</a></li>
-                    <span class="nav-link dark-toggle" onclick="toggleTheme()">🌓</span>
+                        <a class="nav-link" href="#notes">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quiz">Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="navrbars.html">Progress</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link dark-toggle" onclick="toggleTheme()">🌓</span>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
         <div class="hero-content">
             <h1>OMOSH CODING.</h1>
             <p style="color: #333;"><b>To get your children into coding, emphasize that it's a creative outlet, not just
                     a technical skill.</b></p>
-            <a href="editor.html" class="btn btn-primary">Home</a>
+            <a href="#notes" class="btn btn-primary">Start Learning</a>
         </div>
     </section>
 
-    <!-- Notes for Coding -->
-    <section class="container my-5">
-        <h2 class="mb-4 text-center">📝 Notes for Coding</h2>
-        <h3 class="mb-5 text-center" style="text-underline-position: below;"><b>WEBSITE NOTES</b></h3>
-        <div class="row g-4">
-            <!-- Note 1: HTML Structure -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>HTML Boilerplate</h5>
-                    <p>A basic HTML document structure to start with.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>&lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
-    &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;title&gt;Page Title&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1&gt;Hello World&lt;/h1&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;</code></pre>
-                </div>
-            </div>
-            <!-- Note 2: CSS Styling -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>CSS for a Heading</h5>
-                    <p>Example of how to center and style a heading with CSS.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>h1 {
-        color: #333;
-        font-family: Arial, sans-serif;
-        text-align: center;
-    }</code></pre>
-                </div>
-            </div>
-            <!-- Note 3: JavaScript Alert -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>JavaScript Function</h5>
-                    <p>A simple JavaScript function to display an alert message.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>function greet() {
-        alert("Welcome to the website!");
-    }</code></pre>
-                </div>
-            </div>
-            <!-- Note 4: Bootstrap Grid System -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>Bootstrap Grid Example</h5>
-                    <p>An example of how Bootstrap columns work for a responsive layout.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>&lt;div class="row"&gt;
-      &lt;div class="col-md-6"&gt;Column 1&lt;/div&gt;
-      &lt;div class="col-md-6"&gt;Column 2&lt;/div&gt;
-    &lt;/div&gt;</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 5: Semantic HTML -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>Semantic HTML</h5>
-                    <p>Using meaningful tags like `header`, `nav`, and `main` to improve accessibility and SEO.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>&lt;header&gt;
-      &lt;nav&gt;...&lt;/nav&gt;
-    &lt;/header&gt;
-    &lt;main&gt;
-      &lt;section&gt;...&lt;/section&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;...&lt;/footer&gt;</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 6: CSS Flexbox -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>CSS Flexbox</h5>
-                    <p>A modern way to lay out items in a container, allowing for flexible and responsive designs.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>.flex-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 7: JavaScript ES6 Arrow Function -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>ES6 Arrow Function</h5>
-                    <p>A concise syntax for writing JavaScript functions, useful for simple callbacks.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>const add = (a, b) => a + b;
-    console.log(add(2, 3)); // 5</code></pre>
-                </div>
-            </div>
-            <!-- NEW NOTE 8: CSS Variables -->
-            <div class="col-md-6 col-lg-4">
-                <div class="p-4 bg-light rounded h-100">
-                    <h5>CSS Custom Properties (Variables)</h5>
-                    <p>Define reusable values like colors or fonts to make your CSS more maintainable.</p>
-                    <pre class="bg-dark text-white p-3 rounded"><code>:root {
-      --primary-color: #ff3c38;
-    }
-
-    h1 {
-      color: var(--primary-color);
-    }</code></pre>
-                </div>
-            </div>
+    <!-- Search Bar -->
+    <div class="container">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for notes..." id="searchInput">
+            <i class="bi bi-search search-icon"></i>
         </div>
-        <header class="container">
-            <h1>Learn Using Notes</h1>
-            <h2>📘 HTML Notes</h2>
-        </header>
+    </div>
 
-        <main class="container">
-            <div class="note-grid">
-                <!-- Note 1: HTML Boilerplate -->
-                <div class="note-card">
-                    <h5>HTML Boilerplate</h5>
-                    <p>Basic structure of an HTML document.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;!DOCTYPE html&gt;
-        &lt;html lang="en"&gt;
-          &lt;head&gt;
-            &lt;meta charset="UTF-8"&gt;
-            &lt;title&gt;Page Title&lt;/title&gt;
-          &lt;/head&gt;
-          &lt;body&gt;
-            &lt;h1&gt;Hello World&lt;/h1&gt;
-          &lt;/body&gt;
-        &lt;/html&gt;</code></pre>
-                    </div>
+    <!-- Progress Tracker -->
+    <div class="progress-tracker" id="progressTracker">
+        <button class="progress-toggle" onclick="toggleProgress()">
+            <i class="bi bi-chevron-left" id="progressToggleIcon"></i>
+        </button>
+        <h5 class="text-center mb-3">Your Progress</h5>
+        <div class="progress-circle">
+            <svg width="150" height="150">
+                <circle cx="75" cy="75" r="65" stroke="#e0e0e0" stroke-width="10" fill="none"></circle>
+                <circle cx="75" cy="75" r="65" stroke="#ff3c38" stroke-width="10" fill="none" stroke-dasharray="408"
+                    stroke-dashoffset="408" id="progressCircle"></circle>
+            </svg>
+            <div class="progress-text" id="progressText">0%</div>
+        </div>
+        <p class="text-center mb-2" id="progressDetails">0 of 50 completed</p>
+        <div class="text-center">
+            <small class="text-muted">Keep learning!</small>
+        </div>
+    </div>
+
+    <!-- Notes Section -->
+    <section class="container my-5" id="notes">
+        <!-- Website Notes -->
+        <div class="section-header">
+            <h2>📝 Website Development Notes</h2>
+            <p>Master HTML, CSS, JavaScript, and modern web frameworks</p>
+        </div>
+
+        <div class="notes-grid">
+            <!-- HTML Boilerplate -->
+            <div class="note-card" data-note="html-boilerplate" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
                 </div>
-
-                <!-- Note 2: Head Tags -->
-                <div class="note-card">
-                    <h5>Head Tags</h5>
-                    <p>Metadata and links go inside the &lt;head&gt; tag.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;head&gt;
-          &lt;meta charset="UTF-8"&gt;
-          &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-          &lt;link rel="stylesheet" href="style.css"&gt;
-        &lt;/head&gt;</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 3: Semantic Tags -->
-                <div class="note-card">
-                    <h5>Semantic HTML</h5>
-                    <p>Use meaningful tags for better accessibility and SEO.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;header&gt;...&lt;/header&gt;
-        &lt;nav&gt;...&lt;/nav&gt;
-        &lt;main&gt;...&lt;/main&gt;
-        &lt;footer&gt;...&lt;/footer&gt;</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 4: Lists -->
-                <div class="note-card">
-                    <h5>HTML Lists</h5>
-                    <p>Use ordered or unordered lists for structured content.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;ul&gt;
-          &lt;li&gt;Item 1&lt;/li&gt;
-          &lt;li&gt;Item 2&lt;/li&gt;
-        &lt;/ul&gt;
-        
-        &lt;ol&gt;
-          &lt;li&gt;First&lt;/li&gt;
-          &lt;li&gt;Second&lt;/li&gt;
-        &lt;/ol&gt;</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 5: Links and Images -->
-                <div class="note-card">
-                    <h5>Links and Images</h5>
-                    <p>Use anchor and image tags to add navigation and visuals.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;a href="https://example.com"&gt;Visit Site&lt;/a&gt;
-        &lt;img src="image.jpg" alt="Description"&gt;</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 6: Forms -->
-                <div class="note-card">
-                    <h5>HTML Forms</h5>
-                    <p>Collect user input with form elements.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;form&gt;
-          &lt;input type="text" placeholder="Name"&gt;
-          &lt;input type="email" placeholder="Email"&gt;
-          &lt;button type="submit"&gt;Send&lt;/button&gt;
-        &lt;/form&gt;</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 7: Tables -->
-                <div class="note-card">
-                    <h5>HTML Tables</h5>
-                    <p>Display tabular data using rows and columns.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;table&gt;
-          &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
-          &lt;tr&gt;&lt;td&gt;Jaden&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
-        &lt;/table&gt;</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 8: Div and Span -->
-                <div class="note-card">
-                    <h5>Div and Span</h5>
-                    <p>Use &lt;div&gt; for block-level and &lt;span&gt; for inline grouping.</p>
-                    <div class="code-example">
-                        <pre><code>&lt;div&gt;This is a block&lt;/div&gt;
-        &lt;span&gt;This is inline&lt;/span&gt;</code></pre>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <header class="container">
-            <h1>Learn Using Notes</h1>
-            <h2>🎨 CSS Notes</h2>
-        </header>
-
-        <main class="container">
-            <div class="note-grid">
-                <!-- Note 1: Basic Styling -->
-                <div class="note-card">
-                    <h5>Basic Styling</h5>
-                    <p>Apply color, font, and alignment to elements.</p>
-                    <div class="code-example">
-                        <pre><code>h1 {
-          color: #333;
-          font-family: Arial, sans-serif;
-          text-align: center;
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 2: CSS Selectors -->
-                <div class="note-card">
-                    <h5>CSS Selectors</h5>
-                    <p>Target elements using tags, classes, or IDs.</p>
-                    <div class="code-example">
-                        <pre><code>/* Tag selector */
-        p { color: blue; }
-        
-        /* Class selector */
-        .card { padding: 20px; }
-        
-        /* ID selector */
-        #header { background-color: black; }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 3: Box Model -->
-                <div class="note-card">
-                    <h5>Box Model</h5>
-                    <p>Understand padding, border, and margin around elements.</p>
-                    <div class="code-example">
-                        <pre><code>div {
-          padding: 10px;
-          border: 2px solid #ccc;
-          margin: 20px;
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 4: Flexbox Layout -->
-                <div class="note-card">
-                    <h5>Flexbox Layout</h5>
-                    <p>Align and distribute items in a flexible container.</p>
-                    <div class="code-example">
-                        <pre><code>.container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 5: Grid Layout -->
-                <div class="note-card">
-                    <h5>CSS Grid</h5>
-                    <p>Create complex layouts using rows and columns.</p>
-                    <div class="code-example">
-                        <pre><code>.grid {
-          display: grid;
-          grid-template-columns: 1fr 2fr;
-          gap: 20px;
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 6: Media Queries -->
-                <div class="note-card">
-                    <h5>Responsive Design</h5>
-                    <p>Adapt styles for different screen sizes.</p>
-                    <div class="code-example">
-                        <pre><code>@media (max-width: 768px) {
-          h1 {
-            font-size: 1.5rem;
-          }
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 7: CSS Variables -->
-                <div class="note-card">
-                    <h5>CSS Variables</h5>
-                    <p>Define reusable values for colors, fonts, etc.</p>
-                    <div class="code-example">
-                        <pre><code>:root {
-          --main-color: #ff3c38;
-        }
-        
-        button {
-          background-color: var(--main-color);
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 8: Transitions and Hover Effects -->
-                <div class="note-card">
-                    <h5>Transitions & Hover</h5>
-                    <p>Add smooth animations when hovering over elements.</p>
-                    <div class="code-example">
-                        <pre><code>a {
-          color: #000;
-          transition: color 0.3s ease;
-        }
-        
-        a:hover {
-          color: #ff3c38;
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 9: Z-Index and Positioning -->
-                <div class="note-card">
-                    <h5>Z-Index & Position</h5>
-                    <p>Control stacking and placement of elements.</p>
-                    <div class="code-example">
-                        <pre><code>.box {
-          position: absolute;
-          top: 50px;
-          left: 100px;
-          z-index: 10;
-        }</code></pre>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <header class="container">
-            <h1>Learn using Notes</h1>
-            <h2>⚙️ JavaScript Notes</h2>
-        </header>
-
-        <main class="container">
-            <div class="note-grid">
-                <!-- Note 1: Basic Alert -->
-                <div class="note-card">
-                    <h5>Alert Message</h5>
-                    <p>Display a simple popup message.</p>
-                    <div class="code-example">
-                        <pre><code>alert("Hello, world!");</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 2: Variables -->
-                <div class="note-card">
-                    <h5>Declaring Variables</h5>
-                    <p>Use <code>let</code>, <code>const</code>, or <code>var</code> to store values.</p>
-                    <div class="code-example">
-                        <pre><code>let name = "Jaden";
-        const age = 20;
-        var city = "Nairobi";</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 3: Functions -->
-                <div class="note-card">
-                    <h5>Function Declaration</h5>
-                    <p>Reusable blocks of code for specific tasks.</p>
-                    <div class="code-example">
-                        <pre><code>function greet() {
-          console.log("Welcome!");
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 4: ES6 Arrow Functions -->
-                <div class="note-card">
-                    <h5>Arrow Function</h5>
-                    <p>Shorter syntax for writing functions.</p>
-                    <div class="code-example">
-                        <pre><code>const add = (a, b) => a + b;
-        console.log(add(2, 3)); // 5</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 5: DOM Manipulation -->
-                <div class="note-card">
-                    <h5>DOM Manipulation</h5>
-                    <p>Change HTML content dynamically.</p>
-                    <div class="code-example">
-                        <pre><code>document.getElementById("demo").innerText = "Updated text!";</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 6: Event Listeners -->
-                <div class="note-card">
-                    <h5>Event Listener</h5>
-                    <p>React to user actions like clicks.</p>
-                    <div class="code-example">
-                        <pre><code>document.querySelector("button").addEventListener("click", () => {
-          alert("Button clicked!");
-        });</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 7: Conditional Statements -->
-                <div class="note-card">
-                    <h5>Conditionals</h5>
-                    <p>Make decisions based on logic.</p>
-                    <div class="code-example">
-                        <pre><code>if (age >= 18) {
-          console.log("Adult");
-        } else {
-          console.log("Minor");
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 8: Loops -->
-                <div class="note-card">
-                    <h5>Loops</h5>
-                    <p>Repeat actions using <code>for</code> or <code>while</code>.</p>
-                    <div class="code-example">
-                        <pre><code>for (let i = 0; i < 5; i++) {
-          console.log("Count:", i);
-        }</code></pre>
-                    </div>
-                </div>
-
-                <!-- Note 9: Fetch API -->
-                <div class="note-card">
-                    <h5>Fetch API</h5>
-                    <p>Get data from external sources.</p>
-                    <div class="code-example">
-                        <pre><code>fetch("https://api.example.com/data")
-          .then(res => res.json())
-          .then(data => console.log(data));</code></pre>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </section>
-    <!-- 📱 MOBILE APP DEVELOPMENT NOTES -->
-    <header class="container mt-5">
-        <h1>Learn Using Notes</h1>
-        <h2>📱 Mobile App Development Notes</h2>
-    </header>
-
-    <main class="container">
-        <div class="note-grid">
-
-            <!-- Flutter Setup -->
-            <div class="note-card">
-                <h5>Flutter Setup</h5>
-                <p>Install Flutter SDK and set up your environment for Android or iOS development.</p>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'html-boilerplate')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>HTML Boilerplate</h5>
+                <p>A basic HTML document structure to start with.</p>
                 <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('html-boilerplate')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <!-- CSS Styling -->
+            <div class="note-card" data-note="css-styling" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-styling')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>CSS for a Heading</h5>
+                <p>Example of how to center and style a heading with CSS.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>h1 {
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-styling')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <!-- JavaScript Alert -->
+            <div class="note-card" data-note="js-alert" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-alert')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>JavaScript Function</h5>
+                <p>A simple JavaScript function to display an alert message.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>function greet() {
+    alert("Welcome to the website!");
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-alert')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <!-- Bootstrap Grid -->
+            <div class="note-card" data-note="bootstrap-grid" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'bootstrap-grid')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Bootstrap Grid Example</h5>
+                <p>An example of how Bootstrap columns work for a responsive layout.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;div class="row"&gt;
+    &lt;div class="col-md-6"&gt;Column 1&lt;/div&gt;
+    &lt;div class="col-md-6"&gt;Column 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('bootstrap-grid')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <!-- Semantic HTML -->
+            <div class="note-card" data-note="semantic-html" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'semantic-html')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Semantic HTML</h5>
+                <p>Using meaningful tags like `header`, `nav`, and `main` to improve accessibility and SEO.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;header&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+    &lt;section&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('semantic-html')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <!-- CSS Flexbox -->
+            <div class="note-card" data-note="css-flexbox" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-flexbox')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>CSS Flexbox</h5>
+                <p>A modern way to lay out items in a container, allowing for flexible and responsive designs.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-flexbox')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <!-- ES6 Arrow Function -->
+            <div class="note-card" data-note="es6-arrow" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'es6-arrow')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>ES6 Arrow Function</h5>
+                <p>A concise syntax for writing JavaScript functions, useful for simple callbacks.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('es6-arrow')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <!-- CSS Variables -->
+            <div class="note-card" data-note="css-variables" data-category="website">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-variables')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>CSS Custom Properties (Variables)</h5>
+                <p>Define reusable values like colors or fonts to make your CSS more maintainable.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>:root {
+    --primary-color: #ff3c38;
+}
+
+h1 {
+    color: var(--primary-color);
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-variables')">
+                    Mark as Complete
+                </button>
+            </div>
+        </div>
+
+        <!-- HTML Notes -->
+        <div class="section-header">
+            <h2>📘 HTML Notes</h2>
+            <p>Deep dive into HTML fundamentals and best practices</p>
+        </div>
+
+        <div class="notes-grid">
+            <div class="note-card" data-note="html-head-tags" data-category="html">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'html-head-tags')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Head Tags</h5>
+                <p>Metadata and links go inside the &lt;head&gt; tag.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('html-head-tags')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="html-lists" data-category="html">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'html-lists')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>HTML Lists</h5>
+                <p>Use ordered or unordered lists for structured content.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;First&lt;/li&gt;
+    &lt;li&gt;Second&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('html-lists')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="html-links-images" data-category="html">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'html-links-images')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Links and Images</h5>
+                <p>Use anchor and image tags to add navigation and visuals.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;a href="https://example.com"&gt;Visit Site&lt;/a&gt;
+&lt;img src="image.jpg" alt="Description"&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('html-links-images')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="html-forms" data-category="html">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'html-forms')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>HTML Forms</h5>
+                <p>Collect user input with form elements.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;form&gt;
+    &lt;input type="text" placeholder="Name"&gt;
+    &lt;input type="email" placeholder="Email"&gt;
+    &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('html-forms')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="html-tables" data-category="html">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'html-tables')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>HTML Tables</h5>
+                <p>Display tabular data using rows and columns.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;table&gt;
+    &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Jaden&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('html-tables')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="html-div-span" data-category="html">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'html-div-span')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Div and Span</h5>
+                <p>Use &lt;div&gt; for block-level and &lt;span&gt; for inline grouping.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;div&gt;This is a block&lt;/div&gt;
+&lt;span&gt;This is inline&lt;/span&gt;</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('html-div-span')">
+                    Mark as Complete
+                </button>
+            </div>
+        </div>
+
+        <!-- CSS Notes -->
+        <div class="section-header">
+            <h2>🎨 CSS Notes</h2>
+            <p>Master CSS styling, layouts, and animations</p>
+        </div>
+
+        <div class="notes-grid">
+            <div class="note-card" data-note="css-selectors" data-category="css">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-selectors')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>CSS Selectors</h5>
+                <p>Target elements using tags, classes, or IDs.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>/* Tag selector */
+p { color: blue; }
+
+/* Class selector */
+.card { padding: 20px; }
+
+/* ID selector */
+#header { background-color: black; }</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-selectors')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="css-box-model" data-category="css">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-box-model')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Box Model</h5>
+                <p>Understand padding, border, and margin around elements.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>div {
+    padding: 10px;
+    border: 2px solid #ccc;
+    margin: 20px;
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-box-model')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="css-grid" data-category="css">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-grid')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>CSS Grid</h5>
+                <p>Create complex layouts using rows and columns.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-grid')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="css-media-queries" data-category="css">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-media-queries')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Responsive Design</h5>
+                <p>Adapt styles for different screen sizes.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-media-queries')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="css-transitions" data-category="css">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-transitions')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Transitions & Hover</h5>
+                <p>Add smooth animations when hovering over elements.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>a {
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff3c38;
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-transitions')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="css-positioning" data-category="css">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'css-positioning')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Z-Index & Position</h5>
+                <p>Control stacking and placement of elements.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>.box {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    z-index: 10;
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('css-positioning')">
+                    Mark as Complete
+                </button>
+            </div>
+        </div>
+
+        <!-- JavaScript Notes -->
+        <div class="section-header">
+            <h2>⚙️ JavaScript Notes</h2>
+            <p>Learn JavaScript programming and DOM manipulation</p>
+        </div>
+
+        <div class="notes-grid">
+            <div class="note-card" data-note="js-variables" data-category="javascript">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-variables')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Declaring Variables</h5>
+                <p>Use <code>let</code>, <code>const</code>, or <code>var</code> to store values.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>let name = "Jaden";
+const age = 20;
+var city = "Nairobi";</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-variables')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="js-functions" data-category="javascript">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-functions')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Function Declaration</h5>
+                <p>Reusable blocks of code for specific tasks.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>function greet() {
+    console.log("Welcome!");
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-functions')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="js-dom" data-category="javascript">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-dom')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>DOM Manipulation</h5>
+                <p>Change HTML content dynamically.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>document.getElementById("demo").innerText = "Updated text!";</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-dom')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="js-events" data-category="javascript">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-events')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Event Listener</h5>
+                <p>React to user actions like clicks.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>document.querySelector("button").addEventListener("click", () => {
+    alert("Button clicked!");
+});</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-events')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="js-conditionals" data-category="javascript">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-conditionals')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Conditionals</h5>
+                <p>Make decisions based on logic.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-conditionals')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="js-loops" data-category="javascript">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-loops')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Loops</h5>
+                <p>Repeat actions using <code>for</code> or <code>while</code>.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>for (let i = 0; i < 5; i++) {
+    console.log("Count:", i);
+}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-loops')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="js-fetch" data-category="javascript">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'js-fetch')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Fetch API</h5>
+                <p>Get data from external sources.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>fetch("https://api.example.com/data")
+    .then(res => res.json())
+    .then(data => console.log(data));</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('js-fetch')">
+                    Mark as Complete
+                </button>
+            </div>
+        </div>
+
+        <!-- Python Notes -->
+        <div class="section-header">
+            <h2>🐍 Python Notes</h2>
+            <p>Master Python programming from basics to advanced</p>
+        </div>
+
+        <div class="notes-grid">
+            <div class="note-card" data-note="python-basics" data-category="python">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-basics')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Python Basics</h5>
+                <p>Every Python file ends with <code>.py</code>.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Print a message
+print("Hello, Python!")
+
+# Variables
+name = "Alice"
+age = 25
+print("Name:", name, "Age:", age)</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('python-basics')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="python-data-types" data-category="python">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-data-types')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Data Types</h5>
+                <p>Python has multiple built-in types like int, float, str, and bool.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>x = 10           # int
+y = 3.14         # float
+name = "Bob"     # string
+is_active = True # boolean</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('python-data-types')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="python-conditionals" data-category="python">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 2 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-conditionals')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Conditional Statements</h5>
+                <p>Use <code>if</code>, <code>elif</code>, and <code>else</code> for decisions.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>age = 18
+
+if age >= 18:
+    print("You are an adult.")
+elif age >= 13:
+    print("You are a teenager.")
+else:
+    print("You are a child.")</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('python-conditionals')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="python-loops" data-category="python">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-loops')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Loops</h5>
+                <p>Repeat actions using <code>for</code> and <code>while</code> loops.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># For loop
+for i in range(5):
+    print("Number:", i)
+
+# While loop
+count = 0
+while count < 3:
+    print("Count:", count)
+    count += 1</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('python-loops')">
+                    Mark as Complete
+                </button>
+            </div>
+
+            <div class="note-card" data-note="python-lists" data-category="python">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-lists')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Lists</h5>
+                <p>Lists are ordered and changeable collections.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>fruits = ["apple", "banana", "cherry"]
+
+fruits.append("orange")
+print(fruits)
+print(fruits[0])  # Access first item</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('python-lists')">
+                    Mark as Complete
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile App Development Notes -->
+        <div class="section-header">
+            <h2>📱 Mobile App Development Notes</h2>
+            <p>Build mobile apps with Flutter, React Native, and native development</p>
+        </div>
+
+        <div class="notes-grid">
+            <div class="note-card" data-note="flutter-setup" data-category="mobile">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'flutter-setup')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                <h5>Flutter Setup</h5>
+                <p>Install Flutter SDK and set up your environment.</p>
+                <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <pre><code># Check Flutter installation
 flutter doctor
 
@@ -854,41 +1382,22 @@ flutter create my_app
 cd my_app
 flutter run</code></pre>
                 </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('flutter-setup')">
+                    Mark as Complete
+                </button>
             </div>
 
-            <!-- Flutter Basic App -->
-            <div class="note-card">
-                <h5>Flutter Basic App</h5>
-                <p>Basic Flutter app with a text widget.</p>
-                <div class="code-example">
-                    <pre><code>&lt;!-- main.dart --&gt;
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text('Hello Flutter')),
-        body: Center(child: Text('Welcome to Flutter!')),
-      ),
-    );
-  }
-}</code></pre>
+            <div class="note-card" data-note="react-native-setup" data-category="mobile">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
                 </div>
-            </div>
-
-            <!-- React Native Setup -->
-            <div class="note-card">
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'react-native-setup')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
                 <h5>React Native Setup</h5>
                 <p>Install and create a new React Native project using Expo CLI.</p>
                 <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <pre><code># Install Expo CLI
 npm install -g expo-cli
 
@@ -899,361 +1408,112 @@ expo init myApp
 cd myApp
 npm start</code></pre>
                 </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('react-native-setup')">
+                    Mark as Complete
+                </button>
             </div>
-
-            <!-- React Native Component -->
-            <div class="note-card">
-                <h5>React Native Component</h5>
-                <p>Example of a simple React Native component.</p>
-                <div class="code-example">
-                    <pre><code>import React from 'react';
-import { View, Text } from 'react-native';
-
-export default function App() {
-  return (
-    &lt;View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}&gt;
-      &lt;Text&gt;Hello React Native!&lt;/Text&gt;
-    &lt;/View&gt;
-  );
-}</code></pre>
-                </div>
-            </div>
-
-            <!-- Android Java -->
-            <div class="note-card">
-                <h5>Android (Java)</h5>
-                <p>Basic Java activity for Android Studio projects.</p>
-                <div class="code-example">
-                    <pre><code>package com.example.myapp;
-
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity {
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-  }
-}</code></pre>
-                </div>
-            </div>
-
-            <!-- Android Kotlin -->
-            <div class="note-card">
-                <h5>Android (Kotlin)</h5>
-                <p>Basic Kotlin activity example for Android development.</p>
-                <div class="code-example">
-                    <pre><code>package com.example.myapp
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
-class MainActivity : AppCompatActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-  }
-}</code></pre>
-                </div>
-            </div>
-
-            <!-- API Integration (React Native) -->
-            <div class="note-card">
-                <h5>API Integration (React Native)</h5>
-                <p>Fetch data from an API and display it in your app.</p>
-                <div class="code-example">
-                    <pre><code>import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-
-export default function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() =&gt; {
-    fetch('https://api.example.com/data')
-      .then(res =&gt; res.json())
-      .then(json =&gt; setData(json));
-  }, []);
-
-  return (
-    &lt;View&gt;
-      &lt;Text&gt;{data ? JSON.stringify(data) : 'Loading...'}&lt;/Text&gt;
-    &lt;/View&gt;
-  );
-}</code></pre>
-                </div>
-            </div>
-
-            <!-- Flutter HTTP Request -->
-            <div class="note-card">
-                <h5>Flutter HTTP Request</h5>
-                <p>Fetch data from an API using the <code>http</code> package in Flutter.</p>
-                <div class="code-example">
-                    <pre><code>import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-void main() =&gt; runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(home: DataScreen());
-  }
-}
-
-class DataScreen extends StatefulWidget {
-  @override
-  _DataScreenState createState() =&gt; _DataScreenState();
-}
-
-class _DataScreenState extends State&lt;DataScreen&gt; {
-  var data = 'Loading...';
-
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  void fetchData() async {
-    final response = await http.get(Uri.parse('https://api.example.com/data'));
-    setState(() {
-      data = jsonDecode(response.body).toString();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('API Example')),
-      body: Center(child: Text(data)),
-    );
-  }
-}</code></pre>
-                </div>
-            </div>
-
         </div>
-    </main>
-    <!-- 🎮 GAME DEVELOPMENT NOTES -->
-    <header class="container mt-5">
-        <h1>Learn Using Notes</h1>
-        <h2>🎮 Game Development Notes</h2>
-    </header>
 
-    <main class="container">
-        <div class="note-grid">
+        <!-- Game Development Notes -->
+        <div class="section-header">
+            <h2>🎮 Game Development Notes</h2>
+            <p>Create games with Unity, Godot, Pygame, and JavaScript</p>
+        </div>
 
-            <!-- Note 1: Unity Setup -->
-            <div class="note-card">
+        <div class="notes-grid">
+            <div class="note-card" data-note="unity-setup" data-category="game">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'unity-setup')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
                 <h5>Unity Setup</h5>
-                <p>Install Unity Hub and create a new 2D or 3D project for your first game.</p>
+                <p>Install Unity Hub and create a new 2D or 3D project.</p>
                 <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <pre><code># Download Unity Hub
 # Create a new project:
 # - Choose "2D" or "3D"
 # - Name it "MyFirstGame"
-# - Click Create
-</code></pre>
+# - Click Create</code></pre>
                 </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('unity-setup')">
+                    Mark as Complete
+                </button>
             </div>
 
-            <!-- Note 2: Unity C# Script -->
-            <div class="note-card">
+            <div class="note-card" data-note="unity-csharp" data-category="game">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 4 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'unity-csharp')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
                 <h5>Unity C# Script Example</h5>
-                <p>Attach this script to a player object to make it move using arrow keys.</p>
+                <p>Attach this script to a player object to make it move.</p>
                 <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <pre><code>using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-  public float speed = 5f;
+    public float speed = 5f;
 
-  void Update() {
-    float moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-    float moveY = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-    transform.Translate(moveX, moveY, 0);
-  }
-}
-</code></pre>
+    void Update() {
+        float moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        float moveY = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        transform.Translate(moveX, moveY, 0);
+    }
+}</code></pre>
                 </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('unity-csharp')">
+                    Mark as Complete
+                </button>
             </div>
-
-            <!-- Note 3: Godot Script -->
-            <div class="note-card">
-                <h5>Godot (GDScript)</h5>
-                <p>Simple player movement example using Godot's GDScript.</p>
-                <div class="code-example">
-                    <pre><code>extends KinematicBody2D
-
-var speed = 200
-
-func _process(delta):
-  var velocity = Vector2()
-  if Input.is_action_pressed("ui_right"):
-    velocity.x += 1
-  if Input.is_action_pressed("ui_left"):
-    velocity.x -= 1
-  if Input.is_action_pressed("ui_down"):
-    velocity.y += 1
-  if Input.is_action_pressed("ui_up"):
-    velocity.y -= 1
-  move_and_slide(velocity.normalized() * speed)
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 4: Pygame Setup -->
-            <div class="note-card">
-                <h5>Pygame Setup</h5>
-                <p>Install Pygame and set up a simple game window.</p>
-                <div class="code-example">
-                    <pre><code># Install Pygame
-pip install pygame
-
-# Simple game window
-import pygame
-pygame.init()
-
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("My Game")
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-pygame.quit()
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 5: Pygame Player Movement -->
-            <div class="note-card">
-                <h5>Pygame Player Movement</h5>
-                <p>Move a rectangle on the screen using arrow keys.</p>
-                <div class="code-example">
-                    <pre><code>import pygame
-pygame.init()
-
-screen = pygame.display.set_mode((800, 600))
-player = pygame.Rect(400, 300, 50, 50)
-speed = 5
-running = True
-
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        player.x -= speed
-    if keys[pygame.K_RIGHT]:
-        player.x += speed
-    if keys[pygame.K_UP]:
-        player.y -= speed
-    if keys[pygame.K_DOWN]:
-        player.y += speed
-
-    screen.fill((30, 30, 30))
-    pygame.draw.rect(screen, (0, 255, 0), player)
-    pygame.display.flip()
-
-pygame.quit()
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 6: JavaScript Canvas Setup -->
-            <div class="note-card">
-                <h5>HTML5 Canvas Game</h5>
-                <p>Basic setup for drawing and animating with JavaScript Canvas.</p>
-                <div class="code-example">
-                    <pre><code>&lt;canvas id="gameCanvas" width="400" height="300"&gt;&lt;/canvas&gt;
-&lt;script&gt;
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-let x = 50, y = 50;
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'red';
-  ctx.fillRect(x, y, 50, 50);
-  requestAnimationFrame(draw);
-}
-
-draw();
-&lt;/script&gt;
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 7: JS Keyboard Controls -->
-            <div class="note-card">
-                <h5>Canvas Player Movement</h5>
-                <p>Move a player using keyboard keys in JavaScript.</p>
-                <div class="code-example">
-                    <pre><code>&lt;script&gt;
-document.addEventListener('keydown', movePlayer);
-let player = { x: 100, y: 100, speed: 10 };
-
-function movePlayer(e) {
-  switch(e.key) {
-    case 'ArrowUp': player.y -= player.speed; break;
-    case 'ArrowDown': player.y += player.speed; break;
-    case 'ArrowLeft': player.x -= player.speed; break;
-    case 'ArrowRight': player.x += player.speed; break;
-  }
-  drawPlayer();
-}
-
-function drawPlayer() {
-  const canvas = document.getElementById('gameCanvas');
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'blue';
-  ctx.fillRect(player.x, player.y, 40, 40);
-}
-&lt;/script&gt;
-</code></pre>
-                </div>
-            </div>
-
         </div>
-    </main>
-    <!-- 🤖 AI & DATA SCIENCE NOTES -->
-    <header class="container mt-5">
-        <h1>Learn Using Notes</h1>
-        <h2>🤖 AI & Data Science Notes</h2>
-    </header>
 
-    <main class="container">
-        <div class="note-grid">
+        <!-- AI & Data Science Notes -->
+        <div class="section-header">
+            <h2>🤖 AI & Data Science Notes</h2>
+            <p>Learn machine learning, data analysis, and AI with Python</p>
+        </div>
 
-            <!-- Note 1: Python for Data Science -->
-            <div class="note-card">
+        <div class="notes-grid">
+            <div class="note-card" data-note="python-ds-setup" data-category="ai">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'python-ds-setup')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
                 <h5>Python for Data Science</h5>
                 <p>Start your data journey by importing essential libraries.</p>
                 <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <pre><code># Install necessary libraries
 pip install numpy pandas matplotlib scikit-learn
 
 # Import them
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-</code></pre>
+import matplotlib.pyplot as plt</code></pre>
                 </div>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('python-ds-setup')">
+                    Mark as Complete
+                </button>
             </div>
 
-            <!-- Note 2: NumPy Basics -->
-            <div class="note-card">
+            <div class="note-card" data-note="numpy-basics" data-category="ai">
+                <div class="reading-time">
+                    <i class="bi bi-clock"></i> 3 min
+                </div>
+                <button class="bookmark-btn" onclick="toggleBookmark(this, 'numpy-basics')">
+                    <i class="bi bi-bookmark"></i>
+                </button>
                 <h5>NumPy Basics</h5>
                 <p>Work with numerical arrays using NumPy.</p>
                 <div class="code-example">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     <pre><code>import numpy as np
 
 # Create a NumPy array
@@ -1262,455 +1522,88 @@ print(arr)
 
 # Array operations
 print(arr * 2)   # Multiply all elements
-print(np.mean(arr))  # Average
-</code></pre>
+print(np.mean(arr))  # Average</code></pre>
                 </div>
-            </div>
-
-            <!-- Note 3: Pandas DataFrame -->
-            <div class="note-card">
-                <h5>Pandas DataFrame</h5>
-                <p>Load and analyze tabular data using Pandas.</p>
-                <div class="code-example">
-                    <pre><code>import pandas as pd
-
-# Load data
-df = pd.read_csv('data.csv')
-
-# Show first few rows
-print(df.head())
-
-# Basic statistics
-print(df.describe())
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 4: Matplotlib Visualization -->
-            <div class="note-card">
-                <h5>Matplotlib Visualization</h5>
-                <p>Create simple data visualizations.</p>
-                <div class="code-example">
-                    <pre><code>import matplotlib.pyplot as plt
-
-x = [1, 2, 3, 4, 5]
-y = [2, 4, 6, 8, 10]
-
-plt.plot(x, y, color='green', marker='o')
-plt.title('Simple Line Plot')
-plt.xlabel('X-Axis')
-plt.ylabel('Y-Axis')
-plt.show()
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 5: Machine Learning Example -->
-            <div class="note-card">
-                <h5>Machine Learning (Linear Regression)</h5>
-                <p>Train a simple linear regression model using scikit-learn.</p>
-                <div class="code-example">
-                    <pre><code>from sklearn.linear_model import LinearRegression
-import numpy as np
-
-# Data
-X = np.array([[1], [2], [3], [4], [5]])
-y = np.array([2, 4, 6, 8, 10])
-
-# Model
-model = LinearRegression()
-model.fit(X, y)
-
-# Prediction
-print(model.predict([[6]]))  # Output: [12.]
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 6: Neural Network with TensorFlow -->
-            <div class="note-card">
-                <h5>Neural Network (TensorFlow)</h5>
-                <p>Build a simple neural network using TensorFlow and Keras.</p>
-                <div class="code-example">
-                    <pre><code>import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
-
-# Build model
-model = keras.Sequential([
-  layers.Dense(8, activation='relu', input_shape=(4,)),
-  layers.Dense(4, activation='relu'),
-  layers.Dense(1)
-])
-
-model.compile(optimizer='adam', loss='mse')
-
-# Example training
-X_train = [[1,2,3,4], [2,3,4,5], [3,4,5,6]]
-y_train = [10, 15, 20]
-model.fit(X_train, y_train, epochs=10)
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 7: AI Chatbot Example -->
-            <div class="note-card">
-                <h5>AI Chatbot (Python)</h5>
-                <p>Create a simple rule-based chatbot using Python.</p>
-                <div class="code-example">
-                    <pre><code>def chatbot_response(user_input):
-    user_input = user_input.lower()
-    if 'hello' in user_input:
-        return 'Hi there! How can I help you today?'
-    elif 'bye' in user_input:
-        return 'Goodbye! Have a great day!'
-    else:
-        return 'I am still learning. Tell me more!'
-
-# Example
-while True:
-    msg = input("You: ")
-    if msg.lower() == 'bye':
-        print("Bot: Bye!")
-        break
-    print("Bot:", chatbot_response(msg))
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 8: Data Visualization with Seaborn -->
-            <div class="note-card">
-                <h5>Data Visualization (Seaborn)</h5>
-                <p>Use Seaborn to create professional-looking plots.</p>
-                <div class="code-example">
-                    <pre><code>import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
-
-data = pd.DataFrame({
-  'Category': ['A', 'B', 'C', 'D'],
-  'Values': [23, 45, 56, 78]
-})
-
-sns.barplot(x='Category', y='Values', data=data, palette='viridis')
-plt.title('Category-wise Data')
-plt.show()
-</code></pre>
-                </div>
-            </div>
-
-        </div>
-    </main>
-    <!-- 🐍 PYTHON NOTES -->
-    <header class="container mt-5">
-        <h1>Learn Using Notes</h1>
-        <h2>🐍 Python Notes</h2>
-    </header>
-
-    <main class="container">
-        <div class="note-grid">
-
-            <!-- Note 1: Python Basics -->
-            <div class="note-card">
-                <h5>Python Basics</h5>
-                <p>Every Python file ends with <code>.py</code>. You can run scripts using
-                    <code>python filename.py</code>.
-                </p>
-                <div class="code-example">
-                    <pre><code># Print a message
-print("Hello, Python!")
-
-# Variables
-name = "Alice"
-age = 25
-print("Name:", name, "Age:", age)
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 2: Data Types -->
-            <div class="note-card">
-                <h5>Data Types</h5>
-                <p>Python has multiple built-in types like int, float, str, and bool.</p>
-                <div class="code-example">
-                    <pre><code>x = 10           # int
-y = 3.14         # float
-name = "Bob"     # string
-is_active = True # boolean
-
-print(type(x), type(y), type(name), type(is_active))
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 3: Conditional Statements -->
-            <div class="note-card">
-                <h5>Conditional Statements</h5>
-                <p>Use <code>if</code>, <code>elif</code>, and <code>else</code> for decisions.</p>
-                <div class="code-example">
-                    <pre><code>age = 18
-
-if age &gt;= 18:
-    print("You are an adult.")
-elif age &gt;= 13:
-    print("You are a teenager.")
-else:
-    print("You are a child.")
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 4: Loops -->
-            <div class="note-card">
-                <h5>Loops</h5>
-                <p>Repeat actions using <code>for</code> and <code>while</code> loops.</p>
-                <div class="code-example">
-                    <pre><code># For loop
-for i in range(5):
-    print("Number:", i)
-
-# While loop
-count = 0
-while count &lt; 3:
-    print("Count:", count)
-    count += 1
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 5: Functions -->
-            <div class="note-card">
-                <h5>Functions</h5>
-                <p>Define reusable blocks of code with <code>def</code>.</p>
-                <div class="code-example">
-                    <pre><code>def greet(name):
-    return f"Hello, {name}!"
-
-print(greet("Alice"))
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 6: Lists -->
-            <div class="note-card">
-                <h5>Lists</h5>
-                <p>Lists are ordered and changeable collections.</p>
-                <div class="code-example">
-                    <pre><code>fruits = ["apple", "banana", "cherry"]
-
-fruits.append("orange")
-print(fruits)
-print(fruits[0])  # Access first item
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 7: Tuples -->
-            <div class="note-card">
-                <h5>Tuples</h5>
-                <p>Tuples are ordered and unchangeable collections.</p>
-                <div class="code-example">
-                    <pre><code>colors = ("red", "green", "blue")
-print(colors[1])  # Access an element
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 8: Sets -->
-            <div class="note-card">
-                <h5>Sets</h5>
-                <p>Sets are unordered and contain unique items.</p>
-                <div class="code-example">
-                    <pre><code>nums = {1, 2, 3, 3, 4}
-print(nums)  # Output: {1, 2, 3, 4}
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 9: Dictionaries -->
-            <div class="note-card">
-                <h5>Dictionaries</h5>
-                <p>Store data as key-value pairs.</p>
-                <div class="code-example">
-                    <pre><code>person = {
-    "name": "Alice",
-    "age": 25,
-    "city": "Paris"
-}
-
-print(person["name"])
-person["age"] = 26
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 10: File Handling -->
-            <div class="note-card">
-                <h5>File Handling</h5>
-                <p>Read and write files in Python.</p>
-                <div class="code-example">
-                    <pre><code># Write to a file
-with open("example.txt", "w") as f:
-    f.write("Hello, file!")
-
-# Read from a file
-with open("example.txt", "r") as f:
-    print(f.read())
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 11: OOP (Classes & Objects) -->
-            <div class="note-card">
-                <h5>Object-Oriented Programming</h5>
-                <p>Use classes to structure complex programs.</p>
-                <div class="code-example">
-                    <pre><code>class Car:
-    def __init__(self, brand, year):
-        self.brand = brand
-        self.year = year
-
-    def drive(self):
-        print(f"The {self.brand} is driving.")
-
-my_car = Car("Tesla", 2024)
-my_car.drive()
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 12: Exception Handling -->
-            <div class="note-card">
-                <h5>Exception Handling</h5>
-                <p>Handle errors gracefully using <code>try</code> and <code>except</code>.</p>
-                <div class="code-example">
-                    <pre><code>try:
-    x = 10 / 0
-except ZeroDivisionError:
-    print("Cannot divide by zero!")
-finally:
-    print("Program finished.")
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 13: Modules & Imports -->
-            <div class="note-card">
-                <h5>Modules & Imports</h5>
-                <p>Use external or custom modules to organize code.</p>
-                <div class="code-example">
-                    <pre><code># Using built-in module
-import math
-print(math.sqrt(25))
-
-# Import specific function
-from datetime import datetime
-print(datetime.now())
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 14: Virtual Environment -->
-            <div class="note-card">
-                <h5>Virtual Environments</h5>
-                <p>Keep project dependencies separate.</p>
-                <div class="code-example">
-                    <pre><code># Create virtual environment
-python -m venv venv
-
-# Activate it (Windows)
-venv\Scripts\activate
-
-# Activate it (Mac/Linux)
-source venv/bin/activate
-
-# Install packages
-pip install requests
-</code></pre>
-                </div>
-            </div>
-
-            <!-- Note 15: List Comprehension -->
-            <div class="note-card">
-                <h5>List Comprehension</h5>
-                <p>Write loops in a single line.</p>
-                <div class="code-example">
-                    <pre><code>squares = [x**2 for x in range(5)]
-print(squares)
-</code></pre>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- New: Testimonials Section -->
-    <section id="testimonials" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">What Our Students Say</h2>
-            <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="d-flex flex-column align-items-center text-center p-4">
-                            <img src="coding003.jpg" class="rounded-circle mb-3" alt="Student 1">
-                            <p class="lead testimonial-text">"Omosh Coding transformed my skills. The notes are easy to
-                                follow and the examples are
-                                fantastic!"</p>
-                            <cite class="fw-bold">- John Doe</cite>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="d-flex flex-column align-items-center text-center p-4">
-                            <img src="coding002.jpg" class="rounded-circle mb-3" alt="Student 2">
-                            <p class="lead testimonial-text">"I went from a beginner to building my first website. The
-                                resources here are
-                                invaluable."</p>
-                            <cite class="fw-bold">- Jane Smith</cite>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="d-flex flex-column align-items-center text-center p-4">
-                            <img src="coding001.jpg" class="rounded-circle mb-3" alt="Student 3">
-                            <p class="lead testimonial-text">"The notes and explanations on Bootstrap and JavaScript are
-                                top-notch. Highly
-                                recommend!"</p>
-                            <cite class="fw-bold">- Alex Johnson</cite>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="markAsCompleted('numpy-basics')">
+                    Mark as Complete
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- New: Call-to-Action Banner -->
-    <section id="cta" class="bg-black text-white text-center py-5">
-        <div class="container">
-            <h2 class="mb-4">Ready to start your coding journey?</h2>
-            <p class="lead mb-4">Join our community and get access to more advanced coding tutorials and resources.</p>
-            <a href="" class="btn btn-primary btn-lg">Get Started Now</a>
+    <!-- Quiz Section -->
+    <section class="container" id="quiz">
+        <div class="quiz-container">
+            <h2 class="text-center mb-4">🧠 Test Your Knowledge</h2>
+
+            <div class="quiz-categories">
+                <button class="category-btn active" onclick="selectQuizCategory('all')">All</button>
+                <button class="category-btn" onclick="selectQuizCategory('website')">Website</button>
+                <button class="category-btn" onclick="selectQuizCategory('html')">HTML</button>
+                <button class="category-btn" onclick="selectQuizCategory('css')">CSS</button>
+                <button class="category-btn" onclick="selectQuizCategory('javascript')">JavaScript</button>
+                <button class="category-btn" onclick="selectQuizCategory('python')">Python</button>
+                <button class="category-btn" onclick="selectQuizCategory('mobile')">Mobile</button>
+                <button class="category-btn" onclick="selectQuizCategory('game')">Game Dev</button>
+                <button class="category-btn" onclick="selectQuizCategory('ai')">AI & DS</button>
+            </div>
+
+            <div class="quiz-question" id="quizQuestion">
+                What does HTML stand for?
+            </div>
+            <div class="quiz-options" id="quizOptions">
+                <div class="quiz-option" onclick="selectAnswer(0)">Hyper Text Markup Language</div>
+                <div class="quiz-option" onclick="selectAnswer(1)">High Tech Modern Language</div>
+                <div class="quiz-option" onclick="selectAnswer(2)">Home Tool Markup Language</div>
+                <div class="quiz-option" onclick="selectAnswer(3)">Hyperlinks and Text Markup Language</div>
+            </div>
+            <div class="quiz-feedback" id="quizFeedback"></div>
+            <div class="text-center mt-4">
+                <div class="d-inline-block me-3">
+                    <small>Score: <strong id="quizScore">0</strong></small>
+                </div>
+                <button class="btn btn-light" onclick="nextQuestion()" id="nextBtn" style="display:none;">Next
+                    Question</button>
+            </div>
         </div>
     </section>
 
-    <!-- New: Footer -->
-    <footer class="bg-dark text-white-50 py-4">
+    <!-- Achievement Popup -->
+    <div class="achievement-popup" id="achievementPopup">
+        <div class="achievement-icon">🏆</div>
+        <h3>Achievement Unlocked!</h3>
+        <p id="achievementText">First Steps - Complete your first note!</p>
+        <button class="btn btn-primary mt-3" onclick="closeAchievement()">Awesome!</button>
+    </div>
+
+    <!-- Sticky Note -->
+    <div class="sticky-note" id="stickyNote">
+        <h6><i class="bi bi-lightbulb"></i> Pro Tip</h6>
+        <p id="stickyNoteText">Remember to practice coding every day to improve your skills!</p>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="toggleFab()">
+        <i class="bi bi-plus-lg" id="fabIcon"></i>
+    </div>
+
+    <div class="fab-menu" id="fabMenu">
+        <div class="fab-option" onclick="showBookmarks()">
+            <i class="bi bi-bookmark-fill"></i> Bookmarks
+        </div>
+        <div class="fab-option" onclick="resetProgress()">
+            <i class="bi bi-arrow-clockwise"></i> Reset Progress
+        </div>
+        <div class="fab-option" onclick="showAchievements()">
+            <i class="bi bi-trophy"></i> Achievements
+        </div>
+        <div class="fab-option" onclick="downloadNotes()">
+            <i class="bi bi-download"></i> Export Progress
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white-50 py-4 mt-5">
         <div class="container text-center">
             <p class="mb-2">© 2025 Omosh Coding. All rights reserved.</p>
             <div class="social-icons mb-3">
@@ -1719,10 +1612,570 @@ print(squares)
                 <a href="#" class="social-icon"><i class="bi-instagram"></i></a>
                 <a href="#" class="social-icon"><i class="bi-github"></i></a>
             </div>
-            <p class="mb-0">Designed and built with Omoshcoding.ltd.</p>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Initialize data storage
+        let userProgress = JSON.parse(localStorage.getItem('userProgress')) || {
+            completedNotes: [],
+            bookmarks: [],
+            quizScore: 0,
+            totalNotes: 45,
+            achievements: []
+        };
+
+        // Quiz questions by category
+        const quizQuestions = {
+            all: [
+                {
+                    question: "What does HTML stand for?",
+                    options: [
+                        "Hyper Text Markup Language",
+                        "High Tech Modern Language",
+                        "Home Tool Markup Language",
+                        "Hyperlinks and Text Markup Language"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which CSS property is used to change the text color?",
+                    options: ["text-color", "color", "font-color", "text-style"],
+                    correct: 1
+                },
+                {
+                    question: "How do you declare a constant in JavaScript?",
+                    options: ["var", "let", "const", "constant"],
+                    correct: 2
+                },
+                {
+                    question: "Which is NOT a programming language?",
+                    options: ["Python", "HTML", "Java", "C++"],
+                    correct: 1
+                }
+            ],
+            website: [
+                {
+                    question: "What does CSS stand for?",
+                    options: [
+                        "Computer Style Sheets",
+                        "Creative Style Sheets",
+                        "Cascading Style Sheets",
+                        "Colorful Style Sheets"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Which HTML5 tag is used for navigation?",
+                    options: ["<navigation>", "<nav>", "<menu>", "<navbar>"],
+                    correct: 1
+                },
+                {
+                    question: "What is the purpose of Bootstrap?",
+                    options: [
+                        "Backend framework",
+                        "CSS framework for responsive design",
+                        "JavaScript library",
+                        "Database system"
+                    ],
+                    correct: 1
+                }
+            ],
+            html: [
+                {
+                    question: "Which attribute is used to provide alternate text for an image?",
+                    options: ["title", "alt", "src", "href"],
+                    correct: 1
+                },
+                {
+                    question: "What is the correct HTML for creating a hyperlink?",
+                    options: [
+                        "<a href='url'>link</a>",
+                        "<link>url</link>",
+                        "<hyperlink>url</hyperlink>",
+                        "<h>url</h>"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which HTML tag is used for the largest heading?",
+                    options: ["<heading>", "<h6>", "<h1>", "<head>"],
+                    correct: 2
+                }
+            ],
+            css: [
+                {
+                    question: "Which CSS property controls the text size?",
+                    options: ["text-style", "font-size", "text-size", "font-style"],
+                    correct: 1
+                },
+                {
+                    question: "How do you make each word in a text start with a capital letter?",
+                    options: ["text-transform: capitalize", "text-style: capitalize", "text-decoration: capitalize", "text-case: capitalize"],
+                    correct: 0
+                }
+            ],
+            javascript: [
+                {
+                    question: "How do you write 'Hello World' in an alert box?",
+                    options: [
+                        "alert('Hello World');",
+                        "msgBox('Hello World');",
+                        "alertBox('Hello World');",
+                        "msg('Hello World');"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "How do you create a function in JavaScript?",
+                    options: [
+                        "function = myFunction() {}",
+                        "function myFunction() {}",
+                        "function:myFunction() {}",
+                        "createFunction myFunction() {}"
+                    ],
+                    correct: 1
+                }
+            ],
+            python: [
+                {
+                    question: "How do you start a comment in Python?",
+                    options: ["//", "#", "/*", "--"],
+                    correct: 1
+                },
+                {
+                    question: "Which method is used to add an item to the end of a list?",
+                    options: ["add()", "append()", "insert()", "push()"],
+                    correct: 1
+                }
+            ],
+            mobile: [
+                {
+                    question: "What command is used to create a new Flutter project?",
+                    options: ["flutter init", "flutter create", "flutter start", "flutter new"],
+                    correct: 1
+                },
+                {
+                    question: "Which platform uses Dart programming language?",
+                    options: ["React Native", "Flutter", "Swift", "Kotlin"],
+                    correct: 1
+                }
+            ],
+            game: [
+                {
+                    question: "Which programming language is primarily used in Unity?",
+                    options: ["Python", "JavaScript", "C#", "Java"],
+                    correct: 2
+                },
+                {
+                    question: "What is the main language used in Godot?",
+                    options: ["GDScript", "C#", "Python", "Java"],
+                    correct: 0
+                }
+            ],
+            ai: [
+                {
+                    question: "Which library is used for data manipulation in Python?",
+                    options: ["NumPy", "Pandas", "Matplotlib", "TensorFlow"],
+                    correct: 1
+                },
+                {
+                    question: "What does NumPy stand for?",
+                    options: ["Number Python", "Numerical Python", "New Python", "Numeric Python"],
+                    correct: 1
+                }
+            ]
+        };
+
+        let currentQuizCategory = 'all';
+        let currentQuestionIndex = 0;
+        let selectedAnswer = null;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheme();
+            updateProgress();
+            loadBookmarks();
+            loadRandomQuestion();
+            showStickyNote();
+
+            // Set total notes count based on actual notes
+            const totalNotes = document.querySelectorAll('.note-card').length;
+            userProgress.totalNotes = totalNotes;
+            localStorage.setItem('userProgress', JSON.stringify(userProgress));
+            updateProgress();
+        });
+
+        // Theme Management
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Progress Tracker
+        function toggleProgress() {
+            const tracker = document.getElementById('progressTracker');
+            const icon = document.getElementById('progressToggleIcon');
+            tracker.classList.toggle('minimized');
+            icon.className = tracker.classList.contains('minimized') ?
+                'bi bi-chevron-right' : 'bi bi-chevron-left';
+        }
+
+        function markAsCompleted(noteId) {
+            if (!userProgress.completedNotes.includes(noteId)) {
+                userProgress.completedNotes.push(noteId);
+                localStorage.setItem('userProgress', JSON.stringify(userProgress));
+                updateProgress();
+                checkAchievements();
+                showNotification('Note marked as completed! 🎉');
+            }
+        }
+
+        function updateProgress() {
+            const completed = userProgress.completedNotes.length;
+            const total = userProgress.totalNotes || 45;
+            const percentage = Math.round((completed / total) * 100);
+
+            const circle = document.getElementById('progressCircle');
+            const circumference = 2 * Math.PI * 65;
+            const offset = circumference - (percentage / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+
+            document.getElementById('progressText').textContent = `${percentage}%`;
+            document.getElementById('progressDetails').textContent = `${completed} of ${total} completed`;
+        }
+
+        // Bookmark functionality
+        function toggleBookmark(btn, noteId) {
+            const index = userProgress.bookmarks.indexOf(noteId);
+
+            if (index === -1) {
+                userProgress.bookmarks.push(noteId);
+                btn.classList.add('bookmarked');
+                showNotification('Bookmark added!');
+            } else {
+                userProgress.bookmarks.splice(index, 1);
+                btn.classList.remove('bookmarked');
+                showNotification('Bookmark removed!');
+            }
+
+            localStorage.setItem('userProgress', JSON.stringify(userProgress));
+        }
+
+        function loadBookmarks() {
+            userProgress.bookmarks.forEach(noteId => {
+                const btn = document.querySelector(`[onclick="toggleBookmark(this, '${noteId}')"]`);
+                if (btn) btn.classList.add('bookmarked');
+            });
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const notes = document.querySelectorAll('.note-card');
+
+            notes.forEach(note => {
+                const text = note.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    note.parentElement.style.display = 'block';
+                } else {
+                    note.parentElement.style.display = 'none';
+                }
+            });
+        });
+
+        // Quiz functionality
+        function selectQuizCategory(category) {
+            currentQuizCategory = category;
+            currentQuestionIndex = 0;
+
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            loadRandomQuestion();
+        }
+
+        function loadRandomQuestion() {
+            const questions = quizQuestions[currentQuizCategory] || quizQuestions.all;
+            if (questions.length === 0) return;
+
+            currentQuestionIndex = Math.floor(Math.random() * questions.length);
+            const question = questions[currentQuestionIndex];
+
+            document.getElementById('quizQuestion').textContent = question.question;
+
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                optionsContainer.innerHTML += `
+                    <div class="quiz-option" onclick="selectAnswer(${index})">${option}</div>
+                `;
+            });
+
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            selectedAnswer = null;
+        }
+
+        function selectAnswer(answerIndex) {
+            selectedAnswer = answerIndex;
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((opt, index) => {
+                opt.classList.toggle('selected', index === answerIndex);
+            });
+
+            setTimeout(() => {
+                checkAnswer();
+            }, 500);
+        }
+
+        function checkAnswer() {
+            const questions = quizQuestions[currentQuizCategory] || quizQuestions.all;
+            const correct = questions[currentQuestionIndex].correct;
+            const feedback = document.getElementById('quizFeedback');
+
+            feedback.style.display = 'block';
+            if (selectedAnswer === correct) {
+                feedback.className = 'quiz-feedback correct';
+                feedback.textContent = '✅ Correct! Well done!';
+                userProgress.quizScore++;
+            } else {
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.textContent = `❌ Incorrect. The correct answer is: ${questions[currentQuestionIndex].options[correct]}`;
+            }
+
+            document.getElementById('quizScore').textContent = userProgress.quizScore;
+            localStorage.setItem('userProgress', JSON.stringify(userProgress));
+
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            loadRandomQuestion();
+        }
+
+        // Copy code functionality
+        function copyCode(btn) {
+            const codeBlock = btn.nextElementSibling.querySelector('code');
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        // FAB menu
+        function toggleFab() {
+            const menu = document.getElementById('fabMenu');
+            const icon = document.getElementById('fabIcon');
+            menu.classList.toggle('show');
+            icon.className = menu.classList.contains('show') ?
+                'bi bi-x-lg' : 'bi bi-plus-lg';
+        }
+
+        // Sticky notes
+        function showStickyNote() {
+            const tips = [
+                "Remember to practice coding every day to improve your skills!",
+                "Use meaningful variable names for better code readability.",
+                "Comment your code to help others understand your logic.",
+                "Break down complex problems into smaller, manageable parts.",
+                "Don't be afraid to ask for help when you're stuck!",
+                "Test your code regularly as you write it.",
+                "Learn to debug effectively - it's a crucial developer skill.",
+                "Take breaks to avoid burnout and stay productive!",
+                "Read other people's code to learn new patterns.",
+                "Version control with Git saves time and prevents issues."
+            ];
+
+            const note = document.getElementById('stickyNote');
+            const text = document.getElementById('stickyNoteText');
+
+            note.classList.add('show');
+            text.textContent = tips[Math.floor(Math.random() * tips.length)];
+
+            setTimeout(() => {
+                note.classList.remove('show');
+            }, 10000);
+        }
+
+        // Achievements
+        function checkAchievements() {
+            const achievements = [];
+
+            if (userProgress.completedNotes.length >= 1 && !userProgress.achievements.includes('first_note')) {
+                achievements.push({ id: 'first_note', text: "First Steps - Complete your first note!" });
+                userProgress.achievements.push('first_note');
+            }
+            if (userProgress.completedNotes.length >= 5 && !userProgress.achievements.includes('five_notes')) {
+                achievements.push({ id: 'five_notes', text: "Dedicated Learner - Complete 5 notes!" });
+                userProgress.achievements.push('five_notes');
+            }
+            if (userProgress.completedNotes.length >= 10 && !userProgress.achievements.includes('ten_notes')) {
+                achievements.push({ id: 'ten_notes', text: "Knowledge Seeker - Complete 10 notes!" });
+                userProgress.achievements.push('ten_notes');
+            }
+            if (userProgress.bookmarks.length >= 5 && !userProgress.achievements.includes('five_bookmarks')) {
+                achievements.push({ id: 'five_bookmarks', text: "Bookmark Collector - Save 5 notes!" });
+                userProgress.achievements.push('five_bookmarks');
+            }
+            if (userProgress.quizScore >= 5 && !userProgress.achievements.includes('quiz_master')) {
+                achievements.push({ id: 'quiz_master', text: "Quiz Master - Score 5 points!" });
+                userProgress.achievements.push('quiz_master');
+            }
+
+            if (achievements.length > 0) {
+                showAchievement(achievements[0].text);
+                localStorage.setItem('userProgress', JSON.stringify(userProgress));
+            }
+        }
+
+        function showAchievement(text) {
+            document.getElementById('achievementText').textContent = text;
+            document.getElementById('achievementPopup').classList.add('show');
+        }
+
+        function closeAchievement() {
+            document.getElementById('achievementPopup').classList.remove('show');
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'alert alert-success position-fixed top-0 start-50 translate-middle-x mt-5';
+            notification.style.zIndex = '9999';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Export notes
+        function downloadNotes() {
+            const dataStr = JSON.stringify(userProgress, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+
+            const exportLink = document.createElement('a');
+            exportLink.setAttribute('href', dataUri);
+            exportLink.setAttribute('download', `coding_progress_${new Date().toISOString().split('T')[0]}.json`);
+            document.body.appendChild(exportLink);
+            exportLink.click();
+            exportLink.remove();
+
+            showNotification('Progress exported successfully!');
+        }
+
+        // Show bookmarks
+        function showBookmarks() {
+            const bookmarkNotes = userProgress.bookmarks;
+            if (bookmarkNotes.length === 0) {
+                showNotification('No bookmarks yet. Start bookmarking notes!');
+                return;
+            }
+
+            // Hide all notes first
+            document.querySelectorAll('.note-card').forEach(card => {
+                card.parentElement.style.display = 'none';
+            });
+
+            // Show only bookmarked notes
+            bookmarkNotes.forEach(noteId => {
+                const card = document.querySelector(`[data-note="${noteId}"]`);
+                if (card) card.parentElement.style.display = 'block';
+            });
+
+            window.scrollTo({ top: document.getElementById('notes').offsetTop - 100 });
+            showNotification(`Showing ${bookmarkNotes.length} bookmarked notes`);
+
+            // Show all notes after 10 seconds
+            setTimeout(() => {
+                document.querySelectorAll('.note-card').forEach(card => {
+                    card.parentElement.style.display = 'block';
+                });
+            }, 10000);
+        }
+
+        // Reset progress
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                userProgress = {
+                    completedNotes: [],
+                    bookmarks: [],
+                    quizScore: 0,
+                    totalNotes: document.querySelectorAll('.note-card').length,
+                    achievements: []
+                };
+                localStorage.setItem('userProgress', JSON.stringify(userProgress));
+                updateProgress();
+                location.reload();
+            }
+        }
+
+        // Show achievements
+        function showAchievements() {
+            const completed = userProgress.completedNotes.length;
+            const total = userProgress.totalNotes;
+            const bookmarked = userProgress.bookmarks.length;
+            const score = userProgress.quizScore;
+            const achievementCount = userProgress.achievements.length;
+
+            const achievementList = [
+                `📚 Notes Completed: ${completed}/${total} (${Math.round((completed / total) * 100)}%)`,
+                `🔖 Bookmarks: ${bookmarked}`,
+                `🎯 Quiz Score: ${score}`,
+                `🏆 Achievements Unlocked: ${achievementCount}`
+            ].join('\n');
+
+            alert(`📊 Your Learning Progress:\n\n${achievementList}\n\nKeep up the great work!`);
+        }
+
+        // Close menus when clicking outside
+        document.addEventListener('click', (e) => {
+            const fab = document.querySelector('.fab');
+            const fabMenu = document.getElementById('fabMenu');
+
+            if (!fab.contains(e.target) && !fabMenu.contains(e.target)) {
+                fabMenu.classList.remove('show');
+                document.getElementById('fabIcon').className = 'bi bi-plus-lg';
+            }
+        });
+
+        // Show sticky note periodically
+        setInterval(showStickyNote, 60000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
