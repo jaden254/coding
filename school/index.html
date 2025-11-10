@@ -72,6 +72,20 @@
         </div>
     </section>
 
+    <div class="video-container">
+        <video controls autoplay muted loop poster="thumbnail.jpg" playsinline disablepictureinpicture
+            controlslist="nodownload nofullscreen" class="video-player">
+            <!-- Multiple sources for cross-browser support -->
+            <source src="myprofile.mp4" type="video/mp4">
+            <source src="video.webm" type="video/webm">
+    
+            <!-- Fallback message for unsupported browsers -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
+
     <!-- HTML Notes -->
     <section class="container my-5" id="html-notes">
         <div class="section-header">

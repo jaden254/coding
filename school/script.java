@@ -667,19 +667,26 @@
             }
         }
 
-        function updateProgress() {
-            const completed = userProgress.completedNotes.length;
-            const total = userProgress.totalNotes || 45;
-            const percentage = Math.round((completed / total) * 100);
+              function updateProgress() {
+              const completed = userProgress.completedNotes.length;
+              const total = userProgress.totalNotes || 45;
+              const percentage = Math.round((completed / total) * 100);
 
-            const circle = document.getElementById('progressCircle');
-            const circumference = 2 * Math.PI * 65;
+             const circle = document.getElementById('progressCircle');
+             const circumference = 2 * Math.PI * 65;
             const offset = circumference - (percentage / 100) * circumference;
-            circle.style.strokeDashoffset = offset;
+             circle.style.strokeDashoffset = offset;
 
             document.getElementById('progressText').textContent = `${percentage}%`;
             document.getElementById('progressDetails').textContent = `${completed} of ${total} completed`;
-        }
+
+            // 🎉 Trigger popup when 100% reached
+           if (percentage === 100 && !userProgress.achievements.includes('completed_all')) {
+             userProgress.achievements.push('completed_all');
+            localStorage.setItem('userProgress', JSON.stringify(userProgress));
+            showCongratsPopup(); // 👈 this will open your video popup
+       }
+    }
 
         // Bookmark functionality
         function toggleBookmark(btn, noteId) {
@@ -1003,8 +1010,7 @@
                 }
             });
         });
-
-        // Theme loading (placeholder function)
+   // Theme loading (placeholder function)
         function loadTheme() {
             // Implementation for theme loading can be added here
         }

@@ -515,3 +515,28 @@
          grid-template-columns: 1fr;
      }
  }
+        .video-container {
+            /* Use aspect-ratio to maintain a consistent 16:9 ratio */
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            max-width: 800px;
+            /* Max width for the video player */
+            margin: 0 auto;
+            /* Center the container */
+            border-radius: 12px;
+            /* Rounded corners for a modern look */
+            overflow: hidden;
+            /* Ensures the video inside also has rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+        .video-player {
+            width: 100%;
+            /* Makes the video adapt to the container's width */
+            height: 100%;
+            /* Makes the video adapt to the container's height */
+            display: block;
+            /* Changes default inline display to block for easier positioning */
+            /* object-fit ensures the video content fills the container without distortion */
+            object-fit: cover;
+        }
