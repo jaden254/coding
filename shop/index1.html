@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Room</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: #111;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .booking-container {
+            background: #222;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .booking-container h2 {
+            color: #f9b700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .booking-container form input,
+        .booking-container form select {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            background: #333;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .booking-container form input:focus,
+        .booking-container form select:focus {
+            box-shadow: 0 0 10px #f9b700;
+        }
+
+        .booking-container form button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background: #f9b700;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .booking-container form button:hover {
+            background: #fff;
+        }
+
+        @media(max-width: 600px) {
+            .booking-container {
+                padding: 30px;
+            }
+        }
+        /* Additional Requests Textarea Style */
+textarea[name="message"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: #333;
+    color: #fff;
+    transition: 0.3s;
+    resize: vertical; /* allow user to resize vertically */
+}
+
+textarea[name="message"]:focus {
+    box-shadow: 0 0 10px #f9b700; /* golden focus glow */
+}
+    
+    </style>
+</head>
+
+<body>
+
+    <div class="booking-container">
+        <h2>Book Your Room</h2>
+        <form action="https://formspree.io/f/xrbrgrzn" method="POST">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="_replyto" placeholder="Email Address" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <label style="color:#f9b700; margin-top:10px;">Check-In Date</label>
+            <input type="date" name="checkin" required>
+            <label style="color:#f9b700; margin-top:10px;">Check-Out Date</label>
+            <input type="date" name="checkout" required>
+        <select name="room_type" required>
+            <option value="" disabled selected>Select Room Type</option>
+            <option value="Deluxe Room">Deluxe Room</option>
+            <option value="Suite Room">Suite Room</option>
+            <option value="Family Suite">Family Suite</option>
+            <option value="Luxury Suite">Luxury Suite</option>
+            <option value="King Room">King Room</option>
+            <option value="Queen Room">Queen Room</option>
+            <option value="Standard Room">Standard Room</option>
+            <option value="Executive Room">Executive Room</option>
+            <option value="Presidential Suite">Presidential Suite</option>
+            <option value="Ocean View Room">Ocean View Room</option>
+            <!-- Add more room types as needed -->
+        </select>
+
+            <select name="guests" required>
+                <option value="" disabled selected>Number of Guests</option>
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+            </select>
+            <textarea name="message" placeholder="Additional Requests" rows="4"></textarea>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+
+     <script>
+        const buttons = document.querySelectorAll('#hotel .btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    window.location.href = 'booking.html';
+                });
+            });
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const room = urlParams.get('room');
+                    if(room){
+                        document.querySelector('select[name="room_type"]').value = room;
+    
+          
+                const urlParams = new URLSearchParams(window.location.search);
+                const room = urlParams.get('room');
+                if(room){
+                    document.querySelector('select[name="room_type"]').value = room;
+    
+                }
+                    }
+            const form = document.getElementById('booking-form');
+                const statusDiv = document.getElementById('form-status');
+
+                form.addEventListener('submit', async function (event) {
+                    event.preventDefault(); // prevent normal form submission
+
+                    const formData = new FormData(form);
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: form.method,
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+
+                        if (response.ok) {
+                            statusDiv.style.color = '#f9b700';
+                            statusDiv.innerText = "✅ Booking successful! We'll contact you shortly.";
+                            form.reset(); // clear form
+                        } else {
+                            statusDiv.style.color = 'red';
+                            statusDiv.innerText = "❌ Something went wrong. Please try again.";
+                        }
+                    } catch (error) {
+                        statusDiv.style.color = 'red';
+                        statusDiv.innerText = "❌ Submission failed. Please check your connection.";
+                    }
+                });
+
+     </script>
+</body>
+
+</html>

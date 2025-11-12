@@ -1014,4 +1014,3 @@
         function loadTheme() {
             // Implementation for theme loading can be added here
         }
-    
