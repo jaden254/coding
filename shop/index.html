@@ -42,19 +42,66 @@
             color: #f9b700;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
+        .nav-tabs {
+    background: #111;
+    padding: 10px 20px;
+    position: relative;
+}
 
-        nav ul li {
-            margin-left: 30px;
-        }
+.nav-tabs ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
 
-        nav ul li a:hover {
-            color: #f9b700;
-            transition: 0.3s;
-        }
+.nav-tabs ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.nav-tabs ul li a:hover {
+    color: #f9b700;
+}
+
+/* Hamburger Menu (hidden on desktop) */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    color: #f9b700;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .nav-tabs ul {
+        flex-direction: column;
+        display: none; /* hidden by default, toggled with JS */
+        background: #222;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        position: absolute;
+        top: 50px;
+        left: 0;
+    }
+
+    .nav-tabs ul li {
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
 
         .hero {
             height: 100vh;
@@ -278,6 +325,7 @@
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="hamburger">&#9776;</div>
         </nav>
     </header>
 
@@ -705,6 +753,18 @@
                         });
     });
         
+                const hamburger = document.querySelector('.nav-tabs .hamburger');
+                const navMenu = document.querySelector('.nav-tabs ul');
+
+hamburger.addEventListener('click', () => {
+    if(navMenu.style.display === "flex") {
+                    navMenu.style.display = "none";
+    } else {
+                    navMenu.style.display = "flex";
+    }
+});
+        
+
 
     </script>
 </body>
