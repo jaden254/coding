@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Classes in JavaScript</h1>
+    <p>How to create javascript class</p>
+    <p id="demo"></p>
+    <P id="semo"></P>
+    <P id="zemo"></P>
+
+    <script>
+        class Company {
+            constructor(name, founder, year, location) {
+                this.name = name;
+                this.founder = founder;
+                this.year = year;
+                this.location = location;
+            }
+
+            age() {
+                let date = new Date();
+                return date.getFullYear() - this.year;
+            }
+        }
+
+        let company1 = new Company("Google", "Larry Page", 1998, "USA");
+        document.getElementById("demo").innerHTML =
+            company1.name + " " + company1.founder + " " + company1.location + " " + company1.age();
+        let company2 = new Company("Amazon", "Jeff Bezos" , 1994, "USA");
+        document.getElementById("semo").innerHTML = 
+            company2.name + "" + company2.founder + "" + company2.location + "" + company2.age();
+       let company3 = new Company("Meta", "Mark Zuckerberg", 2004, "USA");
+         document.getElementById("zemo").innerHTML =
+            company3.name + "" + company3.founder + "" + company3.location + "" + company3.age();
+    </script>
+</body>
+
+</html>
