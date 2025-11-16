@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>Mapping Array & Array Sort</h2>
+
+    <h3>Array Sorting</h3>
+    <button onclick="ascending()">Ascending Order</button>
+    <button onclick="descending()">Descending Order</button>
+    <p id="result"></p>
+
+    <h3>Mapping Array Result</h3>
+    <p id="mapped"></p>
+
+    <script>
+        // array sort code
+        var arraySort = [70, 56, 56.6, 55.7, 25.9, 10.6];
+
+        // show original first
+        document.getElementById("result").innerHTML = "Original: " + arraySort;
+
+        function ascending() {
+            arraySort.sort(function (a, b) {
+                return a - b;
+            });
+            document.getElementById("result").innerHTML = "Ascending: " + arraySort;
+        }
+
+        function descending() {
+            arraySort.sort(function (a, b) {
+                return b - a;
+            });
+            document.getElementById("result").innerHTML = "Descending: " + arraySort;
+        }
+
+        // mapping array code
+        var arrayMap = [400, 600, 500, 900];
+
+        function divide(num) {
+            return num / 10;
+        }
+
+        var newArray = arrayMap.map(divide);
+
+        // show mapped result
+        document.getElementById("mapped").innerHTML =
+            "Mapped (/10): " + newArray;
+    </script>
+
+</body>
+
+</html>
