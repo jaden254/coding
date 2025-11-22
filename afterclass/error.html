@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Handle Errors in JS</title>
+</head>
+
+<body>
+
+    <!-- Header image -->
+    <img src="https://codingal.s3.amazonaws.com/media/Acp_Error.png" alt="Activity image" width="300">
+
+    <h1>Handle Errors in JS</h1>
+    <p>This project shows how to create an error and display the message using try and catch.</p>
+
+    <p id="errormsg" style="color: red; font-weight: bold;"></p>
+
+    <script>
+
+        // A simple function that will cause an error
+        function showMessage(text) {
+            // Here we purposely cause an error by using an undefined variable
+            return notDefinedVariable + text;
+        }
+
+        try {
+            // Call function that contains an error
+            showMessage("Hello Student!");
+        }
+        catch (error) {
+            // Display the error message to the user
+            document.getElementById("errormsg").innerHTML =
+                "Error caught: " + error.message;
+        }
+
+    </script>
+
+</body>
+
+</html>
