@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>  
+    <body>
+        <h1>Asynchoronus Function</h1>
+        <p id="DEMO"></p>
+        <script>
+            async function name(params) {
+                return "Hello World";
+            }
+            name().then(
+                function(value) {
+                    document.getElementById("DEMO").innerHTML = value;
+                }
+            );
+        </script>
+
+    </body>
+
+</html>
