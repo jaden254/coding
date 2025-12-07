@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaVerse - Universal Language Hub with AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Your existing CSS remains the same --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #f56565;
+            --accent: #48bb78;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            33% {
+                transform: translateY(-100px) rotate(120deg);
+            }
+
+            66% {
+                transform: translateY(100px) rotate(240deg);
+            }
+        }
+
+        .sound-wave {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        .sound-wave.active {
+            display: flex;
+        }
+
+        .sound-bar {
+            width: 3px;
+            height: 20px;
+            background: var(--primary);
+            animation: soundWave 0.5s ease-in-out infinite;
+        }
+
+        .sound-bar:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .sound-bar:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .sound-bar:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .sound-bar:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes soundWave {
+
+            0%,
+            100% {
+                height: 10px;
+            }
+
+            50% {
+                height: 25px;
+            }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .audio-toggle {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .audio-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .volume-slider {
+            width: 100px;
+            accent-color: var(--primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 3rem 0;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lang-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .lang-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+        .lang-card:hover::before {
+            opacity: 1;
+        }
+
+        .lang-card:hover .lang-flag {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .lang-flag {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .pronunciation-btn {
+            margin-top: 0.5rem;
+            background: transparent;
+            border: 1px solid currentColor;
+            color: inherit;
+            padding: 0.25rem 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .lang-card:hover .pronunciation-btn {
+            opacity: 1;
+        }
+
+        .pronunciation-btn:hover {
+            background: currentColor;
+            color: white;
+        }
+
+        .chat-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            margin: 3rem 0;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chat-header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-header i {
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 2rem;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            max-width: 70%;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .message.user .message-bubble {
+            background: var(--gradient-1);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.bot .message-bubble {
+            background: #e2e8f0;
+            color: var(--dark);
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-actions {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .message.user .message-actions {
+            justify-content: flex-end;
+        }
+
+        .message.bot .message-actions {
+            justify-content: flex-start;
+        }
+
+        .message-action-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .message-action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .chat-input-container {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .send-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:active {
+            transform: scale(0.95);
+        }
+
+        .voice-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .voice-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        .voice-btn.recording {
+            background: var(--secondary);
+            animation: recordPulse 1.5s infinite;
+        }
+
+        @keyframes recordPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(245, 101, 101, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(245, 101, 101, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 101, 101, 0);
+            }
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--dark);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .language-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+
+            .message-bubble {
+                max-width: 85%;
+            }
+
+            .audio-controls {
+                flex-direction: column;
+            }
+
+            .volume-slider {
+                width: 80px;
+            }
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-action-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .pronunciation-guide {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .pronunciation-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .pronunciation-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .pronunciation-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .pronunciation-original {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .pronunciation-phonetic {
+            font-size: 0.9rem;
+            color: #718096;
+            font-style: italic;
+        }
+
+        .play-sound-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-sound-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .play-sound-btn.playing {
+            animation: playPulse 0.5s ease;
+        }
+
+        @keyframes playPulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animation" id="bgAnimation"></div>
+    <div class="sound-wave" id="soundWave">
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-globe"></i>
+                <span>LinguaVerse</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#languages">Languages</a></li>
+                <li><a href="#chat">AI Assistant</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+                <script> window.chtlConfig = { chatbotId: "2972319345" } </script>
+                <script async data-id="2972319345" id="chtl-script" type="text/javascript"
+                    src="https://chatling.ai/js/embed.js"></script>
+
+            <div class="audio-controls">
+                <button class="audio-toggle" id="audioToggle" onclick="toggleAudio()">
+                    <i class="fas fa-volume-up"></i>
+                    <span>Audio ON</span>
+                </button>
+                <div class="volume-control">
+                    <i class="fas fa-volume-down"></i>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero" id="home">
+            <h1>Welcome to LinguaVerse</h1>
+            <p>Your Universal Gateway to All Languages with AI-Powered Meanings.</p>
+        </section>
+
+        <section class="pronunciation-guide">
+            <h3 style="text-align: center; margin-bottom: 1rem; color: var(--dark);">🔊 Common Phrases Pronunciation
+            </h3>
+            <div id="pronunciationList">
+                <div class="pronunciation-item">
+                    <div class="pronunciation-text">
+                        <span class="pronunciation-original">Hello</span>
+                        <span class="pronunciation-phonetic">/həˈloʊ/</span>
+                    </div>
+                    <button class="play-sound-btn" onclick="playPronunciation('hello')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="pronunciation-item">
+                    <div class="pronunciation-text">
+                        <span class="pronunciation-original">Thank you</span>
+                        <span class="pronunciation-phonetic">/θæŋk juː/</span>
+                    </div>
+                    <button class="play-sound-btn" onclick="playPronunciation('thankyou')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="pronunciation-item">
+                    <div class="pronunciation-text">
+                        <span class="pronunciation-original">Goodbye</span>
+                        <span class="pronunciation-phonetic">/ɡʊdˈbaɪ/</span>
+                    </div>
+                    <button class="play-sound-btn" onclick="playPronunciation('goodbye')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages">
+            <div class="language-grid" id="languageGrid">
+                <!-- Languages will be dynamically added here -->
+            </div>
+        </section>
+
+        <section class="chat-container" id="chat">
+            <div class="chat-header">
+                <div class="chat-header-left">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h2>AI Language Assistant</h2>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Ask me anything about any language or a word's
+                            meaning!</p>
+                    </div>
+                </div>
+                <button class="audio-toggle" style="background: rgba(255,255,255,0.2);" onclick="toggleTTSEnabled()">
+                    <i class="fas fa-microphone-alt"></i>
+                    <span id="ttsStatus">TTS ON</span>
+                </button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-bubble">
+                        👋 Hello! I'm your AI language assistant. I can help you with translations, grammar, cultural
+                        insights, and now, the meaning of words from any language! Just type a word and ask for its
+                        meaning.
+                    </div>
+                    <div class="message-actions">
+                        <button class="message-action-btn" onclick="speakMessage(this)">
+                            <i class="fas fa-volume-up"></i> Play
+                        </button>
+                        <button class="message-action-btn" onclick="copyMessage(this)">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="askQuestion('How do I say hello in Japanese?')">
+                        <i class="fas fa-play"></i> Say Hello in Japanese
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuestion('What does \'Saudade\' mean?')">
+                        <i class="fas fa-book"></i> Meaning of "Saudade"
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuestion('Teach me basic French phrases')">
+                        <i class="fas fa-graduation-cap"></i> Basic French
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuestion('How many languages are spoken in the world?')">
+                        <i class="fas fa-globe-americas"></i> World Languages
+                    </button>
+                </div>
+                <div class="chat-input-wrapper">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Type your question or a word..." onkeypress="handleKeyPress(event)">
+                    <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceRecording()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="send-btn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="feature-title">AI-Powered Meanings</h3>
+                <p class="feature-description">Get instant meanings and etymology for words from virtually any language,
+                    all powered by our advanced AI.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <h3 class="feature-title">Audio Learning</h3>
+                <p class="feature-description">Listen to pronunciations, phrases, and AI responses with our advanced
+                    text-to-speech technology.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3 class="feature-title">Voice Input</h3>
+                <p class="feature-description">Speak your questions directly to the AI using voice recognition for
+                    hands-free learning.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 LinguaVerse. Connecting the world through language and AI.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Audio System
+        let audioEnabled = true;
+        let ttsEnabled = true;
+        let isRecording = false;
+        let recognition = null;
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('chatInput').value = transcript;
+                sendMessage();
+            };
+
+            recognition.onerror = function (event) {
+                console.error('Speech recognition error:', event.error);
+                stopVoiceRecording();
+            };
+
+            recognition.onend = function () {
+                stopVoiceRecording();
+            };
+        }
+
+        const languages = [
+            { name: 'English', flag: '🇬🇧', code: 'en', pronunciation: 'ˈɪŋɡlɪʃ' },
+            { name: 'Spanish', flag: '🇪🇸', code: 'es', pronunciation: 'esˈpaɲol' },
+            { name: 'French', flag: '🇫🇷', code: 'fr', pronunciation: 'fʁɑ̃sɛ' },
+            { name: 'German', flag: '🇩🇪', code: 'de', pronunciation: 'ˈdɔʏtʃ' },
+            { name: 'Italian', flag: '🇮🇹', code: 'it', pronunciation: 'itaˈljano' },
+            { name: 'Portuguese', flag: '🇵🇹', code: 'pt', pronunciation: 'poɾtuˈɣeʃ' },
+            { name: 'Russian', flag: '🇷🇺', code: 'ru', pronunciation: 'rʊsˈkʲi jɪˈzɨk' },
+            { name: 'Chinese', flag: '🇨🇳', code: 'zh', pronunciation: 'zhōngwén' },
+            { name: 'Japanese', flag: '🇯🇵', code: 'ja', pronunciation: 'nihongo' },
+            { name: 'Korean', flag: '🇰🇷', code: 'ko', pronunciation: 'hangugeo' },
+            { name: 'Arabic', flag: '🇸🇦', code: 'ar', pronunciation: 'al-ʻarabiyyah' },
+            { name: 'Hindi', flag: '🇮🇳', code: 'hi', pronunciation: 'hindī' },
+            { name: 'Turkish', flag: '🇹🇷', code: 'tr', pronunciation: 'türkçe' },
+            { name: 'Dutch', flag: '🇳🇱', code: 'nl', pronunciation: 'nederlands' },
+            { name: 'Swedish', flag: '🇸🇪', code: 'sv', pronunciation: 'svenska' },
+            { name: 'Polish', flag: '🇵🇱', code: 'pl', pronunciation: 'polski' },
+            { name: 'Greek', flag: '🇬🇷', code: 'el', pronunciation: 'elliniká' },
+            { name: 'Thai', flag: '🇹🇭', code: 'th', pronunciation: 'phasaa thai' },
+            { name: 'Vietnamese', flag: '🇻🇳', code: 'vi', pronunciation: 'tiếng việt' },
+            { name: 'Hebrew', flag: '🇮🇱', code: 'he', pronunciation: 'ivrit' }
+        ];
+
+        // --- AI Dictionary for Word Meanings ---
+        const aiDictionary = {
+            "saudade": {
+                "language": "Portuguese",
+                "meaning": "A deep emotional state of nostalgic or profound melancholic longing for an absent something or someone that one loves.",
+                "etymology": "From the Latin 'solitatem' (solitude), it evolved to describe a feeling of missing something dearly."
+            },
+            "hygge": {
+                "language": "Danish",
+                "meaning": "A mood of coziness and comfortable conviviality with feelings of wellness and contentment.",
+                "etymology": "Derived from a Old Norse term meaning 'thought' or 'mood'."
+            },
+            "komorebi": {
+                "language": "Japanese",
+                "meaning": "The effect of sunlight filtering through the leaves of trees.",
+                "etymology": "A compound word: 'komo' (漏る, to leak through), 're' (れ, from the verb 'reru', passive voice), and 'bi' (日, sun)."
+            },
+            "waldeinsamkeit": {
+                "language": "German",
+                "meaning": "The feeling of being alone in the woods, a solitude that is peaceful and connected to nature.",
+                "etymology": "A compound of 'Wald' (forest) and 'Einsamkeit' (solitude/loneliness)."
+            },
+            "ubuntu": {
+                "language": "Zulu/Xhosa",
+                "meaning": "A philosophy meaning 'I am because we are,' emphasizing humanity and community.",
+                "etymology": "Rooted in African humanist philosophy, it's a complex concept that is hard to translate into a single English word."
+            },
+            "l'appel du vide": {
+                "language": "French",
+                "meaning": "Literally 'the call of the void'; it describes the sudden, inexplicable urge to jump from a high place.",
+                "etymology": "A phrase that has gained popularity in psychology to describe a common, yet unsettling, human experience."
+            },
+            "despacito": {
+                "language": "Spanish",
+                "meaning": "An adverb meaning 'slowly'.",
+                "etymology": "A diminutive form of 'despacio' (slow), adding a sense of gentleness or endearment."
+            }
+        };
+
+        function initLanguageGrid() {
+            const grid = document.getElementById('languageGrid');
+            languages.forEach(lang => {
+                const card = document.createElement('div');
+                card.className = 'lang-card';
+                card.innerHTML = `
+                    <div class="lang-flag">${lang.flag}</div>
+                    <div class="lang-name">${lang.name}</div>
+                    <button class="pronunciation-btn" onclick="playLanguageSound('${lang.code}', '${lang.name}')">
+                        <i class="fas fa-volume-up"></i> Hear
+                    </button>
+                `;
+                card.onclick = (e) => {
+                    if (!e.target.closest('.pronunciation-btn')) {
+                        selectLanguage(lang);
+                    }
+                };
+                grid.appendChild(card);
+            });
+        }
+
+        function selectLanguage(lang) {
+            askQuestion(`Tell me about ${lang.name} language`);
+            playLanguageSound(lang.code, lang.name);
+        }
+
+        function playLanguageSound(code, name) {
+            if (!audioEnabled) return;
+            const utterance = new SpeechSynthesisUtterance(name);
+            utterance.lang = code;
+            utterance.rate = 0.9;
+            utterance.volume = document.getElementById('volumeSlider').value / 100;
+            showSoundWave();
+            speechSynthesis.speak(utterance);
+            utterance.onend = () => hideSoundWave();
+        }
+
+        function playPronunciation(type) {
+            if (!audioEnabled) return;
+            const texts = { 'hello': 'Hello', 'thankyou': 'Thank you', 'goodbye': 'Goodbye' };
+            const utterance = new SpeechSynthesisUtterance(texts[type]);
+            utterance.rate = 0.8;
+            utterance.volume = document.getElementById('volumeSlider').value / 100;
+            const btn = event.target.closest('.play-sound-btn');
+            btn.classList.add('playing');
+            showSoundWave();
+            speechSynthesis.speak(utterance);
+            utterance.onend = () => {
+                hideSoundWave();
+                btn.classList.remove('playing');
+            };
+        }
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            const btn = document.getElementById('audioToggle');
+            btn.innerHTML = audioEnabled ?
+                '<i class="fas fa-volume-up"></i><span>Audio ON</span>' :
+                '<i class="fas fa-volume-mute"></i><span>Audio OFF</span>';
+            if (!audioEnabled) {
+                speechSynthesis.cancel();
+                hideSoundWave();
+            }
+        }
+
+        function toggleTTSEnabled() {
+            ttsEnabled = !ttsEnabled;
+            document.getElementById('ttsStatus').textContent = ttsEnabled ? 'TTS ON' : 'TTS OFF';
+        }
+
+        function toggleVoiceRecording() {
+            if (!recognition) {
+                alert('Voice recognition is not supported in your browser. Please try Chrome or Edge.');
+                return;
+            }
+            if (isRecording) {
+                stopVoiceRecording();
+            } else {
+                startVoiceRecording();
+            }
+        }
+
+        function startVoiceRecording() {
+            isRecording = true;
+            const btn = document.getElementById('voiceBtn');
+            btn.classList.add('recording');
+            btn.innerHTML = '<i class="fas fa-stop"></i>';
+            recognition.start();
+        }
+
+        function stopVoiceRecording() {
+            isRecording = false;
+            const btn = document.getElementById('voiceBtn');
+            btn.classList.remove('recording');
+            btn.innerHTML = '<i class="fas fa-microphone"></i>';
+            if (recognition) recognition.stop();
+        }
+
+        function showSoundWave() { document.getElementById('soundWave').classList.add('active'); }
+        function hideSoundWave() { document.getElementById('soundWave').classList.remove('active'); }
+
+        function speakMessage(btn) {
+            if (!audioEnabled || !ttsEnabled) return;
+            const messageText = btn.closest('.message').querySelector('.message-bubble').textContent;
+            const utterance = new SpeechSynthesisUtterance(messageText);
+            utterance.rate = 0.9;
+            utterance.volume = document.getElementById('volumeSlider').value / 100;
+            showSoundWave();
+            speechSynthesis.speak(utterance);
+            utterance.onend = () => hideSoundWave();
+        }
+
+        function copyMessage(btn) {
+            const messageText = btn.closest('.message').querySelector('.message-bubble').textContent;
+            navigator.clipboard.writeText(messageText).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.style.background = '#48bb78';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        }
+
+        function createBubbles() {
+            const bgAnimation = document.getElementById('bgAnimation');
+            for (let i = 0; i < 10; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'floating-bubble';
+                bubble.style.width = Math.random() * 100 + 50 + 'px';
+                bubble.style.height = bubble.style.width;
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.top = Math.random() * 100 + '%';
+                bubble.style.animationDelay = Math.random() * 5 + 's';
+                bubble.style.animationDuration = (Math.random() * 10 + 20) + 's';
+                bgAnimation.appendChild(bubble);
+            }
+        }
+
+        // --- ENHANCED: AI Response Generator with Word Meaning Logic ---
+        function generateAIResponse(question) {
+            const lowerQuestion = question.toLowerCase().trim();
+            let wordToFind = '';
+
+            // Check for word meaning requests with a more robust search
+            if (lowerQuestion.includes('what does') || lowerQuestion.includes('meaning of')) {
+                const match = lowerQuestion.match(/"([^"]+)"/);
+                if (match) {
+                    wordToFind = match[1].toLowerCase();
+                }
+            } else if (lowerQuestion.split(' ').length === 1) {
+                wordToFind = lowerQuestion;
+            }
+
+            if (wordToFind) {
+                const wordData = aiDictionary[wordToFind];
+                if (wordData) {
+                    return `Of course! The word "${wordToFind}" is from ${wordData.language}. It means: "${wordData.meaning}". Etymologically, it comes from ${wordData.etymology}.`;
+                } else {
+                    // Simulated AI response for unknown words
+                    return `That's an interesting word! While my database is still learning, I can tell you that "${wordToFind}" appears to be a unique term. Its structure suggests it might be from a language with rich historical roots. I'm constantly expanding my knowledge, so I'll be sure to learn more about it!`;
+                }
+            }
+
+            // ... (rest of the existing aiResponses logic) ...
+            if (lowerQuestion.includes('japanese')) {
+                return `Japanese (日本語) is an East Asian language spoken by about 128 million people. It uses three writing systems: Kanji, Hiragana, and Katakana. The language is known for its complex politeness levels and beautiful calligraphy. Basic pronunciation includes five vowel sounds.`;
+            }
+            if (lowerQuestion.includes('french')) {
+                return `French (Français) is a Romance language spoken by 280 million people worldwide. It's known as the language of diplomacy, love, and cuisine. French has nasal vowels and silent letters that make pronunciation challenging for learners.`;
+            }
+            if (lowerQuestion.includes('difficult') || lowerQuestion.includes('hardest')) {
+                return `According to the Foreign Service Institute, the most difficult languages for English speakers are typically: Arabic, Chinese, Japanese, and Korean. These languages require about 2200 hours of study. The difficulty comes from different writing systems, tonal pronunciations, and complex grammar structures.`;
+            }
+            if (lowerQuestion.includes('how many')) {
+                return `There are approximately 7,100 living languages spoken in the world today! However, about half of these are endangered. The most spoken languages are Mandarin Chinese with 1.3 billion speakers, Spanish with 500 million, and English with 400 million native speakers.`;
+            }
+            if (lowerQuestion.includes('learn') || lowerQuestion.includes('tips')) {
+                return `Here are my top language learning tips: 1) Practice daily with audio resources. 2) Listen to native speakers through music and podcasts. 3) Use spaced repetition for vocabulary. 4) Practice pronunciation with recording tools. 5) Immerse yourself in the culture. Remember, listening skills are crucial!`;
+            }
+            return `That's a fascinating question about languages! While I don't have specific information about that query, I can tell you that language is one of humanity's greatest inventions. Every language carries unique cultural wisdom and sounds. Would you like to know more about a specific language or aspect of linguistics?`;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const question = input.value.trim();
+            if (question === '') return;
+            addMessage(question, 'user');
+            input.value = '';
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateAIResponse(question);
+                addMessage(response, 'bot');
+                if (ttsEnabled && audioEnabled) {
+                    setTimeout(() => {
+                        const lastBotMessage = document.querySelectorAll('.message.bot:last-child .message-bubble')[0];
+                        if (lastBotMessage) {
+                            const utterance = new SpeechSynthesisUtterance(lastBotMessage.textContent);
+                            utterance.rate = 0.9;
+                            utterance.volume = document.getElementById('volumeSlider').value / 100;
+                            showSoundWave();
+                            speechSynthesis.speak(utterance);
+                            utterance.onend = () => hideSoundWave();
+                        }
+                    }, 500);
+                }
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function askQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function addMessage(text, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            if (sender === 'bot') {
+                messageDiv.innerHTML = `
+                    <div class="message-bubble">${text}</div>
+                    <div class="message-actions">
+                        <button class="message-action-btn" onclick="speakMessage(this)">
+                            <i class="fas fa-volume-up"></i> Play
+                        </button>
+                        <button class="message-action-btn" onclick="copyMessage(this)">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div class="message-time">${time}</div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="message-bubble">${text}</div>
+                    <div class="message-time">${time}</div>
+                `;
+            }
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() { document.getElementById('typingIndicator').classList.add('active'); }
+        function hideTypingIndicator() { document.getElementById('typingIndicator').classList.remove('active'); }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initLanguageGrid();
+            createBubbles();
+            document.getElementById('volumeSlider').addEventListener('input', (e) => {
+                const volume = e.target.value / 100;
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.bg-animation');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        window.addEventListener('load', () => {
+            if (audioEnabled) {
+                setTimeout(() => {
+                    const utterance = new SpeechSynthesisUtterance('Welcome to LinguaVerse. Your audio language learning companion.');
+                    utterance.rate = 0.9;
+                    utterance.volume = 0.5;
+                    speechSynthesis.speak(utterance);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>
