@@ -364,6 +364,113 @@
                 text-align: center;
             }
         }
+
+        /* ===== FOOTER STYLING ===== */
+        .footer {
+            background: #0a0a0a;
+            padding: 70px 20px 40px;
+            color: #ffffff;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e67e22;
+            margin-bottom: 18px;
+        }
+
+        .footer-box p {
+            color: #cccccc;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Social Icons */
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            background: #e67e22;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            background: #d35400;
+            transform: translateY(-6px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Quick Links */
+        .footer-box h3 {
+            font-size: 20px;
+            margin-bottom: 18px;
+            color: #ffffff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #cccccc;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #e67e22;
+            padding-left: 5px;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 45px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-bottom p {
+            color: #999;
+            font-size: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .footer-container {
+                text-align: center;
+            }
+
+            .footer-socials {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 
@@ -586,6 +693,49 @@
 
         </div>
     </section>
+
+    <!-- ===== FOOTER SECTION ===== -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- Logo + Description -->
+            <div class="footer-box">
+                <h2 class="footer-logo">WestGate</h2>
+                <p>Your premium destination for luxury stays, fine dining, and unforgettable experiences.</p>
+
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Restaurant</a></li>
+                    <li><a href="#">Hotel</a></li>
+                    <li><a href="#">Reservations</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-box">
+                <h3>Contact Us</h3>
+                <p>Email: info@westgate.com</p>
+                <p>Phone: +254 700 000 000</p>
+                <p>Location: Nairobi, Kenya</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 WestGate Hotel & Restaurant. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 
 
