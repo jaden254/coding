@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;600;700;800&family=Roboto+Slab:wght@200;400;600;900&display=swap"
+        rel="stylesheet" />
+
+    <title>Portfolio</title>
+    <style>
+        #social-media {
+            background: #313552;
+        }
+
+        .media_link {
+            padding: 1rem;
+            max-width: 15rem;
+            border: 2px solid #f5ba09;
+            border-radius: 0.5rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .media_link:hover {
+            background: #f5ba09;
+            color: #000 !important;
+        }
+
+        .media_link a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Social Media Section -->
+    <div id="social-media" class="container-fluid">
+        <div class="container text-white py-5">
+            <h4 class="text-warning">Social Media</h4>
+            <h1 class="m-heading">Let's be friends</h1>
+            <div class="row pt-5">
+                <!-- LinkedIn -->
+                <div class="col-12 col-md-3 mb-3">
+                    <a href="https://www.linkedin.com" target="_blank">
+                        <div class="media_link">
+                            <div class="row">
+                                <div class="col-6 d-flex justify-content-start">
+                                    <h3 class="m-0 pt-2">LinkedIn</h3>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end align-items-center">
+                                    <i class="fab fa-linkedin-in fa-2x text-success"></i>
+                                    <!--<i class="fa-solid fa-house"></i>-->
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- GitHub -->
+                <div class="col-12 col-md-3 mb-3">
+                    <a href="https://github.com" target="_blank">
+                        <div class="media_link">
+                            <div class="row">
+                                <div class="col-6 d-flex justify-content-start">
+                                    <h3 class="m-0 pt-2">Github</h3>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end align-items-center">
+                                    <i class="fab fa-github fa-2x text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- YouTube -->
+                <div class="col-12 col-md-3 mb-3">
+                    <a href="https://youtube.com" target="_blank">
+                        <div class="media_link">
+                            <div class="row">
+                                <div class="col-6 d-flex justify-content-start">
+                                    <h3 class="m-0 pt-2">YouTube</h3>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end align-items-center">
+                                    <i class="fab fa-youtube fa-2x text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Email -->
+                <div class="col-12 col-md-3 mb-3">
+                    <a href="mailto:your-email@example.com">
+                        <div class="media_link bg-warning">
+                            <div class="row">
+                                <div class="col-6 d-flex justify-content-start">
+                                    <h3 class="m-0 pt-2 text-dark">Email</h3>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end align-items-center">
+                                    <i class="fas fa-envelope fa-2x text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
