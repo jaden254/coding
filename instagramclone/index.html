@@ -1,0 +1,742 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pixolagram — Instagram Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --card: #fff;
+            --muted: #8e8e8e;
+            --accent: #0095f6;
+            --border: #dbdbdb;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            --left-width: 260px;
+            --right-width: 320px;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: #111;
+        }
+
+        /* layout */
+        .app {
+            display: grid;
+            grid-template-columns: var(--left-width) 1fr var(--right-width);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 18px auto;
+            padding: 0 12px;
+            align-items: start;
+        }
+
+        .left-nav {
+            position: sticky;
+            top: 18px;
+            height: calc(100vh - 36px);
+            padding: 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            color: #111;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: #f3f3f3;
+        }
+
+        .nav-item.active {
+            font-weight: 700;
+        }
+
+        .nav-item img.avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .nav-cta {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .main {
+            min-height: 100vh;
+            padding-top: 6px;
+        }
+
+        /* STORIES */
+        .stories-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .stories-row {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 12px;
+            border-radius: 8px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            scroll-behavior: smooth;
+        }
+
+        .story {
+            width: 72px;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+
+        .story .ring {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--card);
+            object-fit: cover;
+        }
+
+        .story p {
+            font-size: 12px;
+            margin-top: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .story-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-arrow.left {
+            left: 0;
+        }
+
+        .story-arrow.right {
+            right: 0;
+        }
+
+        /* feed */
+        .feed {
+            background: transparent;
+        }
+
+        .post-card {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .post-header img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .post-header .meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-header .meta .name {
+            font-weight: 700;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 12px;
+            align-items: center;
+        }
+
+        .left-actions i {
+            font-size: 22px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .post-likes {
+            padding: 0 12px;
+            font-weight: 700;
+        }
+
+        .post-caption {
+            padding: 6px 12px;
+            color: #111;
+        }
+
+        .post-comments {
+            padding: 0 12px 12px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .add-comment {
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 8px 12px;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: 0;
+            outline: none;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .add-comment button {
+            background: none;
+            border: 0;
+            color: var(--accent);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* right bar */
+        .right-bar {
+            position: sticky;
+            top: 18px;
+            height: calc(100vh - 36px);
+            padding: 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .profile-mini {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .profile-mini img {
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .suggestions h4 {
+            margin: 0 0 8px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .suggestion-item .u {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .follow-btn {
+            color: var(--accent);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .links {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: auto;
+        }
+
+        /* REELS OVERLAY */
+        .reels-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reels-viewport {
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+        }
+
+        .reel-item {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            scroll-snap-align: start;
+        }
+
+        .reel-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reel-ui {
+            position: absolute;
+            right: 12px;
+            bottom: 80px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .reel-user {
+            position: absolute;
+            left: 12px;
+            bottom: 28px;
+            color: white;
+        }
+
+        /* profile page */
+        .profile-page {
+            display: none;
+        }
+
+        .profile-top {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            padding: 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .profile-top img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .bio {
+            padding: 0 18px 12px;
+        }
+
+        .highlights {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .highlight {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .highlight img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #f3f3f3;
+            object-fit: cover;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 12px;
+            padding: 12px 0;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            padding: 12px;
+        }
+
+        .grid img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        /* small screens */
+        @media (max-width:1000px) {
+            .app {
+                grid-template-columns: 60px 1fr;
+                gap: 12px;
+                padding: 0 8px;
+            }
+
+            .right-bar {
+                display: none;
+            }
+
+            .left-nav {
+                position: fixed;
+                left: 8px;
+                top: 18px;
+                width: 56px;
+                padding: 8px;
+                border-radius: 8px;
+            }
+
+            .left-nav .brand {
+                display: none;
+            }
+
+            .left-nav .nav-item span {
+                display: none;
+            }
+
+            :root {
+                --left-width: 56px;
+            }
+        }
+
+        @media (max-width:600px) {
+            .app {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .left-nav {
+                display: none;
+            }
+
+            .right-bar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <!-- LEFT NAV -->
+        <aside class="left-nav">
+            <div class="brand">Pixolagram</div>
+            <nav class="nav-list" id="leftNav">
+                <a class="nav-item active" data-page="home" onclick="show('home')"><i class="fa-solid fa-house"></i>
+                    <span>Home</span></a>
+                <a class="nav-item" data-page="search" onclick="show('search')"><i
+                        class="fa-solid fa-magnifying-glass"></i> <span>Search</span></a>
+                <a class="nav-item" data-page="explore" onclick="show('explore')"><i class="fa-solid fa-compass"></i>
+                    <span>Explore</span></a>
+                <a class="nav-item" data-page="reels" onclick="openReels()"><i class="fa-solid fa-video"></i>
+                    <span>Reels</span></a>
+                <a class="nav-item" data-page="messages" onclick="show('messages')"><i
+                        class="fa-regular fa-message"></i> <span>Messages</span></a>
+                <a class="nav-item" data-page="notifications" onclick="show('notifications')"><i
+                        class="fa-regular fa-heart"></i> <span>Notifications</span></a>
+                <a class="nav-item" data-page="create" onclick="show('create')"><i class="fa-solid fa-square-plus"></i>
+                    <span>Create</span></a>
+                <a class="nav-item" data-page="profile" onclick="show('profile')"><img class="avatar" id="miniAvatar"
+                        src="https://i.pravatar.cc/150?img=12"> <span>Profile</span></a>
+            </nav>
+            <div class="nav-cta">Switch accounts • Settings</div>
+        </aside>
+
+        <!-- CENTER FEED -->
+        <main class="main" id="mainArea">
+            <!-- HOME VIEW -->
+            <section id="home" class="view">
+                <div class="stories-container">
+                    <button class="story-arrow left" onclick="scrollStories(-1)"><i
+                            class="fa-solid fa-chevron-left"></i></button>
+                    <div class="stories-row" id="storiesRow"></div>
+                    <button class="story-arrow right" onclick="scrollStories(1)"><i
+                            class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div id="feed" class="feed"></div>
+            </section>
+
+            <!-- Other views: search, explore, messages, notifications, create, profile -->
+            <section id="search" class="view" style="display:none;padding:0 6px">
+                <div
+                    style="padding:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:12px">
+                    <input id="searchInput" placeholder="Search"
+                        style="width:100%;padding:12px;border:1px solid #e6e6e6;border-radius:8px" />
+                </div>
+                <div id="searchGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"></div>
+            </section>
+
+            <section id="explore" class="view" style="display:none;padding:0 6px">
+                <div id="exploreGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"></div>
+            </section>
+
+            <section id="messages" class="view" style="display:none;padding:6px">
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px">
+                    <h3>Messages</h3>
+                    <div id="messagesList"></div>
+                </div>
+            </section>
+
+            <section id="notifications" class="view" style="display:none;padding:6px">
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px">
+                    <h3>Notifications</h3>
+                    <div id="notificationsList"></div>
+                </div>
+            </section>
+
+            <section id="create" class="view" style="display:none;padding:6px">
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px">
+                    <h3>Create (UI only)</h3>
+                    <p>Upload UI placeholder (frontend-only)</p>
+                </div>
+            </section>
+
+            <section id="profile" class="view profile-page" style="display:none">
+                <div class="profile-top">
+                    <img id="profileAvatar" src="https://i.pravatar.cc/300?img=12" alt="avatar">
+                    <div>
+                        <div style="display:flex;gap:18px;align-items:center">
+                            <h2 id="profileName">your_username</h2>
+                            <button onclick="editProfile()"
+                                style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer">Edit
+                                profile</button>
+                        </div>
+                        <div class="profile-stats" style="margin-top:12px">
+                            <div><b id="profilePostsCount">0</b> posts</div>
+                            <div><b id="profileFollowers">0</b> followers</div>
+                            <div><b id="profileFollowing">0</b> following</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bio">
+                    <div style="font-weight:700">Full Name</div>
+                    <div style="color:var(--muted)">A short bio—link, emoji, location.</div>
+                </div>
+                <div style="padding:12px">
+                    <div class="highlights" id="highlightsRow"></div>
+                    <div class="tabs">
+                        <div class="tab" data-tab="posts" onclick="switchProfileTab('posts')"><i
+                                class="fa-solid fa-table-cells"></i> Posts</div>
+                        <div class="tab" data-tab="reels" onclick="switchProfileTab('reels')"><i
+                                class="fa-solid fa-video"></i> Reels</div>
+                        <div class="tab" data-tab="tagged" onclick="switchProfileTab('tagged')"><i
+                                class="fa-regular fa-user-tag"></i> Tagged</div>
+                    </div>
+                    <div id="profileGrid" class="grid"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- RIGHT BAR -->
+        <aside class="right-bar">
+            <div class="profile-mini">
+                <img id="miniProfileAvatar" src="https://i.pravatar.cc/150?img=12">
+                <div class="info">
+                    <div style="font-weight:700" id="miniProfileName">your_username</div>
+                    <div style="color:var(--muted);font-size:13px">Your Full Name</div>
+                </div>
+            </div>
+            <div class="suggestions">
+                <h4>Suggestions for you</h4>
+                <div id="suggestionsList"></div>
+            </div>
+            <div class="links">About • Help • Press • API • Jobs • Privacy • Terms</div>
+        </aside>
+    </div>
+
+    <!-- REELS OVERLAY -->
+    <div class="reels-overlay" id="reelsOverlay">
+        <div class="reels-viewport" id="reelsViewport"></div>
+        <button
+            style="position:fixed;top:18px;right:18px;padding:8px 12px;border-radius:8px;border:0;background:rgba(0,0,0,0.5);color:white;cursor:pointer"
+            onclick="closeReels()">Close</button>
+    </div>
+
+    <script>
+        /* ====== CONFIG ====== */
+        const POSTS_COUNT = 10000;
+        const REELS_COUNT = 12000;
+        const VISIBLE_POSTS = 8;
+        const BUFFER = 4;
+        const POST_HEIGHT_APPROX = 740;
+
+        /* Utilities */
+        const rng = seed => { let t = seed + 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+        const imgForIndex = i => `https://picsum.photos/id/${i % 1000}/500/500`;
+
+        /* ====== STORIES ====== */
+        const storiesRow = document.getElementById('storiesRow');
+        for (let i = 0; i < 20; i++) {
+            const s = document.createElement('div'); s.className = 'story';
+            s.innerHTML = `<div class="ring"><img src="${imgForIndex(i + 1)}"></div><p>User${i + 1}</p>`;
+            storiesRow.appendChild(s);
+        }
+        function scrollStories(dir) { storiesRow.scrollBy({ left: dir * 120, behavior: 'smooth' }) }
+
+        /* ====== FEED ====== */
+        const feed = document.getElementById('feed');
+        function createPost(idx) {
+            const post = document.createElement('div'); post.className = 'post-card';
+            post.innerHTML = `
+    <div class="post-header">
+      <img src="${imgForIndex(idx)}"><div class="meta"><span class="name">User${idx}</span><span class="loc">Location</span></div>
+    </div>
+    <div class="post-image"><img src="${imgForIndex(idx)}"></div>
+    <div class="post-actions"><div class="left-actions"><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div><i class="fa-regular fa-bookmark"></i></div>
+    <div class="post-likes">${Math.floor(Math.random() * 1000)} likes</div>
+    <div class="post-caption">Caption for post ${idx}</div>
+    <div class="post-comments">View all ${Math.floor(Math.random() * 50)} comments</div>
+    <div class="add-comment"><input placeholder="Add a comment..."><button>Post</button></div>
+  `;
+            return post;
+        }
+        for (let i = 0; i < 100; i++) { feed.appendChild(createPost(i)) }
+
+        /* ====== REELS ====== */
+        const reelsOverlay = document.getElementById('reelsOverlay');
+        const reelsViewport = document.getElementById('reelsViewport');
+        function openReels() {
+            reelsOverlay.style.display = 'flex';
+            if (reelsViewport.childNodes.length === 0) {
+                for (let i = 0; i < REELS_COUNT; i++) {
+                    const r = document.createElement('div'); r.className = 'reel-item';
+                    r.innerHTML = `<video src="https://picsum.photos/id/${i % 1000}/720/1280" autoplay muted loop></video>`;
+                    reelsViewport.appendChild(r);
+                }
+            }
+        }
+        function closeReels() { reelsOverlay.style.display = 'none' }
+
+        /* ====== PROFILE ====== */
+        const profileGrid = document.getElementById('profileGrid');
+        function switchProfileTab(tab) {
+            profileGrid.innerHTML = '';
+            let count = tab === 'reels' ? 1000 : tab === 'posts' ? 1000 : 500;
+            for (let i = 0; i < count; i++) {
+                let img = document.createElement('img');
+                img.src = tab === 'reels' ? imgForIndex(i + 400) : imgForIndex(i);
+                profileGrid.appendChild(img);
+            }
+        }
+
+        /* ====== NAVIGATION ====== */
+        function show(page) {
+            document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+            document.getElementById(page).style.display = 'block';
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelector(`.nav-item[data-page="${page}"]`)?.classList.add('active');
+        }
+
+        /* ====== SEARCH/EXPLORE PLACEHOLDERS ====== */
+        const searchGrid = document.getElementById('searchGrid');
+        const exploreGrid = document.getElementById('exploreGrid');
+        for (let i = 0; i < 200; i++) { let img = document.createElement('img'); img.src = imgForIndex(i + 500); searchGrid.appendChild(img); }
+        for (let i = 0; i < 200; i++) { let img = document.createElement('img'); img.src = imgForIndex(i + 700); exploreGrid.appendChild(img); }
+
+        /* ====== SUGGESTIONS ====== */
+        const suggestionsList = document.getElementById('suggestionsList');
+        for (let i = 0; i < 5; i++) {
+            const s = document.createElement('div'); s.className = 'suggestion-item';
+            s.innerHTML = `<div class="u"><img src="${imgForIndex(i + 100)}" style="width:32px;height:32px;border-radius:50%"><span>User${i + 1}</span></div><div class="follow-btn">Follow</div>`;
+            suggestionsList.appendChild(s);
+        }
+    </script>
+</body>
+
+</html>
