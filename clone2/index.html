@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fafafa;
+            color: #262626;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            max-width: 975px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        /* Navigation Styles */
+        nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 240px;
+            padding: 30px 20px;
+            background-color: #fff;
+            border-right: 1px solid #dbdbdb;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .instagram-text-logo {
+            margin-bottom: 20px;
+        }
+
+        .instagram-text-logo img {
+            width: 175px;
+            height: auto;
+        }
+
+        .sub-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sub-section:hover {
+            background-color: #f0f0f0;
+        }
+
+        .sub-section.active {
+            background-color: #f0f0f0;
+            font-weight: 600;
+        }
+
+        .sub-section i {
+            font-size: 22px;
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sub-section a {
+            text-decoration: none;
+            color: #262626;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .profile-img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-section {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .menu-section:hover {
+            background-color: #f0f0f0;
+        }
+
+        .menu-section i {
+            font-size: 22px;
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .menu-section a {
+            text-decoration: none;
+            color: #262626;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        /* Middle Section Styles */
+        .middle-section {
+            flex: 1;
+            margin-left: 240px;
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .post-section {
+            max-width: 614px;
+            width: 100%;
+        }
+
+        .nav-hidden {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .nav-hidden-logo img {
+            width: 103px;
+            height: auto;
+        }
+
+        .nav-hide-2 {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-hide-2 i {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Story Section */
+        .story-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 16px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            background-color: #fff;
+            overflow-x: auto;
+        }
+
+        .story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 66px;
+            cursor: pointer;
+        }
+
+        .story-image {
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 2px;
+            margin-bottom: 4px;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            object-fit: cover;
+        }
+
+        .story span {
+            font-size: 12px;
+            color: #262626;
+            text-align: center;
+            max-width: 66px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Post Styles */
+        .post-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .post-main {
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            background-color: #fff;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+        }
+
+        .post-left-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .post-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-username {
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .fa-certificate {
+            color: #0095f6;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+
+        .one-day {
+            color: #8e8e8e;
+            font-size: 14px;
+        }
+
+        .post-main-image {
+            width: 100%;
+            max-height: 614px;
+            overflow: hidden;
+        }
+
+        .post-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-fotter {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 16px;
+            margin: 12px 0;
+        }
+
+        .post-fotter-left {
+            display: flex;
+            gap: 16px;
+        }
+
+        .post-fotter i {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .post-description {
+            padding: 0 16px 16px;
+        }
+
+        .post-liked {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .title {
+            margin-bottom: 4px;
+        }
+
+        .title span {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        .comments {
+            color: #8e8e8e;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Follow Section */
+        .follow-section {
+            width: 293px;
+            margin-left: 28px;
+        }
+
+        .profile-follow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .profile-follow-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-follow-image {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+        }
+
+        .profile-follow-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-follow-content p {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .profile-id {
+            font-weight: 600;
+        }
+
+        .profile-name {
+            color: #8e8e8e;
+        }
+
+        .follow {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0095f6;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .suggestion-follow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .suggestion {
+            color: #8e8e8e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .see-all {
+            font-size: 12px;
+            font-weight: 600;
+            color: #262626;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .copyrights {
+            color: #c7c7c7;
+            font-size: 11px;
+            margin-top: 24px;
+            line-height: 16px;
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            position: fixed;
+            top: 0;
+            left: 240px;
+            width: calc(100% - 240px);
+            height: 100vh;
+            background-color: #fff;
+            overflow-y: auto;
+            z-index: 200;
+            display: none;
+            padding: 20px;
+        }
+
+        .feature-section.active {
+            display: block;
+        }
+
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #262626;
+        }
+
+        /* Search Section */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-results {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #efefef;
+        }
+
+        .search-result-item img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            margin-right: 16px;
+            object-fit: cover;
+        }
+
+        .search-result-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-result-username {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .search-result-name {
+            color: #8e8e8e;
+        }
+
+        /* Explore Section */
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .explore-item {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .explore-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .explore-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .explore-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .explore-item:hover .explore-item-overlay {
+            opacity: 1;
+        }
+
+        .explore-item-stats {
+            display: flex;
+            color: #fff;
+            font-weight: 600;
+            gap: 16px;
+        }
+
+        .explore-item-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Reels Section */
+        .reels-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .reel-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .reel-video {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        .reel-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            color: #fff;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .reel-user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .reel-user-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 8px;
+        }
+
+        .reel-user-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reel-user button {
+            background: none;
+            border: none;
+            color: #0095f6;
+            font-weight: 600;
+            font-size: 14px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        .reel-music {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .reel-music i {
+            margin-right: 4px;
+        }
+
+        .reel-actions {
+            position: absolute;
+            right: 8px;
+            bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .reel-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+        }
+
+        .reel-action i {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .reel-action span {
+            font-size: 12px;
+        }
+
+        /* Messages Section */
+        .messages-container {
+            display: flex;
+            height: calc(100vh - 100px);
+            margin-top: 20px;
+        }
+
+        .messages-sidebar {
+            width: 350px;
+            border-right: 1px solid #dbdbdb;
+            overflow-y: auto;
+        }
+
+        .message-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .message-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .message-user-img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 16px;
+        }
+
+        .message-user-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-username {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .message-preview {
+            color: #8e8e8e;
+            font-size: 14px;
+        }
+
+        .message-chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-chat-header {
+            padding: 16px;
+            border-bottom: 1px solid #dbdbdb;
+            font-weight: 600;
+        }
+
+        .message-chat-body {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .message-bubble {
+            margin-bottom: 16px;
+            max-width: 70%;
+        }
+
+        .message-bubble.sent {
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .message-content {
+            padding: 8px 12px;
+            border-radius: 18px;
+            background-color: #efefef;
+        }
+
+        .message-bubble.sent .message-content {
+            background-color: #0095f6;
+            color: #fff;
+        }
+
+        .message-chat-input {
+            display: flex;
+            padding: 16px;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        .message-input-field {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #dbdbdb;
+            border-radius: 18px;
+            margin-right: 8px;
+            outline: none;
+        }
+
+        .message-send-btn {
+            padding: 8px 16px;
+            background-color: #0095f6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Notifications Section */
+        .notifications-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .notification-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #efefef;
+        }
+
+        .notification-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+
+        .notification-icon i {
+            font-size: 20px;
+            color: #262626;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-text {
+            margin-bottom: 4px;
+        }
+
+        .notification-time {
+            color: #8e8e8e;
+            font-size: 12px;
+        }
+
+        .notification-post {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .notification-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Create Profile Section */
+        .create-profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .profile-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .profile-upload-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .profile-upload-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-upload-btn {
+            padding: 8px 16px;
+            background-color: #0095f6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .create-profile-submit {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #0095f6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 24px;
+        }
+
+        /* More Section */
+        .more-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .more-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #efefef;
+            cursor: pointer;
+        }
+
+        .more-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .more-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+
+        .more-icon i {
+            font-size: 20px;
+            color: #262626;
+        }
+
+        .more-content {
+            flex: 1;
+        }
+
+        .more-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .more-description {
+            color: #8e8e8e;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 100%;
+            }
+
+            .follow-section {
+                display: none;
+            }
+
+            .middle-section {
+                margin-left: 240px;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                width: 74px;
+                padding: 30px 10px;
+            }
+
+            .instagram-text-logo {
+                display: none;
+            }
+
+            .sub-section a,
+            .menu-section a {
+                display: none;
+            }
+
+            .sub-section i,
+            .menu-section i {
+                margin: 0;
+            }
+
+            .middle-section {
+                margin-left: 74px;
+            }
+
+            .nav-hidden {
+                display: flex;
+            }
+
+            .feature-section {
+                left: 74px;
+                width: calc(100% - 74px);
+            }
+
+            .reels-container {
+                grid-template-columns: 1fr;
+            }
+
+            .messages-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #dbdbdb;
+                max-height: 40%;
+            }
+
+            .message-chat {
+                height: 60%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .story-section {
+                padding: 8px 0;
+            }
+
+            .story {
+                min-width: 56px;
+            }
+
+            .story-image {
+                width: 56px;
+                height: 56px;
+            }
+
+            .explore-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 4px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="navbar">
+                <div class="instagram-text-logo">
+                    <img src="https://i.postimg.cc/qMFTcDw1/instagram-text.png" id="white-color" alt="">
+                </div>
+                <div class="sub-section" id="home-nav">
+                    <i class="fa-solid fa-house"></i>
+                    <a href="#">Home</a>
+                </div>
+                <div class="sub-section" id="search-nav">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <a href="#">Search</a>
+                </div>
+                <div class="sub-section" id="explore-nav">
+                    <i class="fa-regular fa-compass"></i>
+                    <a href="#">Explore</a>
+                </div>
+                <div class="sub-section" id="reels-nav">
+                    <i class="fa-solid fa-clapperboard"></i>
+                    <a href="#">Reels</a>
+                </div>
+                <div class="sub-section" id="messages-nav">
+                    <i class="fa-regular fa-message"></i>
+                    <a href="#">Messages</a>
+                </div>
+                <div class="sub-section" id="notification-nav">
+                    <i class="fa-regular fa-heart"></i>
+                    <a href="#">Notification</a>
+                </div>
+                <div class="sub-section" id="create-nav">
+                    <i class="fa-solid fa-square-plus"></i>
+                    <a href="#">Create</a>
+                </div>
+                <div class="sub-section" id="profile-nav">
+                    <div class="profile-img">
+                        <img src="https://i.postimg.cc/zB3mRnhs/apy-logo.png" alt="">
+                    </div>
+                    <a href="#">Profile</a>
+                </div>
+                <div class="menu-section" id="more-nav">
+                    <i class="fa-solid fa-bars"></i>
+                    <a href="#">More</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home Section (Default) -->
+        <div class="middle-section" id="home-section">
+            <div class="post-section">
+                <div class="nav-hidden">
+                    <div class="nav-hidden-logo" id="white-2color">
+                        <img src="https://i.postimg.cc/qMFTcDw1/instagram-text.png" alt="">
+                    </div>
+                    <div class="nav-hide-2">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-paper-plane"></i>
+                    </div>
+                </div>
+                <div class="story-section">
+                    <div class="story">
+                        <div class="story-image">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <span>Aaradhya_gu.</span>
+                    </div>
+                    <div class="story">
+                        <div class="story-image">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <span>Adah_paret..</span>
+                    </div>
+                    <div class="story" id="story-2">
+                        <div class="story-image">
+                            <img src="https://images.unsplash.com/photo-1517702145080-e4a4d91435bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <span>Adhira_boi..</span>
+                    </div>
+                    <div class="story" id="story-3">
+                        <div class="story-image">
+                            <img src="https://media.istockphoto.com/id/1418475387/photo/robotic-hand-pressing-a-keyboard-on-a-laptop-3d-rendering.webp?b=1&s=612x612&w=0&k=20&c=bqtiTjtbsN85HMdO40gidWq6uE4BW1-RGlUOkSfEgoI="
+                                alt="">
+                        </div>
+                        <span>Anika@189</span>
+                    </div>
+                    <div class="story" id="story-4">
+                        <div class="story-image">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <span>Kashvi_tut</span>
+                    </div>
+                    <div class="story" id="story-5">
+                        <div class="story-image">
+                            <img src="https://images.unsplash.com/photo-1558203728-00f45181dd84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <span>Rebecca.io</span>
+                    </div>
+                    <div class="story" id="story-6">
+                        <div class="story-image">
+                            <img src="https://images.unsplash.com/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <span>Sahana_pie.</span>
+                    </div>
+                    <div class="story" id="story-7">
+                        <div class="story-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1664453546896-ad5e0f895eab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <span>Zara_comp</span>
+                    </div>
+                </div>
+                <div class="post-area">
+                    <div class="post-main">
+                        <div class="post-header">
+                            <div class="post-left-header">
+                                <div class="post-image">
+                                    <img src="https://images.unsplash.com/photo-1461800919507-79b16743b257?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG1lbnMlMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+                                        alt="">
+                                </div>
+                                <p class="post-username">
+                                    Vin Diesel</p>
+                                <i class="fa-solid fa-certificate"></i>
+                                <span class="one-day"> . 1h </span>
+                            </div>
+                            <i class="fa-solid fa-grip-lines"></i>
+                        </div>
+                        <div class="post-main-image">
+                            <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRlY2hub2xvZ3l8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <div class="post-fotter">
+                            <div class="post-fotter-left">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-message"></i>
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </div>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                        <div class="post-description">
+                            <p class="post-liked">Liked by sarasshree and others</p>
+                            <p class="title"><span>balcoo </span>Monsoon fury rained havoc in various parts of Himachal
+                                Pradesh this year with the death toll crossing 260. The rains...<br> more</p>
+                            <p class="comments"> view all comments</p>
+                        </div>
+                    </div>
+                    <div class="post-main">
+                        <div class="post-header">
+                            <div class="post-left-header">
+                                <div class="post-image">
+                                    <img src="https://plus.unsplash.com/premium_photo-1684953583774-ccdded89e093?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Ym95c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                        alt="">
+                                </div>
+                                <p class="post-username">
+                                    Miley Cyrus</p>
+                                <i class="fa-solid fa-certificate"></i>
+                                <span class="one-day"> . 1d </span>
+                            </div>
+                            <i class="fa-solid fa-grip-lines"></i>
+                        </div>
+                        <div class="post-main-image">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdlYiUyMGRldmxvcG1lbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <div class="post-fotter">
+                            <div class="post-fotter-left">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-message"></i>
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </div>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                        <div class="post-description">
+                            <p class="post-liked">Liked by sarasshree and others</p>
+                            <p class="title"><span>
+                                    Jamie Foxx </span>The Union Cabinet on Monday (September 18) approved the Women
+                                Reservation Bill that grants 33 percent reservation for......<br> more</p>
+                            <p class="comments"> view all comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="follow-section">
+                <div class="profile-follow profile-foolow-hovering">
+                    <div class="profile-follow-left">
+                        <div class="profile-follow-image">
+                            <img src="https://i.postimg.cc/zB3mRnhs/apy-logo.png" alt="">
+                        </div>
+                        <div class="profile-follow-content">
+                            <p class="profile-id">Aasu_Yadav_59</p>
+                            <p class="profile-name">Aaasu Yadav</p>
+                        </div>
+                    </div>
+                    <a href="#" class="follow">switch</a>
+                </div>
+                <div class="suggestion-follow">
+                    <p class="suggestion">Suggested for you</p>
+                    <a href="#" class="see-all">see all</a>
+                </div>
+                <div class="profile-follow profile-foolow-hovering">
+                    <div class="profile-follow-left">
+                        <div class="profile-follow-image">
+                            <img src="https://media.istockphoto.com/id/1388253782/photo/positive-successful-millennial-business-professional-man-head-shot-portrait.webp?b=1&s=612x612&w=0&k=20&c=VsTsa0kjyZ7ALe-nyKAUfynyRxZo8H4LRMdu_ecPuOY="
+                                alt="">
+                        </div>
+                        <div class="profile-follow-content">
+                            <p class="profile-id">rohit_@135</p>
+                            <p class="profile-name">Followed by shiv_s177</p>
+                        </div>
+                    </div>
+                    <a href="#" class="follow">follow</a>
+                </div>
+                <div class="profile-follow profile-foolow-hovering">
+                    <div class="profile-follow-left">
+                        <div class="profile-follow-image">
+                            <img src="https://cdn.pixabay.com/photo/2022/09/08/15/16/cute-7441224_640.jpg" alt="">
+                        </div>
+                        <div class="profile-follow-content">
+                            <p class="profile-id">ubey_lih</p>
+                            <p class="profile-name">Followed by shriiiiii_89_ + 2 more
+                            </p>
+                        </div>
+                    </div>
+                    <a href="#" class="follow">follow</a>
+                </div>
+                <div class="profile-follow profile-foolow-hovering">
+                    <div class="profile-follow-left">
+                        <div class="profile-follow-image">
+                            <img src="https://cdn.pixabay.com/photo/2020/08/02/18/08/woman-5458225_640.png" alt="">
+                        </div>
+                        <div class="profile-follow-content">
+                            <p class="profile-id">limsean_awersom</p>
+                            <p class="profile-name">Followed by ajeetyadav8242 +....
+                            </p>
+                        </div>
+                    </div>
+                    <a href="#" class="follow">follow</a>
+                </div>
+                <div class="profile-follow profile-foolow-hovering">
+                    <div class="profile-follow-left">
+                        <div class="profile-follow-image">
+                            <img src="https://cdn.pixabay.com/photo/2021/07/19/04/36/woman-6477171_640.jpg" alt="">
+                        </div>
+                        <div class="profile-follow-content">
+                            <p class="profile-id">rootpies567t</p>
+                            <p class="profile-name">Followed by ravish_thakur31
+                            </p>
+                        </div>
+                    </div>
+                    <a href="#" class="follow">follow</a>
+                </div>
+                <div class="profile-follow profile-foolow-hovering">
+                    <div class="profile-follow-left">
+                        <div class="profile-follow-image">
+                            <img src="https://cdn.pixabay.com/photo/2019/11/01/06/11/profile-4593404_640.jpg" alt="">
+                        </div>
+                        <div class="profile-follow-content">
+                            <p class="profile-id">michal_kuu</p>
+                            <p class="profile-name">New to Instagram</p>
+                        </div>
+                    </div>
+                    <a href="#" class="follow">follow</a>
+                </div>
+                <p class="copyrights"> @All rights reserved by aasu</p>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="feature-section" id="search-section">
+            <div class="feature-header">
+                <h2 class="feature-title">Search</h2>
+                <button class="close-btn" id="close-search">&times;</button>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search">
+            </div>
+            <div class="search-results">
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                        alt="">
+                    <div class="search-result-info">
+                        <div class="search-result-username">aaradhya_gupta</div>
+                        <div class="search-result-name">Aaradhya Gupta</div>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                        alt="">
+                    <div class="search-result-info">
+                        <div class="search-result-username">adah_parekh</div>
+                        <div class="search-result-name">Adah Parekh</div>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1517702145080-e4a4d91435bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                        alt="">
+                    <div class="search-result-info">
+                        <div class="search-result-username">adhira_bohra</div>
+                        <div class="search-result-name">Adhira Bohra</div>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                        alt="">
+                    <div class="search-result-info">
+                        <div class="search-result-username">kashvi_tuteja</div>
+                        <div class="search-result-name">Kashvi Tuteja</div>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1558203728-00f45181dd84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                        alt="">
+                    <div class="search-result-info">
+                        <div class="search-result-username">rebecca_io</div>
+                        <div class="search-result-name">Rebecca Williams</div>
+                    </div>
+                </div>
+                <div class="search-result-item">
+                    <img src="https://images.unsplash.com/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                        alt="">
+                    <div class="search-result-info">
+                        <div class="search-result-username">sahana_pillai</div>
+                        <div class="search-result-name">Sahana Pillai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explore Section -->
+        <div class="feature-section" id="explore-section">
+            <div class="feature-header">
+                <h2 class="feature-title">Explore</h2>
+                <button class="close-btn" id="close-explore">&times;</button>
+            </div>
+            <div class="explore-grid">
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 1,234</span>
+                            <span><i class="fa-regular fa-comment"></i> 56</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 2,456</span>
+                            <span><i class="fa-regular fa-comment"></i> 89</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 3,789</span>
+                            <span><i class="fa-regular fa-comment"></i> 123</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 4,567</span>
+                            <span><i class="fa-regular fa-comment"></i> 234</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 5,678</span>
+                            <span><i class="fa-regular fa-comment"></i> 345</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 6,789</span>
+                            <span><i class="fa-regular fa-comment"></i> 456</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 7,890</span>
+                            <span><i class="fa-regular fa-comment"></i> 567</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 8,901</span>
+                            <span><i class="fa-regular fa-comment"></i> 678</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <span><i class="fa-regular fa-heart"></i> 9,012</span>
+                            <span><i class="fa-regular fa-comment"></i> 789</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reels Section -->
+        <div class="feature-section" id="reels-section">
+            <div class="feature-header">
+                <h2 class="feature-title">Reels</h2>
+                <button class="close-btn" id="close-reels">&times;</button>
+            </div>
+            <div class="reels-container">
+                <div class="reel-item">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="" class="reel-video">
+                    <div class="reel-info">
+                        <div class="reel-user">
+                            <div class="reel-user-img">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                    alt="">
+                            </div>
+                            <span>Aaradhya Gupta</span>
+                            <button class="follow">Follow</button>
+                        </div>
+                        <p>Amazing sunset at the beach! 🌅 #sunset #beach #nature</p>
+                        <div class="reel-music">
+                            <i class="fa-solid fa-music"></i> Original Audio
+                        </div>
+                    </div>
+                    <div class="reel-actions">
+                        <div class="reel-action">
+                            <i class="fa-regular fa-heart"></i>
+                            <span>1.2K</span>
+                        </div>
+                        <div class="reel-action">
+                            <i class="fa-regular fa-comment"></i>
+                            <span>56</span>
+                        </div>
+                        <div class="reel-action">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>23</span>
+                        </div>
+                        <div class="reel-action">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="reel-item">
+                    <img src="https://images.unsplash.com/photo-1599454100806-46d9b5a5d0c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="" class="reel-video">
+                    <div class="reel-info">
+                        <div class="reel-user">
+                            <div class="reel-user-img">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                    alt="">
+                            </div>
+                            <span>Adah Parekh</span>
+                            <button class="follow">Follow</button>
+                        </div>
+                        <p>City lights never disappoint! ✨ #cityscape #nightlife #urban</p>
+                        <div class="reel-music">
+                            <i class="fa-solid fa-music"></i> Original Audio
+                        </div>
+                    </div>
+                    <div class="reel-actions">
+                        <div class="reel-action">
+                            <i class="fa-regular fa-heart"></i>
+                            <span>2.4K</span>
+                        </div>
+                        <div class="reel-action">
+                            <i class="fa-regular fa-comment"></i>
+                            <span>89</span>
+                        </div>
+                        <div class="reel-action">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>45</span>
+                        </div>
+                        <div class="reel-action">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Section -->
+        <div class="feature-section" id="messages-section">
+            <div class="feature-header">
+                <h2 class="feature-title">Messages</h2>
+                <button class="close-btn" id="close-messages">&times;</button>
+            </div>
+            <div class="messages-container">
+                <div class="messages-sidebar">
+                    <div class="message-item">
+                        <div class="message-user-img">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <div class="message-info">
+                            <div class="message-username">Aaradhya Gupta</div>
+                            <div class="message-preview">Hey! How are you doing?</div>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="message-user-img">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <div class="message-info">
+                            <div class="message-username">Adah Parekh</div>
+                            <div class="message-preview">Did you see the latest post?</div>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="message-user-img">
+                            <img src="https://images.unsplash.com/photo-1517702145080-e4a4d91435bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <div class="message-info">
+                            <div class="message-username">Adhira Bohra</div>
+                            <div class="message-preview">Thanks for the follow!</div>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="message-user-img">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <div class="message-info">
+                            <div class="message-username">Kashvi Tuteja</div>
+                            <div class="message-preview">See you tomorrow!</div>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="message-user-img">
+                            <img src="https://images.unsplash.com/photo-1558203728-00f45181dd84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+                                alt="">
+                        </div>
+                        <div class="message-info">
+                            <div class="message-username">Rebecca Williams</div>
+                            <div class="message-preview">Love your latest post!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-chat">
+                    <div class="message-chat-header">
+                        Aaradhya Gupta
+                    </div>
+                    <div class="message-chat-body">
+                        <div class="message-bubble">
+                            <div class="message-content">
+                                Hey! How are you doing?
+                            </div>
+                        </div>
+                        <div class="message-bubble sent">
+                            <div class="message-content">
+                                I'm good! How about you?
+                            </div>
+                        </div>
+                        <div class="message-bubble">
+                            <div class="message-content">
+                                Great! Just wanted to check in.
+                            </div>
+                        </div>
+                        <div class="message-bubble sent">
+                            <div class="message-content">
+                                That's sweet of you! Thanks for reaching out.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message-chat-input">
+                        <input type="text" class="message-input-field" placeholder="Message...">
+                        <button class="message-send-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="feature-section" id="notification-section">
+            <div class="feature-header">
+                <h2 class="feature-title">Notifications</h2>
+                <button class="close-btn" id="close-notification">&times;</button>
+            </div>
+            <div class="notifications-container">
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Aaradhya Gupta</strong> liked your photo</div>
+                        <div class="notification-time">2 minutes ago</div>
+                    </div>
+                    <div class="notification-post">
+                        <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRlY2hub2xvZ3l8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+                            alt="">
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Adah Parekh</strong> started following you</div>
+                        <div class="notification-time">1 hour ago</div>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fa-solid fa-comment"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Adhira Bohra</strong> commented: "Amazing photo!"</div>
+                        <div class="notification-time">3 hours ago</div>
+                    </div>
+                    <div class="notification-post">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdlYiUyMGRldmxvcG1lbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+                            alt="">
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Kashvi Tuteja</strong> started following you</div>
+                        <div class="notification-time">5 hours ago</div>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Rebecca Williams</strong> liked your photo</div>
+                        <div class="notification-time">1 day ago</div>
+                    </div>
+                    <div class="notification-post">
+                        <img src="https://images.unsplash.com/photo-1461800919507-79b16743b257?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG1lbnMlMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+                            alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Profile Section -->
+        <div class="feature-section" id="create-section">
+            <div class="feature-header">
+                <h2 class="feature-title">Create Post</h2>
+                <button class="close-btn" id="close-create">&times;</button>
+            </div>
+            <div class="create-profile-container">
+                <div class="profile-upload">
+                    <div class="profile-upload-img">
+                        <img src="https://images.unsplash.com/photo-1593642632822-cd79062078ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                            alt="">
+                    </div>
+                    <button class="profile-upload-btn">Upload Photo</button>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Caption</label>
+                    <textarea class="form-textarea" placeholder="Write a caption..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Add Location</label>
+                    <input type="text" class="form-input" placeholder="Add location">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tag People</label>
+                    <input type="text" class="form-input" placeholder="Tag people">
+                </div>
+                <button class="create-profile-submit">Share Post</button>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="feature-section" id="profile-section">
+            <div class="feature-header">
+                <h2 class="feature-title">Profile</h2>
+                <button class="close-btn" id="close-profile">&times;</button>
+            </div>
+            <div class="create-profile-container">
+                <div class="profile-upload">
+                    <div class="profile-upload-img">
+                        <img src="https://i.postimg.cc/zB3mRnhs/apy-logo.png" alt="">
+                    </div>
+                    <button class="profile-upload-btn">Change Photo</button>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" value="Aasu_Yadav_59">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-input" value="Aaasu Yadav">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Bio</label>
+                    <textarea class="form-textarea">Web Developer | Tech Enthusiast | Love to Code</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" value="aasu@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-input" value="+1234567890">
+                </div>
+                <button class="create-profile-submit">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- More Section -->
+        <div class="feature-section" id="more-section">
+            <div class="feature-header">
+                <h2 class="feature-title">More</h2>
+                <button class="close-btn" id="close-more">&times;</button>
+            </div>
+            <div class="more-container">
+                <div class="more-item">
+                    <div class="more-icon">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div class="more-content">
+                        <div class="more-title">Settings</div>
+                        <div class="more-description">Manage your account settings</div>
+                    </div>
+                </div>
+                <div class="more-item">
+                    <div class="more-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="more-content">
+                        <div class="more-title">Privacy</div>
+                        <div class="more-description">Control your privacy settings</div>
+                    </div>
+                </div>
+                <div class="more-item">
+                    <div class="more-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="more-content">
+                        <div class="more-title">Security</div>
+                        <div class="more-description">Manage your security settings</div>
+                    </div>
+                </div>
+                <div class="more-item">
+                    <div class="more-icon">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div class="more-content">
+                        <div class="more-title">Push Notifications</div>
+                        <div class="more-description">Manage your notification preferences</div>
+                    </div>
+                </div>
+                <div class="more-item">
+                    <div class="more-icon">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+                    <div class="more-content">
+                        <div class="more-title">Help</div>
+                        <div class="more-description">Get help and support</div>
+                    </div>
+                </div>
+                <div class="more-item">
+                    <div class="more-icon">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </div>
+                    <div class="more-content">
+                        <div class="more-title">Log Out</div>
+                        <div class="more-description">Log out of your account</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const homeNav = document.getElementById('home-nav');
+        const searchNav = document.getElementById('search-nav');
+        const exploreNav = document.getElementById('explore-nav');
+        const reelsNav = document.getElementById('reels-nav');
+        const messagesNav = document.getElementById('messages-nav');
+        const notificationNav = document.getElementById('notification-nav');
+        const createNav = document.getElementById('create-nav');
+        const profileNav = document.getElementById('profile-nav');
+        const moreNav = document.getElementById('more-nav');
+
+        const homeSection = document.getElementById('home-section');
+        const searchSection = document.getElementById('search-section');
+        const exploreSection = document.getElementById('explore-section');
+        const reelsSection = document.getElementById('reels-section');
+        const messagesSection = document.getElementById('messages-section');
+        const notificationSection = document.getElementById('notification-section');
+        const createSection = document.getElementById('create-section');
+        const profileSection = document.getElementById('profile-section');
+        const moreSection = document.getElementById('more-section');
+
+        // Close buttons
+        const closeSearch = document.getElementById('close-search');
+        const closeExplore = document.getElementById('close-explore');
+        const closeReels = document.getElementById('close-reels');
+        const closeMessages = document.getElementById('close-messages');
+        const closeNotification = document.getElementById('close-notification');
+        const closeCreate = document.getElementById('close-create');
+        const closeProfile = document.getElementById('close-profile');
+        const closeMore = document.getElementById('close-more');
+
+        // Function to hide all sections
+        function hideAllSections() {
+            homeSection.style.display = 'none';
+            searchSection.classList.remove('active');
+            exploreSection.classList.remove('active');
+            reelsSection.classList.remove('active');
+            messagesSection.classList.remove('active');
+            notificationSection.classList.remove('active');
+            createSection.classList.remove('active');
+            profileSection.classList.remove('active');
+            moreSection.classList.remove('active');
+        }
+
+        // Function to show a specific section
+        function showSection(section) {
+            hideAllSections();
+            section.classList.add('active');
+        }
+
+        // Navigation event listeners
+        homeNav.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        searchNav.addEventListener('click', () => {
+            showSection(searchSection);
+        });
+
+        exploreNav.addEventListener('click', () => {
+            showSection(exploreSection);
+        });
+
+        reelsNav.addEventListener('click', () => {
+            showSection(reelsSection);
+        });
+
+        messagesNav.addEventListener('click', () => {
+            showSection(messagesSection);
+        });
+
+        notificationNav.addEventListener('click', () => {
+            showSection(notificationSection);
+        });
+
+        createNav.addEventListener('click', () => {
+            showSection(createSection);
+        });
+
+        profileNav.addEventListener('click', () => {
+            showSection(profileSection);
+        });
+
+        moreNav.addEventListener('click', () => {
+            showSection(moreSection);
+        });
+
+        // Close button event listeners
+        closeSearch.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        closeExplore.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        closeReels.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        closeMessages.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        closeNotification.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        closeCreate.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        closeProfile.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        closeMore.addEventListener('click', () => {
+            hideAllSections();
+            homeSection.style.display = 'flex';
+        });
+
+        // Like button functionality
+        document.querySelectorAll('.fa-heart').forEach(heart => {
+            heart.addEventListener('click', function () {
+                if (this.classList.contains('fa-regular')) {
+                    this.classList.remove('fa-regular');
+                    this.classList.add('fa-solid');
+                } else if (this.classList.contains('fa-solid')) {
+                    this.classList.remove('fa-solid');
+                    this.classList.add('fa-regular');
+                }
+            });
+        });
+
+        // Bookmark button functionality
+        document.querySelectorAll('.fa-bookmark').forEach(bookmark => {
+            bookmark.addEventListener('click', function () {
+                if (this.classList.contains('fa-regular')) {
+                    this.classList.remove('fa-regular');
+                    this.classList.add('fa-solid');
+                } else if (this.classList.contains('fa-solid')) {
+                    this.classList.remove('fa-solid');
+                    this.classList.add('fa-regular');
+                }
+            });
+        });
+
+        // Follow button functionality
+        document.querySelectorAll('.follow').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (this.textContent === 'follow') {
+                    this.textContent = 'following';
+                } else if (this.textContent === 'following') {
+                    this.textContent = 'follow';
+                } else if (this.textContent === 'Follow') {
+                    this.textContent = 'Following';
+                } else if (this.textContent === 'Following') {
+                    this.textContent = 'Follow';
+                }
+            });
+        });
+
+        // Message send functionality
+        document.querySelector('.message-send-btn').addEventListener('click', function () {
+            const inputField = document.querySelector('.message-input-field');
+            const messageText = inputField.value.trim();
+
+            if (messageText) {
+                const messageBody = document.querySelector('.message-chat-body');
+                const messageBubble = document.createElement('div');
+                messageBubble.className = 'message-bubble sent';
+
+                const messageContent = document.createElement('div');
+                messageContent.className = 'message-content';
+                messageContent.textContent = messageText;
+
+                messageBubble.appendChild(messageContent);
+                messageBody.appendChild(messageBubble);
+
+                inputField.value = '';
+
+                // Scroll to bottom of message chat
+                messageBody.scrollTop = messageBody.scrollHeight;
+            }
+        });
+
+        // Allow sending message with Enter key
+        document.querySelector('.message-input-field').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.message-send-btn').click();
+            }
+        });
+    </script>
+</body>
+
+</html>

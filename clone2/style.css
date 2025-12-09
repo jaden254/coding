@@ -1,0 +1,1020 @@
+/* --- Global Styles --- */
+body {
+    background-color: #FAFAFA;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.sidebar-navbar {
+    width: 244px;
+    /* Desktop standard width */
+    height: 100vh;
+    border-right: 1px solid #DBDBDB;
+    padding: 8px 12px 20px;
+    box-sizing: border-box;
+    background-color: white;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.logo {
+    padding: 24px 12px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-family: 'Billabong', cursive;
+    /* Use a font that resembles Instagram's logo if available */
+    font-weight: 400;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-bottom: 4px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background-color: #F2F2F2;
+}
+
+.nav-item.active {
+    font-weight: bold;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #262626;
+}
+
+.nav-item i {
+    font-size: 24px;
+    margin-right: 16px;
+}
+
+.nav-item.profile img {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    margin-right: 16px;
+    object-fit: cover;
+}
+
+.more-options {
+    margin-top: auto;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.more-options:hover {
+    background-color: #F2F2F2;
+}
+
+.more-options a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #262626;
+}
+
+.main-container {
+    margin-left: 244px;
+    /* Offset for the fixed sidebar */
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 244px);
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+/* Home Feed Layout */
+.feed-content {
+    width: 630px;
+    /* Standard feed width */
+}
+
+/* Stories Bar */
+.stories-bar {
+    display: flex;
+    background-color: white;
+    border: 1px solid #DBDBDB;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    width: 60px;
+}
+
+.story img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent;
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, #F09433, #E6683C, #DC2743, #CC2366, #BC1888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.story span {
+    font-size: 12px;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Post Styling */
+.post {
+    background-color: white;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+    margin-bottom: 24px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+}
+
+.post-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.post-header strong {
+    flex-grow: 1;
+}
+
+.post-options {
+    cursor: pointer;
+    color: #262626;
+}
+
+.post-media img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.post-footer {
+    padding: 0 16px 8px;
+}
+
+.post-actions {
+    display: flex;
+    padding: 10px 0;
+}
+
+.post-actions i {
+    font-size: 24px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.save-icon {
+    margin-left: auto;
+    margin-right: 0 !important;
+}
+
+.post-likes strong,
+.post-caption strong {
+    font-weight: 600;
+}
+
+.post-caption {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.post-time {
+    font-size: 10px;
+    color: #8E8E8E;
+    margin-top: 8px;
+}
+
+
+/* Suggestions Panel */
+.suggestions-panel {
+    width: 293px;
+    margin-left: 28px;
+    position: sticky;
+    top: 40px;
+    /* Stick near the top */
+    align-self: flex-start;
+}
+
+.profile-summary {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.summary-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.summary-info {
+    flex-grow: 1;
+}
+
+.summary-info strong {
+    font-size: 14px;
+    display: block;
+}
+
+.summary-info span {
+    font-size: 12px;
+    color: #8E8E8E;
+}
+
+.switch-btn {
+    color: #0095F6;
+    font-size: 12px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.suggestions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.suggestions-header strong {
+    font-size: 14px;
+    color: #8E8E8E;
+}
+
+.suggestions-header a {
+    font-size: 12px;
+    font-weight: 600;
+    color: #262626;
+    text-decoration: none;
+}
+
+.suggestion-list {
+    list-style: none;
+    padding: 0;
+}
+
+.suggestion-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.suggestion-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.suggestion-info {
+    flex-grow: 1;
+}
+
+.suggestion-info strong {
+    font-size: 14px;
+    display: block;
+}
+
+.suggestion-info span {
+    font-size: 12px;
+    color: #8E8E8E;
+}
+
+.follow-btn {
+    color: #0095F6;
+    font-size: 12px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.panel-footer {
+    margin-top: 40px;
+    font-size: 11px;
+    color: #C7C7C7;
+}
+
+.panel-footer p {
+    margin: 4px 0;
+}
+
+/* Modals/Flyouts */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    /* Below sidebar, above main content */
+    pointer-events: none;
+    /* Allows interaction with elements behind it */
+    transition: background-color 0.3s ease;
+}
+
+.modal-overlay.active {
+    pointer-events: auto;
+    /* Optional: add a slight dimming background if needed */
+    /* background-color: rgba(0, 0, 0, 0.1); */
+}
+
+.flyout-panel {
+    position: fixed;
+    left: 244px;
+    /* Starts next to the open sidebar */
+    top: 0;
+    height: 100vh;
+    width: 397px;
+    /* Typical Instagram flyout width */
+    background-color: white;
+    border-left: 1px solid #DBDBDB;
+    box-sizing: border-box;
+    padding: 80px 24px 20px 24px;
+    transform: translateX(-100%);
+    /* Start off-screen */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-overlay.active .flyout-panel {
+    transform: translateX(0);
+    /* Slide into view */
+}
+
+.search-flyout h3,
+.notifications-flyout h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    margin-top: -10px;
+    /* Pull header closer to the top */
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #DBDBDB;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+    background-color: #EFEFEF;
+}
+
+.recent-searches h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #262626;
+    margin-bottom: 16px;
+}
+
+.no-recent {
+    color: #8E8E8E;
+    text-align: center;
+    padding: 50px 0;
+}
+
+/* --- Additional CSS for New Pages --- */
+
+/* Basic container for pages where we don't need the suggestions panel */
+.explore-content,
+.reels-content,
+.profile-content,
+.create-content {
+    width: 935px;
+    /* A common max-width for content on Instagram's desktop view */
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* EXPLORE Grid */
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    /* Small gap between photos */
+    padding: 2px;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    /* Keep images perfectly square */
+    object-fit: cover;
+    display: block;
+}
+
+/* REELS Content (Original block 1 - REPLACED) */
+.reels-content {
+    /* Stack items vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Make the container full height and enable scrolling */
+    width: 100%;
+    height: 100vh;
+    /* Use full viewport height */
+    overflow-y: scroll;
+    /* **ENABLES VERTICAL SCROLLING** */
+    scroll-snap-type: y mandatory;
+    /* **ADDS THE SNAP EFFECT** */
+    padding-top: 0;
+    padding-bottom: 20px;
+
+    /* Optional: Hide scrollbar for a cleaner look */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Optional: Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.reels-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+.reel-mockup {
+    width: 350px;
+    /* Height calculation ensures the reel fills most of the screen */
+    height: calc(100vh - 80px);
+    min-height: 600px;
+
+    /* Vertical margin separates the reels */
+    margin: 40px 0;
+
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background-color: black;
+
+    /* **ENSURES EACH REEL SNAPS TO THE CENTER OF THE VIEWPORT** */
+    scroll-snap-align: center;
+}
+
+
+.reel-video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.reel-video img {
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+.reel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.reel-info strong {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.reel-actions i {
+    display: block;
+    font-size: 24px;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.reel-actions i span {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* --- MESSAGES Content Modifications (Full Width & Notes) --- */
+
+.messages-content {
+    /* Remove width constraint to allow it to fill the main container */
+    width: 100%;
+    padding: 0;
+    /* Remove top padding for seamless layout */
+}
+
+.messages-box {
+    display: flex;
+    max-width: 100%;
+    /* Now takes full width of main-container */
+    height: 90vh;
+    /* Increased height */
+    min-height: 500px;
+    border: 1px solid #DBDBDB;
+    background-color: white;
+}
+
+.inbox-list {
+    width: 350px;
+    /* Keep the inbox list fixed width */
+    border-right: 1px solid #DBDBDB;
+    box-sizing: border-box;
+    padding: 24px 0 0;
+    /* Adjusted padding to make space for Notes */
+    overflow-y: auto;
+    flex-shrink: 0;
+    /* Prevent list from shrinking */
+}
+
+.inbox-list header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px 16px;
+    font-size: 16px;
+}
+
+/* --- Notes Section Styling --- */
+
+.notes-section {
+    padding: 0 0 16px 24px;
+    border-bottom: 1px solid #DBDBDB;
+    margin-bottom: 10px;
+}
+
+.notes-header {
+    font-size: 14px;
+    color: #737373;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.notes-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    /* Horizontal scrolling for notes */
+    padding-bottom: 10px;
+    /* Space for scrollbar */
+    gap: 20px;
+}
+
+/* Hide scrollbar for notes container */
+.notes-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.notes-scroll-container {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.note-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 60px;
+    /* Fixed width for each note/story circle */
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.note-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 4px;
+    border: 1px solid #DBDBDB;
+    /* Simple border for notes */
+}
+
+.note-text {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.your-note .note-avatar {
+    opacity: 0.5;
+    /* Visual cue that it's just the avatar, waiting for a note */
+}
+
+.add-note-icon {
+    position: absolute;
+    bottom: 24px;
+    right: 0;
+    color: #0095F6;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 18px;
+    border: 2px solid white;
+}
+
+/* End Notes Section */
+
+.inbox-title {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 24px;
+}
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+    cursor: pointer;
+}
+
+.conversation-item:hover {
+    background-color: #FAFAFA;
+}
+
+.conv-info {
+    margin-left: 12px;
+    flex-grow: 1;
+}
+
+.conv-info strong {
+    font-size: 14px;
+}
+
+.conv-info span {
+    display: block;
+    font-size: 14px;
+    color: #8E8E8E;
+}
+
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.chat-icon {
+    font-size: 80px;
+    color: #262626;
+    border: 2px solid #262626;
+    border-radius: 50%;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+/* PROFILE Content */
+.profile-content {
+    padding: 40px 20px;
+}
+
+/* --- Additional CSS for New Pages --- */
+
+/* Basic container for pages where we don't need the suggestions panel */
+.explore-content,
+/* .reels-content, - Removed as it's defined above */
+.messages-content,
+.profile-content,
+.create-content {
+    width: 935px;
+    /* A common max-width for content on Instagram's desktop view */
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* EXPLORE Grid */
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    /* Small gap between photos */
+    padding: 2px;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    /* Keep images perfectly square */
+    object-fit: cover;
+    display: block;
+}
+
+/* REELS Content (Original block 2 - REMOVED, styles are consolidated above) */
+
+/* MESSAGES Content */
+.messages-content {
+    padding-top: 0;
+}
+
+.messages-box {
+    display: flex;
+    max-width: 935px;
+    height: 80vh;
+    min-height: 500px;
+    border: 1px solid #DBDBDB;
+    background-color: white;
+}
+
+.inbox-list {
+    width: 350px;
+    border-right: 1px solid #DBDBDB;
+    box-sizing: border-box;
+    padding: 24px 0;
+}
+
+.inbox-list header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px 16px;
+    font-size: 16px;
+}
+
+.inbox-title {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 24px;
+}
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+    cursor: pointer;
+}
+
+.conversation-item:hover {
+    background-color: #FAFAFA;
+}
+
+.conv-info {
+    margin-left: 12px;
+    flex-grow: 1;
+}
+
+.conv-info span {
+    display: block;
+    font-size: 14px;
+    color: #8E8E8E;
+}
+
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.chat-icon {
+    font-size: 80px;
+    color: #262626;
+    border: 2px solid #262626;
+    border-radius: 50%;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+/* PROFILE Content */
+.profile-content {
+    padding: 40px 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    max-width: 935px;
+    margin: 0 auto 44px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.profile-avatar-large {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 80px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-top-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-top-row h2 {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0 20px 0 0;
+}
+
+.profile-edit-btn {
+    background-color: #EFEFEF;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.profile-top-row i {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.profile-stats {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.profile-stats span {
+    margin-right: 40px;
+    font-size: 16px;
+}
+
+.profile-stats strong {
+    font-weight: 600;
+}
+
+.profile-name,
+.profile-bio {
+    font-size: 16px;
+    margin: 0 0 4px;
+}
+
+.profile-name {
+    font-weight: 600;
+}
+
+.profile-bio {
+    color: #8E8E8E;
+}
+
+.profile-tabs {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #DBDBDB;
+    margin-bottom: 1px;
+    max-width: 935px;
+    margin: 0 auto;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #8E8E8E;
+    cursor: pointer;
+    border-top: 1px solid transparent;
+    margin-top: -1px;
+}
+
+.tab i {
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.tab.active-tab {
+    color: #262626;
+    border-top: 1px solid #262626;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 935px;
+    margin: 0 auto;
+}
+
+.grid-post {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+/* CREATE Content */
+.create-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.create-mockup {
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    border: 1px solid #DBDBDB;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.create-mockup h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.create-icon {
+    font-size: 96px;
+    margin-bottom: 16px;
+    color: #8E8E8E;
+}
+
+.create-mockup p {
+    color: #8E8E8E;
+    margin-bottom: 24px;
+}
+
+/* Notifications Flyout Activity Feed Styling */
+.activity-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    margin-bottom: 4px;
+}
+
+.activity-item span {
+    flex-grow: 1;
+    font-size: 14px;
+    margin-left: 12px;
+}
+
+.activity-item i {
+    font-size: 16px;
+}
+
+.activity-item .follow-btn {
+    font-size: 12px;
+    color: #0095F6;
+    margin-left: 10px;
+}

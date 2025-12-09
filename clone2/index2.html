@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Frontend Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <aside class="sidebar-navbar">
+        <div class="logo">
+            <h1>Pixolagram</h1>
+        </div>
+
+        <nav>
+            <ul id="nav-list">
+                <li class="nav-item active" data-content-id="home">
+                    <a href="#"><i class="fas fa-home"></i> <span>Home</span></a>
+                </li>
+                <li class="nav-item search-toggle" data-content-id="search">
+                    <a href="#"><i class="fas fa-search"></i> <span>Search</span></a>
+                </li>
+                <li class="nav-item" data-content-id="explore">
+                    <a href="#"><i class="far fa-compass"></i> <span>Explore</span></a>
+                </li>
+                <li class="nav-item" data-content-id="reels">
+                    <a href="#"><i class="fa-solid fa-clapperboard"></i> <span>Reels</span></a>
+                </li>
+                <li class="nav-item" data-content-id="messages">
+                    <a href="#"><i class="far fa-paper-plane"></i> <span>Messages</span></a>
+                </li>
+                <li class="nav-item notifications-toggle" data-content-id="notifications">
+                    <a href="#"><i class="far fa-heart"></i> <span>Notifications</span></a>
+                </li>
+                <li class="nav-item create-post-toggle" data-content-id="create">
+                    <a href="#"><i class="far fa-plus-square"></i> <span>Create</span></a>
+                </li>
+                <li class="nav-item profile" data-content-id="profile">
+                    <a href="#">
+                        <img src="https://placehold.co/150x150/3b82f6/ffffff?text=U" alt="Profile Picture"
+                            class="profile-pic">
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="more-options">
+            <a href="#"><i class="fas fa-bars"></i> <span>More</span></a>
+        </div>
+    </aside>
+
+    <div class="main-container">
+        <div id="content-area">
+        </div>
+
+        <aside class="suggestions-panel" id="suggestions-panel">
+            <div class="profile-summary">
+                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=U" alt="Your Profile" class="summary-avatar">
+                <div class="summary-info">
+                    <strong>your_username</strong>
+                    <span>Your Name</span>
+                </div>
+                <button class="switch-btn">Switch</button>
+            </div>
+
+            <div class="suggestions-header">
+                <strong>Suggestions For You</strong>
+                <a href="#">See All</a>
+            </div>
+
+            <ul class="suggestion-list" id="suggestion-list">
+                <!-- Suggestions will be populated by JavaScript -->
+            </ul>
+
+            <footer class="panel-footer">
+                <p>About · Help · Press · API · Jobs · Privacy · Terms · Locations · Language</p>
+                <p>© 2025 PIXOLAGRAM FROM OMOSH LTD</p>
+            </footer>
+        </aside>
+    </div>
+
+    <div class="modal-overlay" id="searchModal">
+        <div class="flyout-panel search-flyout">
+            <h3>Search</h3>
+            <input type="text" placeholder="Search" class="search-input">
+            <div class="recent-searches">
+                <h4>Recent</h4>
+                <p class="no-recent">No recent searches.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="notificationsModal">
+        <div class="flyout-panel notifications-flyout">
+            <h3>Notifications</h3>
+            <div class="activity-feed">
+                <div class="activity-item">
+                    <img src="https://placehold.co/150x150/ef4444/ffffff?text=A" alt="Activity User"
+                        class="suggestion-avatar">
+                    <span><strong>user_a</strong> started following you.</span>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="activity-item">
+                    <img src="https://placehold.co/150x150/10b981/ffffff?text=B" alt="Activity User"
+                        class="suggestion-avatar">
+                    <span><strong>user_b</strong> liked your post.</span>
+                    <i class="far fa-heart" style="color: #ed4956;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for suggestions
+        const suggestionsData = [
+            { username: 'photography_pro', name: 'Professional Photographer', img: 'https://placehold.co/150x150/8b5cf6/ffffff?text=P' },
+            { username: 'travel_diaries', name: 'Adventure Seeker', img: 'https://placehold.co/150x150/f59e0b/ffffff?text=T' },
+            { username: 'foodie_delights', name: 'Culinary Expert', img: 'https://placehold.co/150x150/ef4444/ffffff?text=F' },
+            { username: 'fitness_guru', name: 'Health Coach', img: 'https://placehold.co/150x150/10b981/ffffff?text=G' },
+            { username: 'art_studio', name: 'Creative Artist', img: 'https://placehold.co/150x150/06b6d4/ffffff?text=A' }
+        ];
+
+        // Sample data for stories
+        const storiesData = [
+            { username: 'travel_diaries', img: 'https://placehold.co/150x150/f59e0b/ffffff?text=T' },
+            { username: 'foodie_delights', img: 'https://placehold.co/150x150/ef4444/ffffff?text=F' },
+            { username: 'fitness_guru', img: 'https://placehold.co/150x150/10b981/ffffff?text=G' },
+            { username: 'art_studio', img: 'https://placehold.co/150x150/06b6d4/ffffff?text=A' },
+            { username: 'tech_reviews', img: 'https://placehold.co/150x150/8b5cf6/ffffff?text=R' },
+            { username: 'fashion_trends', img: 'https://placehold.co/150x150/ec4899/ffffff?text=F' },
+            { username: 'music_vibes', img: 'https://placehold.co/150x150/6366f1/ffffff?text=M' },
+            { username: 'book_worm', img: 'https://placehold.co/150x150/7c2d12/ffffff?text=B' }
+        ];
+
+        // Sample data for posts
+        const postsData = Array.from({ length: 100 }, (_, i) => ({
+            username: `user_${i + 1}`,
+            likes: Math.floor(Math.random() * 10000) + 100,
+            caption: `Beautiful day! Post #${i + 1} #instagood`,
+            time: `${Math.floor(Math.random() * 24)}h`,
+            img: `https://placehold.co/630x630/${['f59e0b', 'ef4444', '10b981', '06b6d4', '8b5cf6', 'ec4899'][i % 6]}/ffffff?text=${i + 1}`
+        }));
+
+        // Sample data for reels
+        const reelsData = Array.from({ length: 10 }, (_, i) => ({
+            username: `reel_creator_${i + 1}`,
+            likes: (Math.floor(Math.random() * 100) + 10) + 'K',
+            comments: Math.floor(Math.random() * 500) + 50,
+            img: `https://placehold.co/350x600/${['f59e0b', 'ef4444', '10b981', '06b6d4', '8b5cf6', 'ec4899'][i % 6]}/ffffff?text=R${i + 1}`
+        }));
+
+        // Populate suggestions
+        function populateSuggestions() {
+            const suggestionList = document.getElementById('suggestion-list');
+            suggestionList.innerHTML = '';
+
+            suggestionsData.forEach(suggestion => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <img src="${suggestion.img}" alt="${suggestion.username}" class="suggestion-avatar">
+                    <div class="suggestion-info">
+                        <strong>${suggestion.username}</strong>
+                        <span>${suggestion.name}</span>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                `;
+                suggestionList.appendChild(li);
+            });
+        }
+
+        // Mapping of content ID to the HTML content (functions return strings)
+        const contentMap = {
+            'home': getHomeContent,
+            'search': getSearchContent,
+            'explore': getExploreContent,
+            'reels': getReelsContent,
+            'messages': getMessagesContent,
+            'notifications': getNotificationsContent,
+            'create': getCreateContent,
+            'profile': getProfileContent,
+        };
+
+        const contentArea = document.getElementById('content-area');
+        const navItems = document.querySelectorAll('#nav-list .nav-item');
+        const suggestionsPanel = document.getElementById('suggestions-panel');
+
+        const searchModal = document.getElementById('searchModal');
+        const notificationsModal = document.getElementById('notificationsModal');
+
+        // Function to update the main content area
+        function loadContent(contentId) {
+            // 1. Reset active state and close flyouts
+            navItems.forEach(item => item.classList.remove('active'));
+            searchModal.classList.remove('active');
+            notificationsModal.classList.remove('active');
+
+            // 2. Add 'active' class to the clicked item
+            const activeItem = document.querySelector(`.nav-item[data-content-id="${contentId}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+
+            // 3. Update the main content
+            if (contentMap[contentId]) {
+                contentArea.innerHTML = contentMap[contentId]();
+            } else {
+                contentArea.innerHTML = `
+                    <div class="page-placeholder">
+                        <h2 style="margin-bottom: 20px;">${contentId.charAt(0).toUpperCase() + contentId.slice(1)} Page</h2>
+                        <p>Styling applied to a simple content container.</p>
+                    </div>
+                `;
+            }
+
+            // 4. Handle Suggestions Panel visibility (Only for Home/Feed)
+            suggestionsPanel.style.display = contentId === 'home' ? 'block' : 'none';
+
+            // 5. Handle Flyout Modals (Search/Notifications)
+            if (contentId === 'search') {
+                searchModal.classList.add('active');
+            } else if (contentId === 'notifications') {
+                notificationsModal.classList.add('active');
+            }
+        }
+
+        // --- HTML Content for each section ---
+
+        // HOME/FEED Content
+        function getHomeContent() {
+            // Generate stories HTML
+            const storiesHTML = `
+                <div class="story">
+                    <img src="https://placehold.co/150x150/3b82f6/ffffff?text=+" alt="Your Story">
+                    <span>Your Story</span>
+                </div>
+                ${storiesData.map(story => `
+                    <div class="story">
+                        <img src="${story.img}" alt="${story.username}">
+                        <span>${story.username}</span>
+                    </div>
+                `).join('')}
+            `;
+
+            // Generate posts HTML (100 posts)
+            const postsHTML = postsData.map(post => `
+                <article class="post">
+                    <header class="post-header">
+                        <img src="https://placehold.co/150x150/3b82f6/ffffff?text=${post.username.charAt(0).toUpperCase()}" alt="${post.username}" class="post-avatar">
+                        <strong>${post.username}</strong>
+                        <i class="fas fa-ellipsis-h post-options"></i>
+                    </header>
+                    <div class="post-media">
+                        <img src="${post.img}" alt="Post Image">
+                    </div>
+                    <footer class="post-footer">
+                        <div class="post-actions">
+                            <i class="far fa-heart"></i>
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-paper-plane"></i>
+                            <i class="far fa-bookmark save-icon"></i>
+                        </div>
+                        <div class="post-likes">
+                            <strong>${post.likes.toLocaleString()} likes</strong>
+                        </div>
+                        <div class="post-caption">
+                            <strong>${post.username}</strong> ${post.caption}
+                        </div>
+                        <div class="post-time">${post.time} AGO</div>
+                    </footer>
+                </article>
+            `).join('');
+
+            return `
+                <main class="feed-content">
+                    <section class="stories-bar">
+                        ${storiesHTML}
+                    </section>
+                    ${postsHTML}
+                </main>
+            `;
+        }
+
+        // EXPLORE Content
+        function getExploreContent() {
+            return `
+                <main class="explore-content">
+                    <div class="explore-grid">
+                        <div class="grid-item"><img src="https://placehold.co/300x300/f59e0b/ffffff?text=1" alt="Explore Post"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/ef4444/ffffff?text=2" alt="Explore Post"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/10b981/ffffff?text=3"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/06b6d4/ffffff?text=4"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/8b5cf6/ffffff?text=5" alt="Explore Post"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/ec4899/ffffff?text=6" alt="Explore Post"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/7c2d12/ffffff?text=7" alt="Explore Post"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/6366f1/ffffff?text=8" alt="Explore Post"></div>
+                        <div class="grid-item"><img src="https://placehold.co/300x300/f97316/ffffff?text=9"></div>
+                    </div>
+                </main>
+            `;
+        }
+
+        // REELS Content
+        function getReelsContent() {
+            const reelsHTML = reelsData.map(reel => `
+                <div class="reel-mockup">
+                    <div class="reel-video">
+                        <img src="${reel.img}" alt="Reel Video Mockup">
+                        <div class="reel-overlay">
+                            <div class="reel-info">
+                                <strong>@${reel.username}</strong>
+                                <p>Check out this amazing short clip!</p>
+                            </div>
+                            <div class="reel-actions">
+                                <i class="far fa-heart"><span>${reel.likes}</span></i>
+                                <i class="far fa-comment"><span>${reel.comments}</span></i>
+                                <i class="far fa-paper-plane"></i>
+                                <i class="fas fa-ellipsis-v"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <main class="reels-content">
+                    ${reelsHTML}
+                </main>
+            `;
+        }
+
+        // MESSAGES Content (UPDATED with Notes Section)
+        function getMessagesContent() {
+            return `
+                <main class="messages-content">
+                    <div class="messages-box">
+                        <aside class="inbox-list">
+                            <header>
+                                <strong>your_username</strong>
+                                <i class="far fa-edit"></i>
+                            </header>
+
+                            <section class="notes-section">
+                                <div class="notes-header">Notes</div>
+                                <div class="notes-scroll-container">
+                                    <div class="note-item your-note">
+                                        <img src="https://placehold.co/150x150/3b82f6/ffffff?text=U" alt="Your Note" class="note-avatar">
+                                        <i class="fas fa-plus-circle add-note-icon"></i>
+                                        <span class="note-text">Add a note</span>
+                                    </div>
+                                    <div class="note-item">
+                                        <img src="https://placehold.co/150x150/ef4444/ffffff?text=A" alt="Note User 1" class="note-avatar">
+                                        <p class="note-text">Feeling good today!</p>
+                                    </div>
+                                    <div class="note-item">
+                                        <img src="https://placehold.co/150x150/10b981/ffffff?text=B" alt="Note User 2" class="note-avatar">
+                                        <p class="note-text">What's for dinner? 🍕</p>
+                                    </div>
+                                    <div class="note-item">
+                                        <img src="https://placehold.co/150x150/f59e0b/ffffff?text=C" alt="Note User 3" class="note-avatar">
+                                        <p class="note-text">Morning.</p>
+                                    </div>
+                                    <div class="note-item">
+                                        <img src="https://placehold.co/150x150/8b5cf6/ffffff?text=D" alt="Note User 4" class="note-avatar">
+                                        <p class="note-text">Back to coding!</p>
+                                    </div>
+                                    <div class="note-item">
+                                        <img src="https://placehold.co/150x150/ec4899/ffffff?text=E" alt="Note User 5" class="note-avatar">
+                                        <p class="note-text">Working out now</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="inbox-title">Messages</div>
+                            <div class="conversation-item">
+                                <img src="https://placehold.co/150x150/ef4444/ffffff?text=A" alt="User" class="suggestion-avatar">
+                                <div class="conv-info">
+                                    <strong>message_user_1</strong>
+                                    <span>Active 1h ago</span>
+                                </div>
+                            </div>
+                            <div class="conversation-item">
+                                <img src="https://placehold.co/150x150/10b981/ffffff?text=B" alt="User" class="suggestion-avatar">
+                                <div class="conv-info">
+                                    <strong>message_user_2</strong>
+                                    <span>New Message.</span>
+                                </div>
+                            </div>
+                        </aside>
+                        <section class="chat-window">
+                            <i class="far fa-paper-plane chat-icon"></i>
+                            <h2>Your messages</h2>
+                            <p>Send private photos and messages to a friend or group.</p>
+                            <button class="switch-btn" style="background-color: #0095F6; color: white; padding: 6px 10px; border-radius: 4px;">Send Message</button>
+                        </section>
+                    </div>
+                </main>
+            `;
+        }
+
+        // PROFILE Content
+        function getProfileContent() {
+            return `
+                <main class="profile-content">
+                    <header class="profile-header">
+                        <img src="https://placehold.co/150x150/3b82f6/ffffff?text=U" alt="Profile Picture" class="profile-avatar-large">
+                        <div class="profile-info">
+                            <div class="profile-top-row">
+                                <h2>your_username</h2>
+                                <button class="profile-edit-btn">Edit Profile</button>
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="profile-stats">
+                                <span><strong>100</strong> posts</span>
+                                <span><strong>100</strong> followers</span>
+                                <span><strong>80</strong> following</span>
+                            </div>
+                            <p class="profile-name">Your Full Name</p>
+                            <p class="profile-bio">This is my awesome Instagram clone bio!</p>
+                        </div>
+                    </header>
+
+                    <div class="profile-tabs">
+                        <div class="tab active-tab"><i class="fas fa-th"></i> POSTS</div>
+                        <div class="tab"><i class="fa-solid fa-clapperboard"></i> REELS</div>
+                        <div class="tab"><i class="far fa-bookmark"></i> SAVED</div>
+                        <div class="tab"><i class="fas fa-user-tag"></i> TAGGED</div>
+                    </div>
+
+                    <div class="profile-grid">
+                        ${Array.from({ length: 9 }, (_, i) => `
+                            <img src="https://placehold.co/300x300/${['f59e0b', 'ef4444', '10b981', '06b6d4', '8b5cf6', 'ec4899', '7c2d12', '6366f1', 'f97316'][i]}/ffffff?text=${i + 1}" alt="Post" class="grid-post">
+                        `).join('')}
+                    </div>
+                </main>
+            `;
+        }
+
+        // SEARCH, NOTIFICATIONS, CREATE are handled mostly via modals/flyouts
+        function getSearchContent() { return `<div class="content-placeholder"></div>`; }
+        function getNotificationsContent() { return `<div class="content-placeholder"></div>`; }
+        function getCreateContent() {
+            return `
+                <main class="create-content">
+                    <div class="create-mockup">
+                        <h2>Create New Post</h2>
+                        <i class="far fa-images create-icon"></i>
+                        <p>Drag photos and videos here</p>
+                        <button style="background-color: #0095F6; color: white; padding: 6px 10px; border-radius: 4px;">Select from computer</button>
+                    </div>
+                </main>
+            `;
+        }
+
+        // --- Event Listeners ---
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const contentId = item.getAttribute('data-content-id');
+                loadContent(contentId);
+            });
+        });
+
+        // Follow button event delegation
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('follow-btn')) {
+                e.target.textContent = 'Following';
+                e.target.style.color = '#262626';
+            }
+        });
+
+        // Initialize the page to the Home Feed
+        window.onload = () => {
+            populateSuggestions();
+            loadContent('home');
+
+            // Add event listeners to close modals when clicking outside (on the overlay)
+            [searchModal, notificationsModal].forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('modal-overlay')) {
+                        modal.classList.remove('active');
+                        // Reset the sidebar active state for the flyout icons
+                        document.querySelector(`.nav-item[data-content-id="search"]`)?.classList.remove('active');
+                        document.querySelector(`.nav-item[data-content-id="notifications"]`)?.classList.remove('active');
+                        document.querySelector(`.nav-item[data-content-id="home"]`).classList.add('active'); // Go back to home active state
+                    }
+                });
+            });
+        };
+    </script>
+</body>
+
+</html>
