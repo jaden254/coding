@@ -31,7 +31,7 @@
                     <a href="#"><i class="fa-solid fa-clapperboard"></i> <span>Reels</span></a>
                 </li>
                 <li class="nav-item" data-content-id="messages">
-                    <a href="#"><i class="far fa-paper-plane"></i> <span>Messages</span></a>
+                    <a href="messages.html"><i class="far fa-paper-plane"></i> <span>Messages</span></a>
                 </li>
                 <li class="nav-item notifications-toggle" data-content-id="notifications">
                     <a href="#"><i class="far fa-heart"></i> <span>Notifications</span></a>
@@ -74,7 +74,6 @@
             </div>
 
             <ul class="suggestion-list" id="suggestion-list">
-                <!-- Suggestions will be populated by JavaScript -->
             </ul>
 
             <footer class="panel-footer">
@@ -179,7 +178,7 @@
             'search': getSearchContent,
             'explore': getExploreContent,
             'reels': getReelsContent,
-            'messages': getMessagesContent,
+            'messages': getMessagesContent, // This function is now only used if the script tries to load messages content dynamically, but the nav link points to a new file.
             'notifications': getNotificationsContent,
             'create': getCreateContent,
             'profile': getProfileContent,
@@ -192,8 +191,11 @@
         const searchModal = document.getElementById('searchModal');
         const notificationsModal = document.getElementById('notificationsModal');
 
-        // Function to update the main content area
+        // Function to update the main content area (Note: This function will be bypassed for 'messages' since the link is now a direct `href`)
         function loadContent(contentId) {
+            // Check if the link is a direct navigation link (like 'messages' now is)
+            if (contentId === 'messages') return;
+
             // 1. Reset active state and close flyouts
             navItems.forEach(item => item.classList.remove('active'));
             searchModal.classList.remove('active');
@@ -333,69 +335,16 @@
             `;
         }
 
-        // MESSAGES Content (UPDATED with Notes Section)
+        // MESSAGES Content (Kept as a placeholder in case it's called, but the nav link now directs to a file)
         function getMessagesContent() {
             return `
                 <main class="messages-content">
-                    <div class="messages-box">
-                        <aside class="inbox-list">
-                            <header>
-                                <strong>your_username</strong>
-                                <i class="far fa-edit"></i>
-                            </header>
-
-                            <section class="notes-section">
-                                <div class="notes-header">Notes</div>
-                                <div class="notes-scroll-container">
-                                    <div class="note-item your-note">
-                                        <img src="https://placehold.co/150x150/3b82f6/ffffff?text=U" alt="Your Note" class="note-avatar">
-                                        <i class="fas fa-plus-circle add-note-icon"></i>
-                                        <span class="note-text">Add a note</span>
-                                    </div>
-                                    <div class="note-item">
-                                        <img src="https://placehold.co/150x150/ef4444/ffffff?text=A" alt="Note User 1" class="note-avatar">
-                                        <p class="note-text">Feeling good today!</p>
-                                    </div>
-                                    <div class="note-item">
-                                        <img src="https://placehold.co/150x150/10b981/ffffff?text=B" alt="Note User 2" class="note-avatar">
-                                        <p class="note-text">What's for dinner? 🍕</p>
-                                    </div>
-                                    <div class="note-item">
-                                        <img src="https://placehold.co/150x150/f59e0b/ffffff?text=C" alt="Note User 3" class="note-avatar">
-                                        <p class="note-text">Morning.</p>
-                                    </div>
-                                    <div class="note-item">
-                                        <img src="https://placehold.co/150x150/8b5cf6/ffffff?text=D" alt="Note User 4" class="note-avatar">
-                                        <p class="note-text">Back to coding!</p>
-                                    </div>
-                                    <div class="note-item">
-                                        <img src="https://placehold.co/150x150/ec4899/ffffff?text=E" alt="Note User 5" class="note-avatar">
-                                        <p class="note-text">Working out now</p>
-                                    </div>
-                                </div>
-                            </section>
-                            <div class="inbox-title">Messages</div>
-                            <div class="conversation-item">
-                                <img src="https://placehold.co/150x150/ef4444/ffffff?text=A" alt="User" class="suggestion-avatar">
-                                <div class="conv-info">
-                                    <strong>message_user_1</strong>
-                                    <span>Active 1h ago</span>
-                                </div>
-                            </div>
-                            <div class="conversation-item">
-                                <img src="https://placehold.co/150x150/10b981/ffffff?text=B" alt="User" class="suggestion-avatar">
-                                <div class="conv-info">
-                                    <strong>message_user_2</strong>
-                                    <span>New Message.</span>
-                                </div>
-                            </div>
-                        </aside>
-                        <section class="chat-window">
-                            <i class="far fa-paper-plane chat-icon"></i>
-                            <h2>Your messages</h2>
-                            <p>Send private photos and messages to a friend or group.</p>
-                            <button class="switch-btn" style="background-color: #0095F6; color: white; padding: 6px 10px; border-radius: 4px;">Send Message</button>
-                        </section>
+                    <div class="messages-box" style="display: flex; justify-content: center; align-items: center; height: 100%; border: 1px solid #dbdbdb;">
+                        <div class="page-placeholder" style="text-align: center; padding: 50px;">
+                            <i class="far fa-paper-plane" style="font-size: 50px; margin-bottom: 20px;"></i>
+                            <h2 style="margin-bottom: 10px;">Messages Content Placeholder</h2>
+                            <p>The link has been updated to point to **clone2/messages.html**.</p>
+                        </div>
                     </div>
                 </main>
             `;
@@ -458,7 +407,14 @@
         // --- Event Listeners ---
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {
-                e.preventDefault();
+                // If the link has a direct href (like messages.html), prevent default only for JS-handled pages
+                if (item.getAttribute('data-content-id') !== 'messages') {
+                    e.preventDefault();
+                } else {
+                    // Allow the direct navigation to the external HTML file
+                    return;
+                }
+
                 const contentId = item.getAttribute('data-content-id');
                 loadContent(contentId);
             });
