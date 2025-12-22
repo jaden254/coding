@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Mary's Senior School for Boys</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0, 35, 102, 0.75), rgba(0, 35, 102, 0.75));
+        }
+
+        .motto-text {
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* Custom scrollbar for the large alumni list */
+        .alumni-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .alumni-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .alumni-scroll::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 10px;
+        }
+
+        /* Hover persistence */
+        .group:hover .group-hover\:visible {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <nav
+        class="fixed w-full z-50 glass border-b border-white/20 py-3 px-8 flex justify-between items-center text-white">
+        <div class="flex items-center gap-3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIYAFK7eZDpJNP5kXeSc7SJlyow8MP41YiBg&s"
+                alt="St. Mary's Logo" class="h-12 w-auto brightness-110 shadow-lg">
+            <div class="hidden sm:block">
+                <div class="font-bold text-xl leading-none tracking-tight">ST. MARY'S</div>
+                <div class="text-[10px] opacity-80 tracking-[0.2em] uppercase mt-1 italic">"Shine in Everything
+                    Everywhere"</div>
+            </div>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-8 font-medium uppercase text-xs tracking-widest h-full">
+            <div class="relative group py-4">
+                <a href="#" class="hover:text-amber-400 transition flex items-center gap-1">
+                    Academics
+                    <svg class="w-3 h-3 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+
+                <!-- Academics Mega Menu -->
+                <div class="fixed top-[72px] left-1/2 -translate-x-1/2 w-[90vw] max-w-5xl
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                    transition-all duration-300 transform group-hover:translate-y-0 translate-y-4 z-50">
+
+                    <div class="bg-black border border-white/10 rounded-3xl p-8
+                        shadow-[0_20px_50px_rgba(0,0,0,0.5)]
+                        text-left text-white">
+
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+                            <div>
+                                <h3 class="text-2xl text-amber-400">Academic Excellence</h3>
+                                <p class="text-[10px] text-white/40 uppercase tracking-widest mt-1">
+                                    St. Mary’s School, Yala — Founded 1927
+                                </p>
+                            </div>
+                            <span
+                                class="text-[10px] bg-amber-500 text-black px-3 py-1 rounded-full font-bold uppercase">
+                                KCSE Top Performer
+                            </span>
+                        </div>
+
+                        <!-- Content Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                            <!-- Academic Performance -->
+                            <div>
+                                <h4 class="text-amber-500 font-bold mb-4 uppercase text-[11px]
+                                    tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Academic Performance
+                                </h4>
+                                <ul class="text-xs space-y-2 text-slate-300">
+                                    <li><span class="text-amber-400 font-semibold">2024 KCSE:</span> Mean 8.912 (B
+                                        Plain)</li>
+                                    <li><span class="text-amber-400 font-semibold">2023 KCSE:</span> Mean 8.0 (B-)</li>
+                                    <li>Consistent upward academic trend</li>
+                                    <li>Top extra-county (C1) boys’ school</li>
+                                </ul>
+                            </div>
+
+                            <!-- Curriculum -->
+                            <div>
+                                <h4 class="text-amber-500 font-bold mb-4 uppercase text-[11px]
+                                    tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Curriculum & Programs
+                                </h4>
+                                <ul class="text-xs space-y-2 text-slate-300">
+                                    <li>Competency-Based Education (CBE)</li>
+                                    <li>C1 Institution Classification</li>
+                                    <li>Grade 10 intake scheduled for 2026</li>
+                                    <li>National curriculum compliance</li>
+                                </ul>
+                            </div>
+
+                            <!-- Subjects -->
+                            <div>
+                                <h4 class="text-amber-500 font-bold mb-4 uppercase text-[11px]
+                                    tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Subject Offerings
+                                </h4>
+                                <ul class="text-xs space-y-2 text-slate-300">
+                                    <li>Mathematics & Pure Sciences</li>
+                                    <li>Humanities & Languages</li>
+                                    <li>Technical & Applied Subjects</li>
+                                    <li>Over 40 qualified teaching staff</li>
+                                </ul>
+                            </div>
+
+                            <!-- Digital Learning -->
+                            <div class="lg:col-span-3 pt-6 border-t border-white/5">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">
+                                            Digital Integration
+                                        </p>
+                                        <p class="text-xs text-slate-400 italic">
+                                            Zeraki Analytics for performance tracking and attendance monitoring
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">
+                                            Learning Environment
+                                        </p>
+                                        <p class="text-xs text-slate-400 italic">
+                                            Structured boarding system supporting academic focus
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">
+                                            Academic Culture
+                                        </p>
+                                        <p class="text-xs text-slate-400 italic">
+                                            Discipline, mentorship, and excellence-driven ethos
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="hover:text-amber-400 transition">Admissions</a>
+            <div class="relative group py-4">
+                <a href="#" class="hover:text-amber-400 transition flex items-center gap-1">
+                    Student Life
+                    <svg class="w-3 h-3 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+
+                <!-- Student Life Mega Menu -->
+                <div class="fixed top-[72px] left-1/2 -translate-x-1/2 w-[90vw] max-w-5xl
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                    transition-all duration-300 transform group-hover:translate-y-0 translate-y-4 z-50">
+
+                    <div class="bg-black border border-white/10 rounded-3xl p-8
+                        shadow-[0_20px_50px_rgba(0,0,0,0.5)]
+                        text-left text-white">
+
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+                            <div>
+                                <h3 class="text-2xl text-amber-400">Student Life</h3>
+                                <p class="text-[10px] text-white/40 uppercase tracking-widest mt-1">
+                                    The Black Saints Experience
+                                </p>
+                            </div>
+                            <span
+                                class="text-[10px] bg-amber-500 text-black px-3 py-1 rounded-full font-bold uppercase">
+                                National School — 2025
+                            </span>
+                        </div>
+
+                        <!-- Content Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                            <!-- Holistic Life -->
+                            <div>
+                                <h4 class="text-amber-500 font-bold mb-4 uppercase text-[11px]
+                                    tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Holistic Development
+                                </h4>
+                                <ul class="text-xs space-y-2 text-slate-300">
+                                    <li>Balanced academics & co-curricular life</li>
+                                    <li>Character & leadership focused training</li>
+                                    <li>Values-driven boarding environment</li>
+                                    <li>Motto: <span class="italic">Bonitas, Disciplina, Scientia</span></li>
+                                </ul>
+                            </div>
+
+                            <!-- Sports & Talent -->
+                            <div>
+                                <h4 class="text-amber-500 font-bold mb-4 uppercase text-[11px]
+                                    tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Sports & Talent
+                                </h4>
+                                <ul class="text-xs space-y-2 text-slate-300">
+                                    <li>Rugby as the flagship sport</li>
+                                    <li>Annual <span class="text-amber-400 font-semibold">Yala 15s</span> Tournament
+                                        hosts</li>
+                                    <li>Consistent regional rugby champions</li>
+                                    <li>MOFA Academy partnerships</li>
+                                </ul>
+                            </div>
+
+                            <!-- Leadership -->
+                            <div>
+                                <h4 class="text-amber-500 font-bold mb-4 uppercase text-[11px]
+                                    tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Leadership & Community
+                                </h4>
+                                <ul class="text-xs space-y-2 text-slate-300">
+                                    <li>Student Representative Council (SRC)</li>
+                                    <li>Leadership & mentorship workshops</li>
+                                    <li>Emotional intelligence training</li>
+                                    <li>Feedback & responsibility culture</li>
+                                </ul>
+                            </div>
+
+                            <!-- Academics & Spirituality -->
+                            <div class="lg:col-span-3 pt-6 border-t border-white/5">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">
+                                            Academic Culture
+                                        </p>
+                                        <p class="text-xs text-slate-400 italic">
+                                            CBC transition underway; strong KCSE results with A- and B+ grades
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">
+                                            Spiritual Life
+                                        </p>
+                                        <p class="text-xs text-slate-400 italic">
+                                            Catholic ethos promoting God-centered living since 1927
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">
+                                            Heritage & Identity
+                                        </p>
+                                        <p class="text-xs text-slate-400 italic">
+                                            Proud Black Saints tradition within a multicultural community
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="relative group py-4">
+                <a href="#" class="hover:text-amber-400 transition flex items-center gap-1">
+                    Alumni
+                    <svg class="w-3 h-3 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+
+                <div class="fixed top-[72px] left-1/2 -translate-x-1/2 w-[90vw] max-w-5xl
+                opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                transition-all duration-300 transform group-hover:translate-y-0 translate-y-4 z-50">
+
+                    <div
+                        class="bg-black border border-white/10 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-h-[75vh] overflow-y-auto alumni-scroll text-left">
+
+                        <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+                            <div>
+                                <h3 class="text-2xl text-amber-400">Prominent Alumni</h3>
+                                <p class="text-[10px] text-white/40 uppercase tracking-widest mt-1">St. Mary's School
+                                    Yala Hall of
+                                    Fame</p>
+                            </div>
+                            <span
+                                class="text-[10px] bg-amber-500 text-black px-3 py-1 rounded-full font-bold uppercase">The
+                                Black
+                                Saints Legacy</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                            <div class="group/cat">
+                                <h4
+                                    class="text-amber-500 font-bold mb-4 uppercase text-[11px] tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Leadership & Politics</h4>
+                                <ul class="text-xs space-y-2 text-slate-300">
+                                    <li class="hover:text-white transition">Hon. Thomas Mboya</li>
+                                    <li class="hover:text-white transition">Hon. Argwings Kodhek</li>
+                                    <li class="hover:text-white transition">Hon. Peter Oloo Aringo</li>
+                                    <li class="hover:text-white transition">Hon. Amb. Maurice Omwony Otieno</li>
+                                    <li class="hover:text-white transition">Prof. John Lunyangapuo</li>
+                                    <li class="hover:text-white transition">Hon. Musikaro Kombo</li>
+                                    <li class="hover:text-white transition">Hon. Dr. Mukhisa Kituyi</li>
+                                    <li class="hover:text-white transition">Sen. Onyonka Richard Momoima</li>
+                                    <li class="hover:text-white transition">Dr. Zakary Onyonka</li>
+                                    <li class="hover:text-white transition">Hon. James Nakhwanga Osogo</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4
+                                    class="text-amber-500 font-bold mb-4 uppercase text-[11px] tracking-widest border-l-2 border-amber-500 pl-3">
+                                    Academics (Higher Ed)</h4>
+                                <div
+                                    class="max-h-60 overflow-y-auto alumni-scroll pr-4 text-xs space-y-2 text-slate-300">
+                                    <li>Prof. John Lonyangapuo</li>
+                                    <li>Prof. Ouma Muga</li>
+                                    <li>Prof. John Odhiambo (Strathmore)</li>
+                                    <li>Prof. Vincent Onyango (Strathmore)</li>
+                                    <li>Prof. Peter Owoko k’obonyo (UoN)</li>
+                                    <li>Prof. Peter Odera (MMUST)</li>
+                                    <li>Prof. Japheth O. Onyando (Egerton)</li>
+                                    <li>Prof. Joachim Osur (VC Amref)</li>
+                                    <li>Prof. Henry Odera Oruka</li>
+                                    <li>Dr. Awuor Ponge (APC)</li>
+                                    <li>Dr. George Ooko Abong’ (UoN)</li>
+                                    <li>Dr. Samson Gwer</li>
+                                    <li>Dr. John Paul Oyore</li>
+                                    <li>Dr. Daniel Ochieng Orwenjo</li>
+                                    <li>Dr. Tom Mboya Olali</li>
+                                    <li>Dr. David Okello Otieno</li>
+                                </div>
+                            </div>
+
+                            <div class="space-y-8">
+                                <div>
+                                    <h4
+                                        class="text-amber-500 font-bold mb-3 uppercase text-[11px] tracking-widest border-l-2 border-amber-500 pl-3">
+                                        Judiciary</h4>
+                                    <ul class="text-xs space-y-2 text-slate-300">
+                                        <li>Justice George Odunga</li>
+                                        <li>Justice Fred Radido</li>
+                                        <li>Justice Emmanuel O'kubasu</li>
+                                        <li>Judge Dalmas Omondi Ohungo</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="text-amber-500 font-bold mb-3 uppercase text-[11px] tracking-widest border-l-2 border-amber-500 pl-3">
+                                        Medical Field</h4>
+                                    <ul class="text-xs space-y-2 text-slate-300">
+                                        <li>Dr. Patrick Apopa (Arkansas)</li>
+                                        <li>Dr. John Mumia Natala</li>
+                                        <li>Dr. Spala Ohaga</li>
+                                        <li>Dr. Bonaventure Aman</li>
+                                        <li>Dr. Steve Ger (ICIPE)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-3 pt-6 border-t border-white/5">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">Engineering</p>
+                                        <p class="text-xs text-slate-400 italic">George Chiaji, Wycliffe Baraza Koyo,
+                                            George
+                                            Onyancha</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">Religious & NGOs
+                                        </p>
+                                        <p class="text-xs text-slate-400 italic">Rev. Fr. Fred Ogambi, Emmanuel Nyabera
+                                            (UNHCR),
+                                            Fred Opundo</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">Education
+                                            Leadership</p>
+                                        <p class="text-xs text-slate-400 italic">Joseph Owuor (JJ), Bonaventure Olando,
+                                            Edward
+                                            Oketch</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                class="bg-amber-500 hover:bg-amber-600 px-6 py-2 rounded-full text-blue-950 font-bold text-sm transition">ENROLL
+                NOW</button>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center text-center text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756defeec?auto=format&fit=crop&w=1920&q=80"
+                class="w-full h-full object-cover" alt="School Campus">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <div class="relative z-10 px-4 flex flex-col items-center">
+            <div class="mb-8 flex flex-col items-center animate-fadeIn">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIYAFK7eZDpJNP5kXeSc7SJlyow8MP41YiBg&s"
+                    alt="St. Mary's Crest" class="h-32 w-auto mb-4 drop-shadow-2xl">
+                <div
+                    class="motto-text font-semibold text-amber-400 bg-blue-950/40 px-6 py-2 rounded-full border border-amber-400/30">
+                    "Shine in Everything Everywhere"
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-7xl mb-6 max-w-4xl">The St. Mary's Yala</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 font-light italic opacity-90">Defined by strong Catholic
+                heritage, a focus on holistic education, and exceptional sports prowess.
+                Known as <span class="text-amber-400 font-semibold">"The Black Saints"</span> for producing national
+                talents and fostering strong alumni networks.</p>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-5 bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
+                <span class="text-amber-500 font-bold tracking-widest text-xs uppercase">Heritage & Culture</span>
+                <h2 class="text-3xl mt-4 mb-6 text-blue-900 leading-tight">Academic & Cultural Environment</h2>
+                <ul class="space-y-6">
+                    <li class="flex gap-4">
+                        <div class="text-blue-900 text-xl font-bold">01</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Catholic Foundation</h4>
+                            <p class="text-sm text-slate-600">Established by Mill Hill Missionaries, the school
+                                maintains a strong Catholic ethos through discipline and spirit.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="text-blue-900 text-xl font-bold">02</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Holistic Development</h4>
+                            <p class="text-sm text-slate-600">We focus on academics alongside arts and sports, aiming to
+                                graduate well-rounded gentlemen.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="text-blue-900 text-xl font-bold">03</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Alumni Network</h4>
+                            <p class="text-sm text-slate-600">A powerful, supportive network (e.g., Wuod Ginga Valley)
+                                often mentors current students.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-900 text-white p-8 rounded-3xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl mb-3">Football Powerhouse</h3>
+                        <p class="text-sm opacity-80 leading-relaxed">Producing national team players and consistently
+                            dominating regional levels.</p>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 text-white/5 font-bold text-8xl italic">GOAL</div>
+                </div>
+
+                <div class="bg-slate-900 text-white p-8 rounded-3xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl mb-3">Rugby & Basketball</h3>
+                        <p class="text-sm opacity-80 leading-relaxed">Recent champions in Rugby 7s and 3x3 Basketball,
+                            carrying the Black Saints torch.</p>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 text-white/5 font-bold text-8xl italic">WIN</div>
+                </div>
+
+                <div class="md:col-span-2 bg-amber-500 p-10 rounded-3xl flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-1">
+                        <h3 class="text-3xl text-blue-950 mb-4 font-bold">Regional Sports Dominance</h3>
+                        <p class="text-blue-900 font-medium">From Volleyball to Lawn Tennis, our students consistently
+                            qualify for national competitions.</p>
+                    </div>
+                    <div class="bg-blue-950 text-amber-500 py-4 px-8 rounded-2xl text-center shadow-lg">
+                        <div class="text-4xl font-black">#1</div>
+                        <div class="text-[10px] uppercase font-bold tracking-widest">Regionally Ranked</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
